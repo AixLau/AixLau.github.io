@@ -62,9 +62,34 @@ hometop:
       HTML: # 名字 / Name
         img: https://7.isyangs.cn/34/65f2e42921677-34.png # 图片 / Image
         color: "#e9572b" # 背景色 / Background color
+      Rect: # 名字 / Name
+        img: https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg # 图片 / Image
+        # color: "#e9572b" # 背景色 / Background color
+        url: https://vuejs.org/
+      VUE: # 名字 / Name
+        img: https://profilinator.rishav.dev/skills-assets/vuejs-original-wordmark.svg # 图片 / Image
+        # color: "#48c9b0" # 背景色 / Background color
+        url: https://vuejs.org/ 
+      Go:
+        img: https://profilinator.rishav.dev/skills-assets/go-original.svg
+        # color: "#f7cb4f"
+      Java:
+        img: https://profilinator.rishav.dev/skills-assets/java-original-wordmark.svg
+      Redis:
+        img: https://profilinator.rishav.dev/skills-assets/redis-original-wordmark.svg
+      Linux:
+        img: https://profilinator.rishav.dev/skills-assets/linux-original.svg
+      Spring:
+        img: https://profilinator.rishav.dev/skills-assets/springio-icon.svg
+      Kubernetes:
+        img: https://profilinator.rishav.dev/skills-assets/kubernetes-icon.svg
+      Nginx:
+        img: https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg
       JS:
         img: https://7.isyangs.cn/34/65f2e43ceddda-34.png
         color: "#f7cb4f"
+      Mysql: 
+        img: https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg
       Docker:
         img: https://7.isyangs.cn/34/65f2e45462045-34.png
         color: "#57b6e6"
@@ -289,7 +314,7 @@ post:
     wordcount: true # 字数 / Number of words
     readtime: false # 访问 / uv
     pv: true # 浏览量 / pv
-    comment: true # 评论数 / Comment count
+    comment: false # 评论数 / Comment count
   # 打赏
   # reward
   award:
@@ -391,21 +416,21 @@ footer:
   #     抖音: https://v.douyin.com/iJsLc8jt/ || st-douyin-fill
   # 底部导航栏
   # Bottom navigation bar
-  group:
-    导航:
-      归档: /archives/
-      分类: /categories/
-      标签: /tags/
-    服务:
-      阿里云: https://aliyun.com/
-      51la统计: https://v6.51.la/
-      百度统计: https://tongji.baidu.com/
-    支持:
-      打赏记录: /about/
-    协议:
-      Cookies: /cookies/
-      用户协议: /privacy/
-      版权协议: /copyright/
+  # group:
+  #   导航:
+  #     归档: /archives/
+  #     分类: /categories/
+  #     标签: /tags/
+  #   服务:
+  #     阿里云: https://aliyun.com/
+  #     51la统计: https://v6.51.la/
+  #     百度统计: https://tongji.baidu.com/
+  #   支持:
+  #     打赏记录: /about/
+  #   协议:
+  #     Cookies: /cookies/
+  #     用户协议: /privacy/
+  #     版权协议: /copyright/
 
   # 页脚随机友链
   # Random links at footer
