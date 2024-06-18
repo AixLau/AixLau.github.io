@@ -16,11 +16,11 @@ site:
 nav:
   # 中心菜单
   menu:
-    # 首页: / # 显示名称：路径 / Display name: path
-    # 文库: # 显示名称 / Display name
-    #   文章列表: /archives/ || st-folder-fill # 子菜单名称：路径 || 图标 / Submenu name: path || icon
-    #   全部分类: /categories/ || st-checkbox-multiple-blank-fill
-    #   全部标签: /tags/ || st-price-tag-fill
+    首页: / # 显示名称：路径 / Display name: path
+    文库: # 显示名称 / Display name
+      文章列表: /archives/ || st-folder-fill # 子菜单名称：路径 || 图标 / Submenu name: path || icon
+      全部分类: /categories/ || st-checkbox-multiple-blank-fill
+      全部标签: /tags/ || st-price-tag-fill
     # 友链:
     #   友链鱼塘: /moments/ || st-wifi-fill
     #   友情链接: /links/ || st-group-fill
@@ -30,8 +30,7 @@ nav:
     #   装备: /equipment/ || st-laptop-line
     #   工具箱: /tlink/ || st-tools-fill
     #   音乐馆: /music/ || st-disc-fill
-    # 关于:
-    #   关于本站: /about/ || st-contacts-fill
+    关于: /about/
 
   # 右侧按钮
   right:
@@ -574,7 +573,7 @@ keyboard:
 copy:
   enable: true
   copyright: # Turn on Link copyright information after copying.（开启后将在默认增加版权信息）
-    enable: true
+    enable: false
     limit: 50 # word count. （字数）
 
 # 懒加载
