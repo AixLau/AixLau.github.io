@@ -16,11 +16,12 @@ site:
 nav:
   # 中心菜单
   menu:
-    首页: / # 显示名称：路径 / Display name: path
+    # 首页: / # 显示名称：路径 / Display name: path
     文库: # 显示名称 / Display name
       文章列表: /archives/ || st-folder-fill # 子菜单名称：路径 || 图标 / Submenu name: path || icon
       全部分类: /categories/ || st-checkbox-multiple-blank-fill
       全部标签: /tags/ || st-price-tag-fill
+    留言板: /message/
     # 友链:
     #   友链鱼塘: /moments/ || st-wifi-fill
     #   友情链接: /links/ || st-group-fill
@@ -494,11 +495,9 @@ recent_comments:
   img: /img/recent_c.avif # 中控台显示图片（不填不显示） / image displayed in the console
 
 # 留言板
-# message board
 # 前置要求：需配置留言板页面
-# Pre-requirements: message board page needs to be configured
 envelope:
-  enable: false
+  enable: true
   line: 10 # 显示行数
   speed: 20 # 播放速度
   hover: true # 鼠标悬停暂停
