@@ -5561,7 +5561,7 @@ span.tags-punctuation {
   margin-top: 0;
   display: flex;
   flex-wrap: wrap;
-  animation: rowup 20s linear infinite;
+  animation: rowup 30s linear infinite;
   width: 300px;
   margin-left: auto;
 }
