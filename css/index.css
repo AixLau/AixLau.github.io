@@ -4914,14 +4914,14 @@ span.tags-punctuation {
 }
 #recent-posts {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  align-content: flex-start;
-  user-select: none;
-  gap: 0.5rem;
-  transition: width 0.3s;
+}
+@media screen and (min-width: 1300px) {
+  #recent-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    transition: width 0.3s;
+  }
 }
 @media screen and (max-width: 768px) {
   #recent-posts {
@@ -4929,6 +4929,7 @@ span.tags-punctuation {
   }
 }
 #recent-posts > .recent-post-item {
+  box-shadow: var(--efu-shadow-light2black);
   display: flex;
   align-items: center;
   animation: slide-in 0.6s 0.4s backwards;
@@ -4939,16 +4940,27 @@ span.tags-punctuation {
   border-radius: 12px;
   cursor: pointer;
   border: var(--style-border);
-  flex-direction: row;
-  width: 100%;
-  box-shadow: var(--efu-shadow-border);
+}
+@media screen and (min-width: 1300px) {
+  #recent-posts > .recent-post-item {
+    flex-direction: column;
+    width: 100%;
+    flex: 1 1 40%;
+    max-width: 50%;
+    box-shadow: var(--efu-shadow-border);
+  }
+}
+@media screen and (max-width: 1300px) {
+  #recent-posts > .recent-post-item {
+    margin-bottom: 0.5rem;
+  }
 }
 @media screen and (max-width: 768px) {
   #recent-posts > .recent-post-item {
     border-radius: 12px;
     border: var(--style-border-always);
     box-shadow: var(--efu-shadow-border);
-    flex-direction: column;
+    display: block;
     position: relative;
     clip-path: inset(0 0 0 0 round 12px);
   }
@@ -4968,17 +4980,27 @@ span.tags-punctuation {
 #recent-posts > .recent-post-item .post_cover {
   position: relative;
   transition: 1s;
+  width: 100%;
   overflow: hidden;
-  width: 75%;
-  display: flex;
-  height: 220px;
+  height: 100%;
+}
+@media screen and (min-width: 1300px) {
+  #recent-posts > .recent-post-item .post_cover {
+    height: 225px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  #recent-posts > .recent-post-item .post_cover {
+    width: 75%;
+    display: flex;
+    height: 220px;
+  }
 }
 @media screen and (max-width: 768px) {
   #recent-posts > .recent-post-item .post_cover {
     width: 100%;
     height: 170px;
     border-radius: 5px 8px 0 0;
-    order: 1;
   }
 }
 #recent-posts > .recent-post-item .post_cover a {
@@ -4990,11 +5012,15 @@ span.tags-punctuation {
   height: 100%;
   transition: all 0.6s ease 0s;
   object-fit: cover;
-  min-width: 100%;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-  min-height: 100%;
-  user-select: none;
+}
+@media screen and (max-width: 1300px) {
+  #recent-posts > .recent-post-item .post_cover img.post_bg {
+    min-width: 100%;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    min-height: 100%;
+    user-select: none;
+  }
 }
 @media screen and (max-width: 768px) {
   #recent-posts > .recent-post-item .post_cover img.post_bg {
@@ -5010,13 +5036,8 @@ span.tags-punctuation {
   display: inline-block;
   overflow: hidden;
 }
-@media screen and (max-width: 768px) {
-  #recent-posts > .recent-post-item > .recent-post-info {
-    order: 2;
-  }
-}
 #recent-posts > .recent-post-item > .recent-post-info .content {
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -5024,11 +5045,6 @@ span.tags-punctuation {
   opacity: 0.8;
   font-size: 14px;
   line-height: 1.8;
-}
-@media screen and (max-width: 768px) {
-  #recent-posts > .recent-post-item > .recent-post-info .content {
-    -webkit-line-clamp: 2;
-  }
 }
 @media screen and (max-width: 600px) {
   #recent-posts > .recent-post-item > .recent-post-info .content {
@@ -5062,12 +5078,8 @@ span.tags-punctuation {
 }
 #recent-posts > .recent-post-item > .recent-post-info .recent-post-info-top .recent-post-info-top-tips {
   display: flex;
+  margin-top: 20px;
   user-select: none;
-}
-@media screen and (max-width: 768px) {
-  #recent-posts > .recent-post-item > .recent-post-info .recent-post-info-top .recent-post-info-top-tips {
-    margin-top: 20px;
-  }
 }
 #recent-posts > .recent-post-item > .recent-post-info .recent-post-info-top .recent-post-info-top-tips > .sticky-warp {
   display: flex;
@@ -5099,7 +5111,7 @@ span.tags-punctuation {
 }
 .article-meta-wrap {
   position: absolute;
-  bottom: 0;
+  bottom: 16px;
   transition: 0.3s;
   display: flex;
   flex-direction: row;
@@ -5111,11 +5123,6 @@ span.tags-punctuation {
   white-space: nowrap;
   color: var(--efu-fontcolor);
   font-size: 0.7rem;
-}
-@media screen and (max-width: 768px) {
-  .article-meta-wrap {
-    bottom: 16px;
-  }
 }
 .article-meta-wrap > .article-meta {
   margin: 0 8px 0 0;
