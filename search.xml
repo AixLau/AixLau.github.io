@@ -4,6 +4,156 @@
   
     
     <entry>
+      <title>自动续签证书</title>
+      <link href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"/>
+      <url>/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="使用-acme-sh-安装和管理-SSL-证书"><a href="#使用-acme-sh-安装和管理-SSL-证书" class="headerlink" title="使用 acme.sh 安装和管理 SSL 证书"></a>使用 acme.sh 安装和管理 SSL 证书</h1><p>本文将介绍如何使用 acme.sh 安装和管理 SSL 证书。acme.sh 是一个纯 Shell 脚本的 ACME 协议客户端，可以帮助你自动化管理 Let’s Encrypt 及其他 CA 颁发的证书。</p><h2 id="下载并安装-acme-sh"><a href="#下载并安装-acme-sh" class="headerlink" title="下载并安装 acme.sh"></a>下载并安装 acme.sh</h2><p>首先，下载并安装 acme.sh。在终端中执行以下命令：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~<span class="token function">curl</span> https://get.acme.sh <span class="token operator">|</span> <span class="token function">sh</span> <span class="token parameter variable">-s</span> <span class="token assign-left variable">email</span><span class="token operator">=</span><span class="token operator">&lt;</span>youremail@domain.com<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>安装过程会执行以下几步：</p><ol><li><p>将 acme.sh 安装到你的 <strong>home</strong> 目录中：</p> <pre class="line-numbers language-none"><code class="language-none">~&#x2F;.acme.sh&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li><li><p>创建一个 Shell 别名，方便使用。在 <code>.bashrc</code> 中添加：</p> <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">acme.sh</span><span class="token operator">=~</span>/.acme.sh/acme.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li><li><p>自动为你创建一个 cronjob，每天 0:00 自动检测所有的证书。如果证书即将过期，需要更新，则会自动更新证书。</p></li></ol><p>更高级的安装选项请参考：<a href="https://github.com/Neilpang/acme.sh/wiki/How-to-install">acme.sh 安装文档</a></p><p><strong>注意</strong>：安装过程不会影响现有系统的运行和文件，所有修改都位于 <code>~/.acme.sh/</code> 目录中。</p><h2 id="使用-DNS-验证方式生成-SSL-证书"><a href="#使用-DNS-验证方式生成-SSL-证书" class="headerlink" title="使用 DNS 验证方式生成 SSL 证书"></a>使用 DNS 验证方式生成 SSL 证书</h2><p>acme.sh 实现了 ACME 协议支持的所有验证协议。一般有两种方式验证：HTTP 和 DNS 验证。这里我们使用 DNS 验证。</p><h3 id="手动-DNS-验证"><a href="#手动-DNS-验证" class="headerlink" title="手动 DNS 验证"></a>手动 DNS 验证</h3><p>手动 DNS 验证方式不需要服务器或公网 IP，只需要在域名管理面板上添加一条 TXT 解析记录来验证域名所有权。</p><ol><li><p>运行以下命令，手动在域名上添加一条 TXT 解析记录：</p> <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh <span class="token parameter variable">--issue</span> <span class="token parameter variable">--dns</span> <span class="token parameter variable">-d</span> <span class="token operator">&lt;</span>mydomain.com<span class="token operator">></span> <span class="token punctuation">\</span>--yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>acme.sh 会生成相应的解析记录并显示出来，你需要在域名管理面板上添加该 TXT 记录。</p></li><li><p>等待解析完成后，重新生成证书：</p> <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh <span class="token parameter variable">--renew</span> <span class="token parameter variable">-d</span> <span class="token operator">&lt;</span>mydomain.com<span class="token operator">></span> <span class="token punctuation">\</span>--yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>安装生成的证书：</p> <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh --install-cert <span class="token parameter variable">-d</span> <span class="token operator">&lt;</span>mydomain.com<span class="token operator">></span> <span class="token punctuation">\</span>--key-file /opt/nginx/key.pem  <span class="token punctuation">\</span>--fullchain-file /opt/nginx/cert.pem <span class="token punctuation">\</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过以上步骤，你已经成功使用 acme.sh 安装和管理了 SSL 证书。虽然手动 DNS 验证方式不需要服务器或公网 IP，但每次请求新证书时都需要手动添加解析记录。如果希望实现自动化，可以使用支持 DNS API 的提供商并配置自动 DNS 验证。有关详细信息，请参考 <a href="https://github.com/Neilpang/acme.sh/wiki/dnsapi">acme.sh 的 DNS API 支持文档</a>。</p><p>希望本文对你有所帮助！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> SSL </tag>
+            
+            <tag> 域名 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>服务器安全设置</title>
+      <link href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1-更新系统"><a href="#1-更新系统" class="headerlink" title="1. 更新系统"></a>1. 更新系统</h3><p>首先，确保你的系统和所有安装的软件都是最新的。这不仅可以帮助你利用最新的功能，还可以修复已知的安全漏洞。使用以下命令进行更新：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> upgrade<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="2-安装防火墙"><a href="#2-安装防火墙" class="headerlink" title="2. 安装防火墙"></a>2. 安装防火墙</h3><p>Ubuntu默认带有<code>ufw</code>（Uncomplicated Firewall）工具，它是一个对于初学者非常友好的防火墙管理工具。要启用并配置它，请执行以下步骤：</p><p>启用<code>ufw</code>：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw <span class="token builtin class-name">enable</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>接下来，开放必要的端口。例如，对于SSH服务：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw allow <span class="token number">22</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>如果你运行了Web服务器，你可能还需要开放HTTP和HTTPS端口：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw allow <span class="token number">80</span><span class="token function">sudo</span> ufw allow <span class="token number">443</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="3-配置SSH"><a href="#3-配置SSH" class="headerlink" title="3. 配置SSH"></a>3. 配置SSH</h3><p>SSH是远程管理Linux服务器的标准方法。为了增强安全性，推荐使用SSH密钥对进行身份验证，而不是密码。</p><h4 id="生成SSH密钥对"><a href="#生成SSH密钥对" class="headerlink" title="生成SSH密钥对"></a>生成SSH密钥对</h4><p>在客户端机器上，运行以下命令生成SSH密钥对：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h4 id="将公钥添加到服务器"><a href="#将公钥添加到服务器" class="headerlink" title="将公钥添加到服务器"></a>将公钥添加到服务器</h4><p>使用<code>ssh-copy-id</code>命令将公钥复制到服务器上：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub 用户名@服务器IP<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h4 id="禁用密码认证"><a href="#禁用密码认证" class="headerlink" title="禁用密码认证"></a>禁用密码认证</h4><p>编辑服务器上的<code>/etc/ssh/sshd_config</code>文件，设置以下内容：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PasswordAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>然后重启SSH服务以应用更改：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart sshd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="4-配置Fail2Ban"><a href="#4-配置Fail2Ban" class="headerlink" title="4. 配置Fail2Ban"></a>4. 配置Fail2Ban</h3><p>Fail2Ban可以帮助保护服务器免受暴力破解攻击。它通过监控日志文件中的失败登录尝试来工作，并封锁显示恶意行为的IP地址。</p><h4 id="安装Fail2Ban"><a href="#安装Fail2Ban" class="headerlink" title="安装Fail2Ban"></a>安装Fail2Ban</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> fail2ban<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h4 id="配置基本保护"><a href="#配置基本保护" class="headerlink" title="配置基本保护"></a>配置基本保护</h4><p>创建或编辑<code>/etc/fail2ban/jail.local</code>文件，为SSH服务添加基本保护：</p><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">DEFAULT</span><span class="token punctuation">]</span></span><span class="token comment"># 全局设置</span><span class="token key attr-name">bantime</span> <span class="token punctuation">=</span> <span class="token value attr-value">1h        # 封禁时间：1小时</span><span class="token key attr-name">findtime</span> <span class="token punctuation">=</span> <span class="token value attr-value">10m      # 在此时间内连续失败的尝试视为攻击</span><span class="token key attr-name">maxretry</span> <span class="token punctuation">=</span> <span class="token value attr-value">5        # 允许失败次数</span><span class="token key attr-name">ignoreip</span> <span class="token punctuation">=</span> <span class="token value attr-value">127.0.0.1/8 # 忽略本地IP地址的封禁</span><span class="token comment"># 指定要使用的日志文件</span><span class="token key attr-name">backend</span> <span class="token punctuation">=</span> <span class="token value attr-value">auto      # 自动确定日志文件类型</span><span class="token key attr-name">usedns</span> <span class="token punctuation">=</span> <span class="token value attr-value">warn       # 使用DNS解析</span><span class="token key attr-name">logencoding</span> <span class="token punctuation">=</span> <span class="token value attr-value">auto  # 日志文件的编码</span><span class="token key attr-name">enabled</span> <span class="token punctuation">=</span> <span class="token value attr-value">false     # 默认不启用任何规则</span><span class="token comment"># SSH 服务</span><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">sshd</span><span class="token punctuation">]</span></span><span class="token key attr-name">enabled</span> <span class="token punctuation">=</span> <span class="token value attr-value">true</span><span class="token key attr-name">port</span> <span class="token punctuation">=</span> <span class="token value attr-value">ssh</span><span class="token key attr-name">filter</span> <span class="token punctuation">=</span> <span class="token value attr-value">sshd</span><span class="token key attr-name">logpath</span> <span class="token punctuation">=</span> <span class="token value attr-value">/var/log/auth.log</span><span class="token key attr-name">maxretry</span> <span class="token punctuation">=</span> <span class="token value attr-value">3</span><span class="token key attr-name">findtime</span> <span class="token punctuation">=</span> <span class="token value attr-value">5m</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>重启Fail2Ban服务以应用配置：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart fail2ban<span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> fail2ban<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><hr><p>通过上述步骤，你的服务器将具备较强的基本安全保护。务必定期检查和更新你的系统及应用程序，保持警惕，适时应对新的安全威胁。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vaultwarden搭建</title>
+      <link href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/"/>
+      <url>/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/</url>
+      
+        <content type="html"><![CDATA[<h1 id="如何搭建-Vaultwarden-服务器：一步步教程"><a href="#如何搭建-Vaultwarden-服务器：一步步教程" class="headerlink" title="如何搭建 Vaultwarden 服务器：一步步教程"></a>如何搭建 Vaultwarden 服务器：一步步教程</h1><p>Vaultwarden 是一个轻量级的 Bitwarden 服务器实现，它使用 Rust 编写，可以方便地在几乎任何地方运行。这是一个非常适合个人或小团队的密码管理解决方案。在本教程中，我们将详细介绍如何使用 Docker Compose 在你的服务器上部署 Vaultwarden。</p><h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>在开始之前，确保你的系统已经安装了 <strong>Docker</strong> 和 <strong>Docker Compose</strong>。</p><h2 id="步骤-1-创建数据存储目录"><a href="#步骤-1-创建数据存储目录" class="headerlink" title="步骤 1: 创建数据存储目录"></a>步骤 1: 创建数据存储目录</h2><p>首先，我们需要为 Vaultwarden 创建一个目录来存储数据。这将确保即使容器被删除，数据也会保持安全。</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /opt/docker_data/vaultwarden<span class="token builtin class-name">cd</span> /opt/docker_data/vaultwarden<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="步骤-2-创建-Docker-Compose-文件"><a href="#步骤-2-创建-Docker-Compose-文件" class="headerlink" title="步骤 2: 创建 Docker Compose 文件"></a>步骤 2: 创建 Docker Compose 文件</h2><p>接下来，我们将创建一个 <code>docker-compose.yml</code> 文件来定义 Vaultwarden 服务的配置。使用你喜欢的文本编辑器创建文件：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> docker-compose.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>然后，将以下配置粘贴到 <code>docker-compose.yml</code> 文件中：</p><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span><span class="token key atrule">services</span><span class="token punctuation">:</span>  <span class="token key atrule">vaultwarden</span><span class="token punctuation">:</span>    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> vaultwarden    <span class="token key atrule">image</span><span class="token punctuation">:</span> vaultwarden/server<span class="token punctuation">:</span>latest    <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>      <span class="token punctuation">-</span> ./data/<span class="token punctuation">:</span>/data/    <span class="token key atrule">ports</span><span class="token punctuation">:</span>      <span class="token punctuation">-</span> 8080<span class="token punctuation">:</span><span class="token number">80</span>    <span class="token key atrule">environment</span><span class="token punctuation">:</span>      <span class="token punctuation">-</span> DOMAIN=https<span class="token punctuation">:</span>//subdomain.yourdomain.com <span class="token comment"># 关联的域名。</span>      <span class="token punctuation">-</span> LOGIN_RATELIMIT_MAX_BURST=10 <span class="token comment"># 最大请求次数。</span>      <span class="token punctuation">-</span> LOGIN_RATELIMIT_SECONDS=60 <span class="token comment"># 平均秒数</span>      <span class="token punctuation">-</span> ADMIN_RATELIMIT_MAX_BURST=10 <span class="token comment"># admin最大请求次数。</span>      <span class="token punctuation">-</span> ADMIN_RATELIMIT_SECONDS=60 <span class="token comment"># 平均秒数</span>      <span class="token punctuation">-</span> ADMIN_SESSION_LIFETIME=20 <span class="token comment"># 会话持续时间</span>      <span class="token punctuation">-</span> ADMIN_TOKEN=YourReallyStrongAdminTokenHere <span class="token comment"># 管理员面板的令牌</span>      <span class="token punctuation">-</span> SENDS_ALLOWED=true  <span class="token comment"># 是否允许用户创建Bitwarden发送</span>      <span class="token punctuation">-</span> EMERGENCY_ACCESS_ALLOWED=true <span class="token comment"># 控制用户是否可以启用紧急访问其账户的权限</span>      <span class="token punctuation">-</span> WEB_VAULT_ENABLED=true <span class="token comment"># 网络保险库是否可访问。</span>      <span class="token punctuation">-</span> SIGNUPS_ALLOWED=true <span class="token comment"># 新用户是否可以在没有邀请的情况下注册账户</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="步骤-3-启动-Vaultwarden"><a href="#步骤-3-启动-Vaultwarden" class="headerlink" title="步骤 3: 启动 Vaultwarden"></a>步骤 3: 启动 Vaultwarden</h2><p>配置好 <code>docker-compose.yml</code> 文件后，使用以下命令启动 Vaultwarden 服务：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>这个命令会在后台启动 Vaultwarden 服务。可以通过访问 <code>http://localhost:8080</code> 或在配置文件中指定的域名来访问 Vaultwarden。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>恭喜！你现在已经成功在你的服务器上部署了 Vaultwarden。通过使用 Docker Compose，你可以轻松管理 Vaultwarden 服务的配置和更新。继续探索 Vaultwarden 的其他功能，为你的密码管理提供更强大的支持！</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Spring八股文</title>
+      <link href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/"/>
+      <url>/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Spring-常见面试题总结"><a href="#Spring-常见面试题总结" class="headerlink" title="Spring 常见面试题总结"></a>Spring 常见面试题总结</h2><h3 id="什么是Spring框架？"><a href="#什么是Spring框架？" class="headerlink" title="什么是Spring框架？"></a>什么是Spring框架？</h3><p>Spring 是一款开源的轻量级Java开发框架，提高开发人员的开发效率以及系统的维护性。</p><h3 id="谈谈自己对于Spring-IoC的了解"><a href="#谈谈自己对于Spring-IoC的了解" class="headerlink" title="谈谈自己对于Spring IoC的了解"></a>谈谈自己对于Spring IoC的了解</h3><p><strong>IoC（Inversion of Control 控制反转）</strong>是一种设计思想，而不是一个具体的技术实现。</p><p>IoC 的思想就是将原本在程序中手动创建对象的控制权，交给 Spring 框架来管理。</p><h4 id="为什么叫控制反转？"><a href="#为什么叫控制反转？" class="headerlink" title="为什么叫控制反转？"></a>为什么叫控制反转？</h4><ul><li><strong>控制</strong>：指的是对象创建（实例化、管理）的权利</li><li><strong>反转</strong>：控制权交给外部环境（Spring框架、IoC容器）</li></ul><p>将对象之间的相互依赖关系交给 IoC 容器来管理，并由 IoC 容器完成对象的注入。这样可以很大程度上简化应用开发，把应用从复杂的依赖关系中解放出来。IoC 容器就像是一个工厂一样，当我们需要创建一个对象的时候，只需要配置好配置文件或注解即可，完全不用考虑对象是如何被创建出来的。</p><p>在 Spring 中，IoC 容器是Spring用来实现 IoC 的载体，IoC 容器实际上就是个Map。</p><p>Spring 框架一般通过XML文件来配置 Bean,因为 XML 文件配置很麻烦，然后就开始用 SpringBoot 注解配置。</p><h3 id="什么是-Bean？"><a href="#什么是-Bean？" class="headerlink" title="什么是 Bean？"></a>什么是 Bean？</h3><p>Bean 就是哪些被 IoC 容器所管理的对象。</p><h3 id="Component和-Bean的区别是什么？"><a href="#Component和-Bean的区别是什么？" class="headerlink" title="@Component和@Bean的区别是什么？"></a>@Component和@Bean的区别是什么？</h3><ul><li>@Component 注解用于类，@Bean 注解用于方法。</li><li>@Component 是通过类路径扫描来自动侦测以及自动装配到 Spring 容器中(我们可以使用 @ComponentScan 注解定义要扫描的路径从中找出标识了需要装配的类自动装配到 Spring 的 IoC 容器中)。@Bean 注解通常是我们在标有该注解的方法中定义产生这个 bean，@Bean 注解告诉类 Spring 这是某个类的实例，当我需要的时候给我。</li><li>@Bean 注解比 @Component 注解的自定义性更强，而且很多地方只能通过 @Bean 注解来实现。比如当我们引用第三方库中的类需要装配到 Spring 容器时，就只能通过 @Bean 来实现。</li></ul><h3 id="注入Bean的注解有哪些？"><a href="#注入Bean的注解有哪些？" class="headerlink" title="注入Bean的注解有哪些？"></a>注入Bean的注解有哪些？</h3><p>Spring 内置的Autowired 还有 JDK 内置的 @Resource 和 @Inject 都可以用于注入 Bean。</p><h3 id="Autowired和-Resource的区别是什么？"><a href="#Autowired和-Resource的区别是什么？" class="headerlink" title="@Autowired和@Resource的区别是什么？"></a>@Autowired和@Resource的区别是什么？</h3><ul><li>@Autowired 是 Spring 提供的注解，@Resource 是 JDK 提供的注解。</li><li>当一个接口存在多个实现类的情况下，@Autowired 和 @Resource 都需要通过名称才能正确匹配到对应的  Bean。Autowired 可以通过 @Qualifier 注解来显式指定名称，@Resource 可以通过 name 属性来显式指定名称。</li><li>@Autowired 支持在构造函数、方法、字段和参数上使用。@Resource 主要用于字段和方法上的注入，不支持在构造函数或参数上使用。</li></ul><h3 id="Bean-的作用域有哪些"><a href="#Bean-的作用域有哪些" class="headerlink" title="Bean 的作用域有哪些?"></a>Bean 的作用域有哪些?</h3><ul><li><strong>Singleton</strong> Srping 中的bean 默认都是单例的，在整个 IoC 容器中只创建一个 bean 实例，无论多少次请求该bean 都返回同一个实例。</li><li><strong>prototype</strong>  每次请求都会创建一个新的实例。</li><li><strong>Request</strong> 每次 Http 请求都会创建一个新的 bean 实例。</li><li><strong>Session</strong> 每个 Http Session 中会有一个 bean 实例。</li></ul><h3 id="Bean-是线程安全的吗？"><a href="#Bean-是线程安全的吗？" class="headerlink" title="Bean 是线程安全的吗？"></a>Bean 是线程安全的吗？</h3><p>在 Spring 中 Bean 是否安全，取决于其作用域和状态。</p><p>单例 Bean 在 IoC 中只创建一个实例，这个实例会被多个线程共享。所以单例 Bean 不是线程安全的，如果考虑线程安全问题，可以使用同步（synchronization）或者无状态（stateless）设计。原型 Bean 因为每次请求都会创建新的实例，所以原型作用域的 Bean 是线程安全的。</p><h3 id="Bean的生命周期了解么？"><a href="#Bean的生命周期了解么？" class="headerlink" title="Bean的生命周期了解么？"></a>Bean的生命周期了解么？</h3><p>Todo</p><h3 id="谈谈对于AOP的了解"><a href="#谈谈对于AOP的了解" class="headerlink" title="谈谈对于AOP的了解"></a>谈谈对于AOP的了解</h3><p>AOP（面向切面编程）能够将哪些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的扩展性和可维护性。</p><p>Spring AOP就是基于动态代理的，如果代理的对象，实现了某个接口，那么Spring AOP会使用JDK Proxy去创建代理对象，而对于没有实现接口的对象，就无法使用JDK Proxy去进行代理，这时候Spring AOP会使用Cglib生成一个被代理对象的子类作为代理</p><h3 id="Spring-AOP-和-AspectJ-AOP-有什么区别？"><a href="#Spring-AOP-和-AspectJ-AOP-有什么区别？" class="headerlink" title="Spring AOP 和 AspectJ AOP 有什么区别？"></a>Spring AOP 和 AspectJ AOP 有什么区别？</h3><p>Spring AOP属于运行时增强，而AspectJ是编译时增强。</p><p>Spring AOP基于代理，而AspectJ基于字节码操作。</p><p>Spring AOP已经集成了AspectJ，AspectJ相对于Spring AOP功能更加强大，但是Spring AOP相对来说更简单，如果我们的切面比较少，那么两者性能差异不大。当切面太多的时候，最好选择AspectJ，它比Spring AOP快很多</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 八股文 </tag>
+            
+            <tag> Spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Myql八股文</title>
+      <link href="/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/"/>
+      <url>/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="MySQL-索引：索引为什么使用B-树？"><a href="#MySQL-索引：索引为什么使用B-树？" class="headerlink" title="MySQL 索引：索引为什么使用B+树？"></a>MySQL 索引：索引为什么使用B+树？</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 八股文 </tag>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java集合八股文</title>
+      <link href="/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/"/>
+      <url>/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h1><h3 id="说说-List-Set-Queue-Map-四者的区别？"><a href="#说说-List-Set-Queue-Map-四者的区别？" class="headerlink" title="说说 List, Set, Queue, Map 四者的区别？"></a>说说 List, Set, Queue, Map 四者的区别？</h3><ul><li><p><code>List</code>：存储的元素是有序的、可重复的。</p></li><li><p><code>Set</code>：存储的元素不可重复。</p></li><li><p><code>Queue</code>：按特定的排队规则来确定先后顺序，存储的元素是 有序的、可重复的。</p></li><li><p><code>Map</code>：使用键值对存储，<code>key</code>是无序的、不可重复的，<code>value</code>是无序的、可重复的。</p></li></ul><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="ArrayList-和-Array-（数组）的区别？"><a href="#ArrayList-和-Array-（数组）的区别？" class="headerlink" title="ArrayList 和 Array （数组）的区别？"></a>ArrayList 和 Array （数组）的区别？</h3><p><code>ArrayList</code>内部基于动态数组实现，比静态数组使用起来更灵活：</p><ul><li><code>ArrayList</code> 会根据实际存储的元素动态地扩容或缩容，而数组被创建之后就不能改变它的长度了。</li><li><code>ArrayList</code> 可以使用泛型来确保类型安全</li><li><code>ArrayList</code>中只能存储对象。对于基本数据类型，需要使用其对应的包装类。数组可以直接存储基本数据类型，页可以存储对象。</li><li><code>ArrayList</code> 支持插入、删除、遍历等常用操作，并提供了很多<code>API</code>，数组只能通过下标访问其中的元素，不具备动态添加、删除元素的能力。</li><li><code>ArrayList</code> 创建时不需要指定大小，而数组创建时必须指定大小。</li></ul><h3 id="ArrayList-可以添加-null-吗？"><a href="#ArrayList-可以添加-null-吗？" class="headerlink" title="ArrayList 可以添加 null 吗？"></a>ArrayList 可以添加 null 吗？</h3><p><code>ArrayList</code>中可以存储任何类型的对象，包括<code>null</code>。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 八股文 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java基础八股文</title>
       <link href="/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/"/>
       <url>/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</url>
