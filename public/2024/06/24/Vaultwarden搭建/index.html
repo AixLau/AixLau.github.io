@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Vaultwarden搭建 | 陆时忤的博客</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="/img/pwa/favicon.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.12.1"><!-- inject head--><link rel="canonical" href="http://example.com/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/"><link rel="stylesheet" href="https://cdn2.codesign.qq.com/icons/7pOrz0WXB5ZWJPX/latest/iconfont.css"><!-- aplayer--><!-- swiper--><!-- fancybox ui--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="如何搭建 Vaultwarden 服务器：一步步教程Vaultwarden 是一个轻量级的 Bitwarden 服务器实现，它使用 Rust 编写，可以方便地在几乎任何地方运行。这是一个非常适合个人或小团队的密码管理解决方案。在本教程中，我们将详细介绍如何使用 Docker Compose 在你的服"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="陆时忤的博客"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="/img/pwa/favicon.ico"><link rel="apple-touch-icon" href="/img/pwa/favicon.ico" sizes="180x180"><script>console.log(
+    "%c Program: Hexo %c Theme: Solitude %c Version: v1.12.1",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "padding: 5px 10px;color:white;background:#0084ff;border-radius:0 5px 5px 0",
+)
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+    
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+    
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+    
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+    
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+        
+                if (name && keyObj[name]) return
+        
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: {"preload":false,"path":"/search.xml"},
+    runtime: '2024-06-15 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.avif'
+    },
+    copyright: false,
+    highlight: {
+        enable: true,
+        limit: 200,
+        expand: true,
+        copy: true,
+        syntax: 'prismjs'
+    },
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。"}},
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: ["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多","🎮 电竞游戏爱好者"],
+        sayhello3: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: false,
+    lightbox: 'fancybox',
+    post_ai: false,
+    right_menu: {"mode":{"dark":"深色模式","light":"浅色模式"},"img_error":"此图片无法复制与下载"},
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><div id="loading-box" onclick="preloader.endLoading();" style="zoom:1"><div class="loading-bg"><img class="loading-img nolazyload" src="/img/avatar.jpg" alt="loading image"></div></div><script>const preloader = {
+    endLoading: () => {
+        document.getElementById('loading-box').classList.toggle('loaded');
+    },
+    initLoading: () => {
+        document.getElementById('loading-box').classList.remove('loaded');
+    },
+    removePaceDone: () => {
+        document.getElementById('body').classList = 'pace-done';
+    }
+}
+window.addEventListener('load', () => {
+    preloader.endLoading();
+});
+window.addEventListener('pjax:send', () => {
+    preloader.initLoading();
+});
+document.addEventListener('pjax:complete', () => {
+    preloader.endLoading();
+});</script><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude st-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换"><i class="solitude st-moon-clear-fill"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制"><i class="solitude st-side-bar-fill"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  st-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><span>留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span>关于</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/Blog/">Blog<sup>2</sup></a><a href="/tags/Java/">Java<sup>3</sup></a><a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/">八股文<sup>4</sup></a><a href="/tags/MySQL/">MySQL<sup>1</sup></a><a href="/tags/Spring/">Spring<sup>1</sup></a><a href="/tags/Linux/">Linux<sup>3</sup></a><a href="/tags/Alist/">Alist<sup>1</sup></a><a href="/tags/SSL/">SSL<sup>1</sup></a><a href="/tags/%E5%9F%9F%E5%90%8D/">域名<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">陆时忤</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Vaultwarden搭建</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  st-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><span>留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span>关于</span></a></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude st-search-line"></i></a></div><div class="nav-button" id="nav-console"><a class="console_switchbutton" onclick="sco.showConsole()" title="中控台" href="javascript:void(0);"><i class="solitude st-dashboard-fill"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude st-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude st-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/VaultwardenBuild.png" alt="Vaultwarden搭建"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/"><span class="tags-name tags-punctuation">Linux</span></a></div></div></div></div><h1 class="post-title">Vaultwarden搭建</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2024-06-24 16:56:37"><i class="post-meta-icon solitude st-calendar-todo-fill"></i><time datetime="2024-06-24T08:56:37.000Z">2024-06-24T08:56:37.000Z</time></span><span class="post-meta-date" title="最后更新于 2024-06-24 18:37:39"><i class="post-meta-icon solitude st-refresh-line"></i><time datetime="2024-06-24T10:37:39.919Z">2024-06-24T10:37:39.919Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude st-word-fill" title="文章字数"></i><span class="word-count">531</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude st-clock-fill" title="阅读耗时"></i><span>2 min</span></span><a class="post-meta-pv" href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" title="文章热度"><i class="post-meta-icon solitude st-fire-fill"></i><span class="leancloud_visitors" id="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/"><span class="leancloud-visitors-count"><i class="solitude st-loading-line"></i></span></span></a><span class="post-meta-commentcount" title="评论数" onclick="sco.scrollTo('post-comment')"><i class="solitude st-chat-fill"></i><a href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/#post-comment"><span class="valine-comment-count" data-xid="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" itemprop="commentCount"><i class="solitude st-loading-line"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="如何搭建-Vaultwarden-服务器：一步步教程"><a href="#如何搭建-Vaultwarden-服务器：一步步教程" class="headerlink" title="如何搭建 Vaultwarden 服务器：一步步教程"></a>如何搭建 Vaultwarden 服务器：一步步教程</h1><p>Vaultwarden 是一个轻量级的 Bitwarden 服务器实现，它使用 Rust 编写，可以方便地在几乎任何地方运行。这是一个非常适合个人或小团队的密码管理解决方案。在本教程中，我们将详细介绍如何使用 Docker Compose 在你的服务器上部署 Vaultwarden。</p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>在开始之前，确保你的系统已经安装了 <strong>Docker</strong> 和 <strong>Docker Compose</strong>。</p>
+<h2 id="步骤-1-创建数据存储目录"><a href="#步骤-1-创建数据存储目录" class="headerlink" title="步骤 1: 创建数据存储目录"></a>步骤 1: 创建数据存储目录</h2><p>首先，我们需要为 Vaultwarden 创建一个目录来存储数据。这将确保即使容器被删除，数据也会保持安全。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /opt/docker_data/vaultwarden
+<span class="token builtin class-name">cd</span> /opt/docker_data/vaultwarden<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="步骤-2-创建-Docker-Compose-文件"><a href="#步骤-2-创建-Docker-Compose-文件" class="headerlink" title="步骤 2: 创建 Docker Compose 文件"></a>步骤 2: 创建 Docker Compose 文件</h2><p>接下来，我们将创建一个 <code>docker-compose.yml</code> 文件来定义 Vaultwarden 服务的配置。使用你喜欢的文本编辑器创建文件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> docker-compose.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后，将以下配置粘贴到 <code>docker-compose.yml</code> 文件中：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">vaultwarden</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> vaultwarden
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> vaultwarden/server<span class="token punctuation">:</span>latest
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./data/<span class="token punctuation">:</span>/data/
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 8080<span class="token punctuation">:</span><span class="token number">80</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> DOMAIN=https<span class="token punctuation">:</span>//subdomain.yourdomain.com <span class="token comment"># 关联的域名。</span>
+      <span class="token punctuation">-</span> LOGIN_RATELIMIT_MAX_BURST=10 <span class="token comment"># 最大请求次数。</span>
+      <span class="token punctuation">-</span> LOGIN_RATELIMIT_SECONDS=60 <span class="token comment"># 平均秒数</span>
+      <span class="token punctuation">-</span> ADMIN_RATELIMIT_MAX_BURST=10 <span class="token comment"># admin最大请求次数。</span>
+      <span class="token punctuation">-</span> ADMIN_RATELIMIT_SECONDS=60 <span class="token comment"># 平均秒数</span>
+      <span class="token punctuation">-</span> ADMIN_SESSION_LIFETIME=20 <span class="token comment"># 会话持续时间</span>
+      <span class="token punctuation">-</span> ADMIN_TOKEN=YourReallyStrongAdminTokenHere <span class="token comment"># 管理员面板的令牌</span>
+      <span class="token punctuation">-</span> SENDS_ALLOWED=true  <span class="token comment"># 是否允许用户创建Bitwarden发送</span>
+      <span class="token punctuation">-</span> EMERGENCY_ACCESS_ALLOWED=true <span class="token comment"># 控制用户是否可以启用紧急访问其账户的权限</span>
+      <span class="token punctuation">-</span> WEB_VAULT_ENABLED=true <span class="token comment"># 网络保险库是否可访问。</span>
+      <span class="token punctuation">-</span> SIGNUPS_ALLOWED=true <span class="token comment"># 新用户是否可以在没有邀请的情况下注册账户</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="步骤-3-启动-Vaultwarden"><a href="#步骤-3-启动-Vaultwarden" class="headerlink" title="步骤 3: 启动 Vaultwarden"></a>步骤 3: 启动 Vaultwarden</h2><p>配置好 <code>docker-compose.yml</code> 文件后，使用以下命令启动 Vaultwarden 服务：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令会在后台启动 Vaultwarden 服务。可以通过访问 <code>http://localhost:8080</code> 或在配置文件中指定的域名来访问 Vaultwarden。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>恭喜！你现在已经成功在你的服务器上部署了 Vaultwarden。通过使用 Docker Compose，你可以轻松管理 Vaultwarden 服务的配置和更新。继续探索 Vaultwarden 的其他功能，为你的密码管理提供更强大的支持！</p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="/img/avatar.jpg"></a><div class="post-copyright__author_name">陆时忤的博客</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">陆时忤的博客</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/"><span class="tags-punctuation"></span>Linux<span class="tagsPageCount">3</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">服务器安全设置</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring八股文</div></div></a></div></nav><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude st-chat-fill"></i><span> 评论</span><span class="count"> (<span class="valine-comment-count" data-xid="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" itemprop="commentCount"><i class="solitude st-loading-line"></i></span>)</span></div></div><div class="comment-wrap"><div class="vcomment" id="vcomment"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="/img/avatar.jpg"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://7.isyangs.cn/34/65f2e4e0423cc-34.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" target="_blank" rel="noopener" href="https://lushiwu.top/"><div class="author-info__name">陆时忤</div><div class="author-info__desc"></div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/AixLau" title="Github"><i class="solitude  st-github-line"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude st-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA-Vaultwarden-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9A%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E7%A8%8B"><span class="toc-text">如何搭建 Vaultwarden 服务器：一步步教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95"><span class="toc-text">步骤 1: 创建数据存储目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2-%E5%88%9B%E5%BB%BA-Docker-Compose-%E6%96%87%E4%BB%B6"><span class="toc-text">步骤 2: 创建 Docker Compose 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-3-%E5%90%AF%E5%8A%A8-Vaultwarden"><span class="toc-text">步骤 3: 启动 Vaultwarden</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude st-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/" title="自动续签证书"><img alt="自动续签证书" src="https://cloud.lushiwu.top/f/AYfy/%E5%8E%9A%E6%B6%82%E5%A5%B3%E5%AD%A9%20%E6%89%8B%E7%BB%98%E7%94%BB4K.jpeg"></a><div class="content"><a class="title" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/" title="自动续签证书">自动续签证书</a><a class="article-recent_post_categories" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/">Linux</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" title="服务器安全设置"><img alt="服务器安全设置" src="/img/JavaBasics.jpg"></a><div class="content"><a class="title" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" title="服务器安全设置">服务器安全设置</a><a class="article-recent_post_categories" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/">Linux</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" title="Vaultwarden搭建"><img alt="Vaultwarden搭建" src="/img/VaultwardenBuild.png"></a><div class="content"><a class="title" href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" title="Vaultwarden搭建">Vaultwarden搭建</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/" title="Spring八股文"><img alt="Spring八股文" src="/img/springbaguwen.png"></a><div class="content"><a class="title" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/" title="Spring八股文">Spring八股文</a><a class="article-recent_post_categories" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/">Java</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/" title="Myql八股文"><img alt="Myql八股文" src="/img/mysqlbaguwen.png"></a><div class="content"><a class="title" href="/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/" title="Myql八股文">Myql八股文</a><a class="article-recent_post_categories" href="/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/">MySQL</a></div></div></div></div></div></div></main><footer id="footer"><div id="footer_deal"></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2024 By&nbsp;<a class="footer-bar-link" href="/">陆时忤</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="主题">主题</a><a class="footer-bar-link cc" href="/null" aria-label="copyright"><i class="solitude st-copyright-line"></i><i class="solitude st-creative-commons-by-line"></i><i class="solitude st-creative-commons-nc-line"></i><i class="solitude st-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- right_menu--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="solitude st-arrow-left-line"></i></div><div class="rightMenu-item" id="menu-forward"><i class="solitude st-arrow-right-line"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="solitude st-restart-line"></i></div><div class="rightMenu-item" id="menu-top"><i class="solitude st-arrow-up-line"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="solitude st-copy-fill"></i><span>复制文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="solitude st-clipboard-fill"></i><span>粘贴文本</span></div><div class="rightMenu-item" id="menu-commenttext"><i class="solitude st-chat-new-fill"></i><span>引用到评论</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="solitude st-window-fill"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="solitude st-link-line"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="solitude st-copy-fill"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="solitude st-download-cloud-fill"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-search"><i class="solitude st-search-line"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-search-google"><i class="fab fa-google"></i><span>谷歌搜索</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-copy-page-url" onclick="copyPageUrl()||rm.hideRightMenu()"><i class="solitude st-copy-fill"></i><span>复制地址</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-darkmode" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span class="menu-darkmode-text">深色模式</span></div></div></div><div id="rightmenu-mask"></div><!-- inject body--><div><script src="/js/utils.js?v=1.12.1"></script><script src="/js/main.js?v=1.12.1"></script><script src="/js/third_party/waterfall.min.js?v=1.12.1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/third_party/universe.min.js?v=1.12.1"></script><script>dark()
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><script src="/js/right_menu.js?v=1.12.1"></script><div class="js-pjax"><script>(() => {
+    const initValine = () => {
+        const valine = new Valine({
+            el: '#vcomment',
+            appId: '6fxWT1ZYIResHpMFi9T0yavB-MdYXbMMI',
+            appKey: 'WxPcASgfCAdbAP8sNIkPgh47',
+            avatar: '',
+            serverURLs: 'https://6fxwt1zy.api.lncldglobal.com',
+            emojiMaps: "",
+            path: window.location.pathname,
+            visitor: true,
+            ...null
+        })
+        GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#comment .vcontent img:not(.vemoji)'))
+        sco.owoBig({body: '.vwrap', item: '.vemojis i'})
+    }
+    const loadValine = async () => {
+        if (typeof Valine === 'function') setTimeout(initValine, 0)
+        else {
+            await utils.getScript('https://cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js').then(initValine)
+        }
+        false && barrageValine()
+    }
+    if ('Valine' === 'Valine' || false) {
+        if (false) utils.loadComment(document.getElementById('vcomment'), loadValine)
+        else loadValine()
+    } else {
+        window.loadTwoComment = loadValine
+    }
+})()
+</script><script defer pjax src="https://pv.lemonso.com/js"></script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- google adsense--><!-- search--><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="solitude st-close-fill"></i></button></nav><div class="search-wrap"><div class="search-box"><input class="search-box-input" id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="输入关键词快速查找"></div><div id="search-results"><div id="search-hits"></div></div><div id="search-pagination"></div><div id="search-tips"></div></div></div><div id="search-mask"></div></div><script src="/js/search/local.js?v=1.12.1"></script><!-- Tianli-Talk--><!-- music--></body></html><script>const posts=["2024/06/24/自动续签证书/","2024/06/24/服务器安全设置/","2024/06/24/Vaultwarden搭建/","2024/06/22/Spring八股文/","2024/06/22/Myql八股文/","2024/06/22/Java集合八股文/","2024/06/21/Java基础八股文/","2024/06/18/使用AList定时备份服务器文件/","2024/06/16/Hexo备份/","2024/06/16/安装部署Hexo/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); }</script>

@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>服务器安全设置 | 陆时忤的博客</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="/img/pwa/favicon.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.12.1"><!-- inject head--><link rel="canonical" href="http://example.com/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"><link rel="stylesheet" href="https://cdn2.codesign.qq.com/icons/7pOrz0WXB5ZWJPX/latest/iconfont.css"><!-- aplayer--><!-- swiper--><!-- fancybox ui--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="1. 更新系统首先，确保你的系统和所有安装的软件都是最新的。这不仅可以帮助你利用最新的功能，还可以修复已知的安全漏洞。使用以下命令进行更新： sudo apt update &amp;amp;&amp;amp; sudo apt upgrade 2. 安装防火墙Ubuntu默认带有ufw（Uncomplicate"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="陆时忤的博客"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="/img/pwa/favicon.ico"><link rel="apple-touch-icon" href="/img/pwa/favicon.ico" sizes="180x180"><script>console.log(
+    "%c Program: Hexo %c Theme: Solitude %c Version: v1.12.1",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "padding: 5px 10px;color:white;background:#0084ff;border-radius:0 5px 5px 0",
+)
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+    
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+    
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+    
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+    
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+        
+                if (name && keyObj[name]) return
+        
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: {"preload":false,"path":"/search.xml"},
+    runtime: '2024-06-15 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.avif'
+    },
+    copyright: false,
+    highlight: {
+        enable: true,
+        limit: 200,
+        expand: true,
+        copy: true,
+        syntax: 'prismjs'
+    },
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。"}},
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: ["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多","🎮 电竞游戏爱好者"],
+        sayhello3: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: false,
+    lightbox: 'fancybox',
+    post_ai: false,
+    right_menu: {"mode":{"dark":"深色模式","light":"浅色模式"},"img_error":"此图片无法复制与下载"},
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><div id="loading-box" onclick="preloader.endLoading();" style="zoom:1"><div class="loading-bg"><img class="loading-img nolazyload" src="/img/avatar.jpg" alt="loading image"></div></div><script>const preloader = {
+    endLoading: () => {
+        document.getElementById('loading-box').classList.toggle('loaded');
+    },
+    initLoading: () => {
+        document.getElementById('loading-box').classList.remove('loaded');
+    },
+    removePaceDone: () => {
+        document.getElementById('body').classList = 'pace-done';
+    }
+}
+window.addEventListener('load', () => {
+    preloader.endLoading();
+});
+window.addEventListener('pjax:send', () => {
+    preloader.initLoading();
+});
+document.addEventListener('pjax:complete', () => {
+    preloader.endLoading();
+});</script><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude st-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换"><i class="solitude st-moon-clear-fill"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制"><i class="solitude st-side-bar-fill"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  st-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><span>留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span>关于</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/Blog/">Blog<sup>2</sup></a><a href="/tags/Java/">Java<sup>3</sup></a><a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/">八股文<sup>4</sup></a><a href="/tags/MySQL/">MySQL<sup>1</sup></a><a href="/tags/Spring/">Spring<sup>1</sup></a><a href="/tags/Linux/">Linux<sup>3</sup></a><a href="/tags/Alist/">Alist<sup>1</sup></a><a href="/tags/SSL/">SSL<sup>1</sup></a><a href="/tags/%E5%9F%9F%E5%90%8D/">域名<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">陆时忤</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">服务器安全设置</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  st-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><span>留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span>关于</span></a></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude st-search-line"></i></a></div><div class="nav-button" id="nav-console"><a class="console_switchbutton" onclick="sco.showConsole()" title="中控台" href="javascript:void(0);"><i class="solitude st-dashboard-fill"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude st-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude st-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/JavaBasics.jpg" alt="服务器安全设置"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/"><span class="tags-name tags-punctuation">Linux</span></a></div></div></div></div><h1 class="post-title">服务器安全设置</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2024-06-24 19:14:28"><i class="post-meta-icon solitude st-calendar-todo-fill"></i><time datetime="2024-06-24T11:14:28.000Z">2024-06-24T11:14:28.000Z</time></span><span class="post-meta-date" title="最后更新于 2024-06-24 20:05:25"><i class="post-meta-icon solitude st-refresh-line"></i><time datetime="2024-06-24T12:05:25.361Z">2024-06-24T12:05:25.361Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude st-word-fill" title="文章字数"></i><span class="word-count">618</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude st-clock-fill" title="阅读耗时"></i><span>2 min</span></span><a class="post-meta-pv" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" title="文章热度"><i class="post-meta-icon solitude st-fire-fill"></i><span class="leancloud_visitors" id="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"><span class="leancloud-visitors-count"><i class="solitude st-loading-line"></i></span></span></a><span class="post-meta-commentcount" title="评论数" onclick="sco.scrollTo('post-comment')"><i class="solitude st-chat-fill"></i><a href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/#post-comment"><span class="valine-comment-count" data-xid="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" itemprop="commentCount"><i class="solitude st-loading-line"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="1-更新系统"><a href="#1-更新系统" class="headerlink" title="1. 更新系统"></a>1. 更新系统</h3><p>首先，确保你的系统和所有安装的软件都是最新的。这不仅可以帮助你利用最新的功能，还可以修复已知的安全漏洞。使用以下命令进行更新：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> upgrade<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="2-安装防火墙"><a href="#2-安装防火墙" class="headerlink" title="2. 安装防火墙"></a>2. 安装防火墙</h3><p>Ubuntu默认带有<code>ufw</code>（Uncomplicated Firewall）工具，它是一个对于初学者非常友好的防火墙管理工具。要启用并配置它，请执行以下步骤：</p>
+<p>启用<code>ufw</code>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw <span class="token builtin class-name">enable</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接下来，开放必要的端口。例如，对于SSH服务：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw allow <span class="token number">22</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果你运行了Web服务器，你可能还需要开放HTTP和HTTPS端口：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw allow <span class="token number">80</span>
+<span class="token function">sudo</span> ufw allow <span class="token number">443</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="3-配置SSH"><a href="#3-配置SSH" class="headerlink" title="3. 配置SSH"></a>3. 配置SSH</h3><p>SSH是远程管理Linux服务器的标准方法。为了增强安全性，推荐使用SSH密钥对进行身份验证，而不是密码。</p>
+<h4 id="生成SSH密钥对"><a href="#生成SSH密钥对" class="headerlink" title="生成SSH密钥对"></a>生成SSH密钥对</h4><p>在客户端机器上，运行以下命令生成SSH密钥对：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-b</span> <span class="token number">4096</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="将公钥添加到服务器"><a href="#将公钥添加到服务器" class="headerlink" title="将公钥添加到服务器"></a>将公钥添加到服务器</h4><p>使用<code>ssh-copy-id</code>命令将公钥复制到服务器上：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token parameter variable">-i</span> ~/.ssh/id_rsa.pub 用户名@服务器IP<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="禁用密码认证"><a href="#禁用密码认证" class="headerlink" title="禁用密码认证"></a>禁用密码认证</h4><p>编辑服务器上的<code>/etc/ssh/sshd_config</code>文件，设置以下内容：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PasswordAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后重启SSH服务以应用更改：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart sshd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="4-配置Fail2Ban"><a href="#4-配置Fail2Ban" class="headerlink" title="4. 配置Fail2Ban"></a>4. 配置Fail2Ban</h3><p>Fail2Ban可以帮助保护服务器免受暴力破解攻击。它通过监控日志文件中的失败登录尝试来工作，并封锁显示恶意行为的IP地址。</p>
+<h4 id="安装Fail2Ban"><a href="#安装Fail2Ban" class="headerlink" title="安装Fail2Ban"></a>安装Fail2Ban</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> fail2ban<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="配置基本保护"><a href="#配置基本保护" class="headerlink" title="配置基本保护"></a>配置基本保护</h4><p>创建或编辑<code>/etc/fail2ban/jail.local</code>文件，为SSH服务添加基本保护：</p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">DEFAULT</span><span class="token punctuation">]</span></span>
+<span class="token comment"># 全局设置</span>
+<span class="token key attr-name">bantime</span> <span class="token punctuation">=</span> <span class="token value attr-value">1h        # 封禁时间：1小时</span>
+<span class="token key attr-name">findtime</span> <span class="token punctuation">=</span> <span class="token value attr-value">10m      # 在此时间内连续失败的尝试视为攻击</span>
+<span class="token key attr-name">maxretry</span> <span class="token punctuation">=</span> <span class="token value attr-value">5        # 允许失败次数</span>
+<span class="token key attr-name">ignoreip</span> <span class="token punctuation">=</span> <span class="token value attr-value">127.0.0.1/8 # 忽略本地IP地址的封禁</span>
+
+<span class="token comment"># 指定要使用的日志文件</span>
+<span class="token key attr-name">backend</span> <span class="token punctuation">=</span> <span class="token value attr-value">auto      # 自动确定日志文件类型</span>
+<span class="token key attr-name">usedns</span> <span class="token punctuation">=</span> <span class="token value attr-value">warn       # 使用DNS解析</span>
+<span class="token key attr-name">logencoding</span> <span class="token punctuation">=</span> <span class="token value attr-value">auto  # 日志文件的编码</span>
+<span class="token key attr-name">enabled</span> <span class="token punctuation">=</span> <span class="token value attr-value">false     # 默认不启用任何规则</span>
+
+<span class="token comment"># SSH 服务</span>
+<span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">sshd</span><span class="token punctuation">]</span></span>
+<span class="token key attr-name">enabled</span> <span class="token punctuation">=</span> <span class="token value attr-value">true</span>
+<span class="token key attr-name">port</span> <span class="token punctuation">=</span> <span class="token value attr-value">ssh</span>
+<span class="token key attr-name">filter</span> <span class="token punctuation">=</span> <span class="token value attr-value">sshd</span>
+<span class="token key attr-name">logpath</span> <span class="token punctuation">=</span> <span class="token value attr-value">/var/log/auth.log</span>
+<span class="token key attr-name">maxretry</span> <span class="token punctuation">=</span> <span class="token value attr-value">3</span>
+<span class="token key attr-name">findtime</span> <span class="token punctuation">=</span> <span class="token value attr-value">5m</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>重启Fail2Ban服务以应用配置：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart fail2ban
+<span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> fail2ban<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<hr>
+<p>通过上述步骤，你的服务器将具备较强的基本安全保护。务必定期检查和更新你的系统及应用程序，保持警惕，适时应对新的安全威胁。</p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="/img/avatar.jpg"></a><div class="post-copyright__author_name">陆时忤的博客</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">陆时忤的博客</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/"><span class="tags-punctuation"></span>Linux<span class="tagsPageCount">3</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">自动续签证书</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vaultwarden搭建</div></div></a></div></nav><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude st-chat-fill"></i><span> 评论</span><span class="count"> (<span class="valine-comment-count" data-xid="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" itemprop="commentCount"><i class="solitude st-loading-line"></i></span>)</span></div></div><div class="comment-wrap"><div class="vcomment" id="vcomment"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="/img/avatar.jpg"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://7.isyangs.cn/34/65f2e4e0423cc-34.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" target="_blank" rel="noopener" href="https://lushiwu.top/"><div class="author-info__name">陆时忤</div><div class="author-info__desc"></div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/AixLau" title="Github"><i class="solitude  st-github-line"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude st-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F"><span class="toc-text">1. 更新系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">2. 安装防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AESSH"><span class="toc-text">3. 配置SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90SSH%E5%AF%86%E9%92%A5%E5%AF%B9"><span class="toc-text">生成SSH密钥对</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%85%AC%E9%92%A5%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">将公钥添加到服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E5%AF%86%E7%A0%81%E8%AE%A4%E8%AF%81"><span class="toc-text">禁用密码认证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%85%8D%E7%BD%AEFail2Ban"><span class="toc-text">4. 配置Fail2Ban</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Fail2Ban"><span class="toc-text">安装Fail2Ban</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%9F%BA%E6%9C%AC%E4%BF%9D%E6%8A%A4"><span class="toc-text">配置基本保护</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude st-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/" title="自动续签证书"><img alt="自动续签证书" src="https://cloud.lushiwu.top/f/AYfy/%E5%8E%9A%E6%B6%82%E5%A5%B3%E5%AD%A9%20%E6%89%8B%E7%BB%98%E7%94%BB4K.jpeg"></a><div class="content"><a class="title" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/" title="自动续签证书">自动续签证书</a><a class="article-recent_post_categories" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/">Linux</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" title="服务器安全设置"><img alt="服务器安全设置" src="/img/JavaBasics.jpg"></a><div class="content"><a class="title" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" title="服务器安全设置">服务器安全设置</a><a class="article-recent_post_categories" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/">Linux</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" title="Vaultwarden搭建"><img alt="Vaultwarden搭建" src="/img/VaultwardenBuild.png"></a><div class="content"><a class="title" href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" title="Vaultwarden搭建">Vaultwarden搭建</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/" title="Spring八股文"><img alt="Spring八股文" src="/img/springbaguwen.png"></a><div class="content"><a class="title" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/" title="Spring八股文">Spring八股文</a><a class="article-recent_post_categories" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/">Java</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/" title="Myql八股文"><img alt="Myql八股文" src="/img/mysqlbaguwen.png"></a><div class="content"><a class="title" href="/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/" title="Myql八股文">Myql八股文</a><a class="article-recent_post_categories" href="/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/">MySQL</a></div></div></div></div></div></div></main><footer id="footer"><div id="footer_deal"></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2024 By&nbsp;<a class="footer-bar-link" href="/">陆时忤</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="主题">主题</a><a class="footer-bar-link cc" href="/null" aria-label="copyright"><i class="solitude st-copyright-line"></i><i class="solitude st-creative-commons-by-line"></i><i class="solitude st-creative-commons-nc-line"></i><i class="solitude st-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- right_menu--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="solitude st-arrow-left-line"></i></div><div class="rightMenu-item" id="menu-forward"><i class="solitude st-arrow-right-line"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="solitude st-restart-line"></i></div><div class="rightMenu-item" id="menu-top"><i class="solitude st-arrow-up-line"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="solitude st-copy-fill"></i><span>复制文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="solitude st-clipboard-fill"></i><span>粘贴文本</span></div><div class="rightMenu-item" id="menu-commenttext"><i class="solitude st-chat-new-fill"></i><span>引用到评论</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="solitude st-window-fill"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="solitude st-link-line"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="solitude st-copy-fill"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="solitude st-download-cloud-fill"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-search"><i class="solitude st-search-line"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-search-google"><i class="fab fa-google"></i><span>谷歌搜索</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-copy-page-url" onclick="copyPageUrl()||rm.hideRightMenu()"><i class="solitude st-copy-fill"></i><span>复制地址</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-darkmode" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span class="menu-darkmode-text">深色模式</span></div></div></div><div id="rightmenu-mask"></div><!-- inject body--><div><script src="/js/utils.js?v=1.12.1"></script><script src="/js/main.js?v=1.12.1"></script><script src="/js/third_party/waterfall.min.js?v=1.12.1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/third_party/universe.min.js?v=1.12.1"></script><script>dark()
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><script src="/js/right_menu.js?v=1.12.1"></script><div class="js-pjax"><script>(() => {
+    const initValine = () => {
+        const valine = new Valine({
+            el: '#vcomment',
+            appId: '6fxWT1ZYIResHpMFi9T0yavB-MdYXbMMI',
+            appKey: 'WxPcASgfCAdbAP8sNIkPgh47',
+            avatar: '',
+            serverURLs: 'https://6fxwt1zy.api.lncldglobal.com',
+            emojiMaps: "",
+            path: window.location.pathname,
+            visitor: true,
+            ...null
+        })
+        GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#comment .vcontent img:not(.vemoji)'))
+        sco.owoBig({body: '.vwrap', item: '.vemojis i'})
+    }
+    const loadValine = async () => {
+        if (typeof Valine === 'function') setTimeout(initValine, 0)
+        else {
+            await utils.getScript('https://cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js').then(initValine)
+        }
+        false && barrageValine()
+    }
+    if ('Valine' === 'Valine' || false) {
+        if (false) utils.loadComment(document.getElementById('vcomment'), loadValine)
+        else loadValine()
+    } else {
+        window.loadTwoComment = loadValine
+    }
+})()
+</script><script defer pjax src="https://pv.lemonso.com/js"></script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- google adsense--><!-- search--><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="solitude st-close-fill"></i></button></nav><div class="search-wrap"><div class="search-box"><input class="search-box-input" id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="输入关键词快速查找"></div><div id="search-results"><div id="search-hits"></div></div><div id="search-pagination"></div><div id="search-tips"></div></div></div><div id="search-mask"></div></div><script src="/js/search/local.js?v=1.12.1"></script><!-- Tianli-Talk--><!-- music--></body></html><script>const posts=["2024/06/24/自动续签证书/","2024/06/24/服务器安全设置/","2024/06/24/Vaultwarden搭建/","2024/06/22/Spring八股文/","2024/06/22/Myql八股文/","2024/06/22/Java集合八股文/","2024/06/21/Java基础八股文/","2024/06/18/使用AList定时备份服务器文件/","2024/06/16/Hexo备份/","2024/06/16/安装部署Hexo/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); }</script>

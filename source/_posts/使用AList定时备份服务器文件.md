@@ -3,22 +3,40 @@ title: 使用AList定时备份服务器文件
 date: 2024-06-18 16:37:21
 tags: Alist
 categories: Linux
-cover: /img/cover.png
+cover: /img/alistback.jpg
 ---
 # 使用AList定时备份服务器文件
-本教程详细介绍如何使用 AList 通过 API 自动备份服务器文件，包括获取 JWT Token 和自动上传备份文件至 AList 服务器。
+本教程详细介绍如何使用 `AList` 通过 `API` 自动备份服务器文件，包括获取 `JWT Token` 和自动上传备份文件至 `AList` 服务器。
 ## 环境配置
-首先，确保服务器上安装了 curl 和 jq。curl 用于发送 HTTP 请求，而 jq 用于解析 JSON 响应。
+首先，确保服务器上安装了 `curl` 和 `jq`。`curl` 用于发送 `HTTP` 请求，而 `jq` 用于解析 `JSON` 响应。
 ```bash
 sudo apt update && sudo apt install curl jq
 ```
 
+### 设置环境变量
+为确保脚本能自动读取 `AList` 的用户名和密码，在服务器的环境变量中设置，避免在脚本中硬编码敏感信息，提高安全性。  
+通过在服务器的 `~/.bashrc` 或 `~/.profile` 文件中添加以下行来永久设置环境变量：
+```bash
+export ALIST_USERNAME="<your_username>"
+export ALIST_PASSWORD="<your_password>"
+```
+确保替换 "your_username" 和 "your_password" 为你的 AList 登录用户名和密码。
+### 应用环境变量
+修改文件后，为使环境变量立即生效，执行以下命令：
+```bash
+source ~/.bashrc
+```
+或者，如果你是在 ~/.profile 中设置的环境变量，使用：
+```bash
+source ~/.profile
+```
+这样设置后，每当脚本执行时，它将能从这些环境变量中读取所需的用户名和密码。
+
+
 ## 获取 JWT Token
 
-要与 AList 的 API 交互，首先需要获取一个有效的 JWT Token。以下步骤展示如何通过登录 API 获取 Token。
-
+要与 `AList` 的 `API` 交互，首先需要获取一个有效的 JWT Token。以下步骤展示如何通过登录 `API` 获取 `Token`。
 ### 创建 Token 获取脚本
-
 - **脚本位置**：在 `/opt/alist` 目录下创建 `get_token.sh` 脚本。
 - **编辑脚本**：使用 `Vim` 或任意文本编辑器创建和编辑 `get_token.sh` 文件。
 
@@ -126,7 +144,7 @@ chmod +x /opt/alist/upload_backup.sh
 5 1 * * * /opt/alist/upload_backup.sh
 ```
 
-这将在每天凌晨 1 点自动获取新的 Token，并在五分钟后上传最新的备份文件。
+这将在每天凌晨 1 点自动获取新的 `Token`，并在五分钟后上传最新的备份文件。
 
 ## 日志记录
 
@@ -137,6 +155,6 @@ chmod +x /opt/alist/upload_backup.sh
 5 1 * * * /opt/alist/upload_backup.sh >> /var/log/alist_backup.log 2>&1
 ```
 
-这样，你就有了一个自动化的、具备日志记录功能的服务器文件备份系统，使用 AList 完成文件的存储和备份。
+这样，你就有了一个自动化的、具备日志记录功能的服务器文件备份系统，使用 `AList` 完成文件的存储和备份。
 
 ---
