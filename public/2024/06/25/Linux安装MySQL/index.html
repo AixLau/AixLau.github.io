@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Linux安装MySQL | 陆时忤的博客</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="/img/pwa/favicon.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.12.1"><!-- inject head--><link rel="canonical" href="http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"><link rel="stylesheet" href="https://cdn2.codesign.qq.com/icons/7pOrz0WXB5ZWJPX/latest/iconfont.css"><!-- aplayer--><!-- swiper--><!-- fancybox ui--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="如何在Ubuntu上安装和配置MySQL并允许远程访问在本文中，我们将介绍如何在Ubuntu上安装和配置MySQL，并设置允许远程访问。我们将从安装MySQL开始，然后进行基本的安全配置，修改MySQL配置文件以允许远程连接，并创建可以远程访问的用户。 步骤1：更新包列表并安装MySQL服务器首先，"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="陆时忤的博客"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="/img/pwa/favicon.ico"><link rel="apple-touch-icon" href="/img/pwa/favicon.ico" sizes="180x180"><script>console.log(
+    "%c Program: Hexo %c Theme: Solitude %c Version: v1.12.1",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "padding: 5px 10px;color:white;background:#0084ff;border-radius:0 5px 5px 0",
+)
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+    
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+    
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+    
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+    
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+        
+                if (name && keyObj[name]) return
+        
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: {"preload":false,"path":"/search.xml"},
+    runtime: '2024-06-15 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.avif'
+    },
+    copyright: false,
+    highlight: {
+        enable: true,
+        limit: 200,
+        expand: true,
+        copy: true,
+        syntax: 'prismjs'
+    },
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。"}},
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: ["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多","🎮 电竞游戏爱好者"],
+        sayhello3: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: false,
+    lightbox: 'fancybox',
+    post_ai: false,
+    right_menu: {"mode":{"dark":"深色模式","light":"浅色模式"},"img_error":"此图片无法复制与下载"},
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><div id="loading-box" onclick="preloader.endLoading();" style="zoom:1"><div class="loading-bg"><img class="loading-img nolazyload" src="/img/avatar.jpg" alt="loading image"></div></div><script>const preloader = {
+    endLoading: () => {
+        document.getElementById('loading-box').classList.toggle('loaded');
+    },
+    initLoading: () => {
+        document.getElementById('loading-box').classList.remove('loaded');
+    },
+    removePaceDone: () => {
+        document.getElementById('body').classList = 'pace-done';
+    }
+}
+window.addEventListener('load', () => {
+    preloader.endLoading();
+});
+window.addEventListener('pjax:send', () => {
+    preloader.initLoading();
+});
+document.addEventListener('pjax:complete', () => {
+    preloader.endLoading();
+});</script><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude st-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换"><i class="solitude st-moon-clear-fill"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制"><i class="solitude st-side-bar-fill"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  st-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><span>留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span>关于</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/Blog/">Blog<sup>2</sup></a><a href="/tags/Java/">Java<sup>3</sup></a><a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/">八股文<sup>4</sup></a><a href="/tags/MySQL/">MySQL<sup>2</sup></a><a href="/tags/Linux/">Linux<sup>4</sup></a><a href="/tags/Spring/">Spring<sup>1</sup></a><a href="/tags/Alist/">Alist<sup>1</sup></a><a href="/tags/SSL/">SSL<sup>1</sup></a><a href="/tags/%E5%9F%9F%E5%90%8D/">域名<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">陆时忤</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Linux安装MySQL</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文库</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  st-folder-fill"></i><span>文章列表</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  st-checkbox-multiple-blank-fill"></i><span>全部分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  st-price-tag-fill"></i><span>全部标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><span>留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span>关于</span></a></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude st-search-line"></i></a></div><div class="nav-button" id="nav-console"><a class="console_switchbutton" onclick="sco.showConsole()" title="中控台" href="javascript:void(0);"><i class="solitude st-dashboard-fill"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude st-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude st-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://cloud.lushiwu.top/f/kXCn/%E3%80%90%E7%89%B9%E5%86%99%E3%80%912024-06-25%2012_21_11.png" alt="Linux安装MySQL"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/"><span class="tags-name tags-punctuation">MySQL</span></a><a class="post-meta__tags" href="/tags/Linux/"><span class="tags-name tags-punctuation">Linux</span></a></div></div></div></div><h1 class="post-title">Linux安装MySQL</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2024-06-25 12:18:14"><i class="post-meta-icon solitude st-calendar-todo-fill"></i><time datetime="2024-06-25T04:18:14.000Z">2024-06-25T04:18:14.000Z</time></span><span class="post-meta-date" title="最后更新于 2024-06-25 13:05:47"><i class="post-meta-icon solitude st-refresh-line"></i><time datetime="2024-06-25T05:05:47.106Z">2024-06-25T05:05:47.106Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude st-word-fill" title="文章字数"></i><span class="word-count">840</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude st-clock-fill" title="阅读耗时"></i><span>3 min</span></span><a class="post-meta-pv" href="/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/" title="文章热度"><i class="post-meta-icon solitude st-fire-fill"></i><span class="leancloud_visitors" id="/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"><span class="leancloud-visitors-count"><i class="solitude st-loading-line"></i></span></span></a><span class="post-meta-commentcount" title="评论数" onclick="sco.scrollTo('post-comment')"><i class="solitude st-chat-fill"></i><a href="/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/#post-comment"><span class="valine-comment-count" data-xid="/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/" itemprop="commentCount"><i class="solitude st-loading-line"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="如何在Ubuntu上安装和配置MySQL并允许远程访问"><a href="#如何在Ubuntu上安装和配置MySQL并允许远程访问" class="headerlink" title="如何在Ubuntu上安装和配置MySQL并允许远程访问"></a>如何在Ubuntu上安装和配置MySQL并允许远程访问</h1><p>在本文中，我们将介绍如何在Ubuntu上安装和配置MySQL，并设置允许远程访问。我们将从安装MySQL开始，然后进行基本的安全配置，修改MySQL配置文件以允许远程连接，并创建可以远程访问的用户。</p>
+<h2 id="步骤1：更新包列表并安装MySQL服务器"><a href="#步骤1：更新包列表并安装MySQL服务器" class="headerlink" title="步骤1：更新包列表并安装MySQL服务器"></a>步骤1：更新包列表并安装MySQL服务器</h2><p>首先，确保你的包列表是最新的：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后安装MySQL服务器：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> mysql-server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果你需要安装特定版本的MySQL（例如8.0），可以使用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> mysql-server-8.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="步骤2：检查MySQL服务状态并启用MySQL服务"><a href="#步骤2：检查MySQL服务状态并启用MySQL服务" class="headerlink" title="步骤2：检查MySQL服务状态并启用MySQL服务"></a>步骤2：检查MySQL服务状态并启用MySQL服务</h2><p>检查MySQL服务是否正在运行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl status mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>确保MySQL服务在系统启动时自动启动：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="步骤3：运行安全安装脚本"><a href="#步骤3：运行安全安装脚本" class="headerlink" title="步骤3：运行安全安装脚本"></a>步骤3：运行安全安装脚本</h2><p>MySQL提供了一个安全安装脚本，可以帮助你进行一些基本的安全配置。运行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> mysql_secure_installation<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在提示中，你将需要：</p>
+<ul>
+<li>选择密码规则</li>
+<li>删除匿名用户</li>
+<li>禁用远程root登录</li>
+<li>删除测试数据库和表</li>
+</ul>
+<h2 id="步骤4：修改MySQL配置文件以允许远程连接"><a href="#步骤4：修改MySQL配置文件以允许远程连接" class="headerlink" title="步骤4：修改MySQL配置文件以允许远程连接"></a>步骤4：修改MySQL配置文件以允许远程连接</h2><p>打开MySQL配置文件<code>mysqld.cnf</code>，通常位于<code>/etc/mysql/mysql.conf.d/</code>目录中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/mysql/mysql.conf.d/mysqld.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>找到以下行：</p>
+<pre class="line-numbers language-none"><code class="language-none">bind-address &#x3D; 127.0.0.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>将其注释掉或改为<code>0.0.0.0</code>，使MySQL监听所有网络接口：</p>
+<pre class="line-numbers language-none"><code class="language-none"># bind-address &#x3D; 127.0.0.1
+bind-address &#x3D; 0.0.0.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>保存配置文件并退出编辑器。</p>
+<h2 id="步骤5：重启MySQL服务"><a href="#步骤5：重启MySQL服务" class="headerlink" title="步骤5：重启MySQL服务"></a>步骤5：重启MySQL服务</h2><p>重启MySQL服务以使更改生效：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="步骤6：创建可以远程访问的用户"><a href="#步骤6：创建可以远程访问的用户" class="headerlink" title="步骤6：创建可以远程访问的用户"></a>步骤6：创建可以远程访问的用户</h2><p>登录到MySQL命令行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql <span class="token parameter variable">-u</span> root <span class="token parameter variable">-p</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在MySQL提示符中运行以下命令，创建一个允许从任何IP地址连接的用户，并授予所有权限：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">USER</span> <span class="token string">'yourusername'</span><span class="token variable">@'%'</span> IDENTIFIED <span class="token keyword">BY</span> <span class="token string">'yourpassword'</span><span class="token punctuation">;</span>
+<span class="token keyword">GRANT</span> <span class="token keyword">ALL</span> <span class="token keyword">PRIVILEGES</span> <span class="token keyword">ON</span> <span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">TO</span> <span class="token string">'yourusername'</span><span class="token variable">@'%'</span> <span class="token keyword">WITH</span> <span class="token keyword">GRANT</span> <span class="token keyword">OPTION</span><span class="token punctuation">;</span>
+FLUSH <span class="token keyword">PRIVILEGES</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>解释：</strong></p>
+<ul>
+<li><strong>GRANT ALL PRIVILEGES</strong>：授予用户所有权限，包括SELECT、INSERT、UPDATE、DELETE、CREATE、DROP等操作权限。</li>
+<li>**ON *.***：授予权限的范围。<code>*.*</code>表示所有数据库和所有表。</li>
+<li>**TO ‘yourusername‘@’%’**：指定权限接收者。<code>&#39;yourusername&#39;</code>是用户名，<code>&#39;%&#39;</code>是主机名通配符，表示允许从任何IP地址连接的用户。</li>
+<li><strong>WITH GRANT OPTION</strong>：允许用户将他自己拥有的权限授予其他用户。</li>
+</ul>
+<h2 id="步骤7：配置防火墙"><a href="#步骤7：配置防火墙" class="headerlink" title="步骤7：配置防火墙"></a>步骤7：配置防火墙</h2><p>确保防火墙允许MySQL的默认端口3306的流量。如果使用的是UFW（Uncomplicated Firewall），可以运行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw allow <span class="token number">3306</span>
+<span class="token function">sudo</span> ufw reload<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="步骤8：验证远程连接"><a href="#步骤8：验证远程连接" class="headerlink" title="步骤8：验证远程连接"></a>步骤8：验证远程连接</h2><p>在远程机器上，使用MySQL客户端或其他工具连接到MySQL服务器：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql <span class="token parameter variable">-u</span> yourusername <span class="token parameter variable">-p</span> <span class="token parameter variable">-h</span> your_server_ip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h2><h3 id="删除某些权限或用户"><a href="#删除某些权限或用户" class="headerlink" title="删除某些权限或用户"></a>删除某些权限或用户</h3><p>如果你想删除某些权限，或者从特定数据库中删除权限，可以使用<code>REVOKE</code>命令。例如：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">REVOKE</span> <span class="token keyword">ALL</span> <span class="token keyword">PRIVILEGES</span><span class="token punctuation">,</span> <span class="token keyword">GRANT</span> <span class="token keyword">OPTION</span> <span class="token keyword">FROM</span> <span class="token string">'existinguser'</span><span class="token variable">@'%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="查看某个用户的当前权限"><a href="#查看某个用户的当前权限" class="headerlink" title="查看某个用户的当前权限"></a>查看某个用户的当前权限</h3><p>如果你想查看某个用户的当前权限，可以使用以下命令：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SHOW</span> GRANTS <span class="token keyword">FOR</span> <span class="token string">'existinguser'</span><span class="token variable">@'%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>通过这些步骤，你可以在Ubuntu上成功安装和配置MySQL，并设置允许远程访问。如果遇到任何问题或需要进一步帮助，请随时在评论区留言！</p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="/img/avatar.jpg"></a><div class="post-copyright__author_name">陆时忤的博客</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">陆时忤的博客</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/"><span class="tags-punctuation"></span>MySQL<span class="tagsPageCount">2</span></a><a class="post-meta__tags" href="/tags/Linux/"><span class="tags-punctuation"></span>Linux<span class="tagsPageCount">4</span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">自动续签证书</div></div></a></div></nav><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude st-chat-fill"></i><span> 评论</span><span class="count"> (<span class="valine-comment-count" data-xid="/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/" itemprop="commentCount"><i class="solitude st-loading-line"></i></span>)</span></div></div><div class="comment-wrap"><div class="vcomment" id="vcomment"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="/img/avatar.jpg"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://7.isyangs.cn/34/65f2e4e0423cc-34.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" target="_blank" rel="noopener" href="https://lushiwu.top/"><div class="author-info__name">陆时忤</div><div class="author-info__desc"></div></a><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/AixLau" title="Github"><i class="solitude  st-github-line"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude st-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEMySQL%E5%B9%B6%E5%85%81%E8%AE%B8%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE"><span class="toc-text">如何在Ubuntu上安装和配置MySQL并允许远程访问</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E6%9B%B4%E6%96%B0%E5%8C%85%E5%88%97%E8%A1%A8%E5%B9%B6%E5%AE%89%E8%A3%85MySQL%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">步骤1：更新包列表并安装MySQL服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9A%E6%A3%80%E6%9F%A5MySQL%E6%9C%8D%E5%8A%A1%E7%8A%B6%E6%80%81%E5%B9%B6%E5%90%AF%E7%94%A8MySQL%E6%9C%8D%E5%8A%A1"><span class="toc-text">步骤2：检查MySQL服务状态并启用MySQL服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A43%EF%BC%9A%E8%BF%90%E8%A1%8C%E5%AE%89%E5%85%A8%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC"><span class="toc-text">步骤3：运行安全安装脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A44%EF%BC%9A%E4%BF%AE%E6%94%B9MySQL%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BB%A5%E5%85%81%E8%AE%B8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-text">步骤4：修改MySQL配置文件以允许远程连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A45%EF%BC%9A%E9%87%8D%E5%90%AFMySQL%E6%9C%8D%E5%8A%A1"><span class="toc-text">步骤5：重启MySQL服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A46%EF%BC%9A%E5%88%9B%E5%BB%BA%E5%8F%AF%E4%BB%A5%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E7%9A%84%E7%94%A8%E6%88%B7"><span class="toc-text">步骤6：创建可以远程访问的用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A47%EF%BC%9A%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">步骤7：配置防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A48%EF%BC%9A%E9%AA%8C%E8%AF%81%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-text">步骤8：验证远程连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="toc-text">其他操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%9F%90%E4%BA%9B%E6%9D%83%E9%99%90%E6%88%96%E7%94%A8%E6%88%B7"><span class="toc-text">删除某些权限或用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E7%9A%84%E5%BD%93%E5%89%8D%E6%9D%83%E9%99%90"><span class="toc-text">查看某个用户的当前权限</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude st-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/" title="Linux安装MySQL"><img alt="Linux安装MySQL" src="https://cloud.lushiwu.top/f/kXCn/%E3%80%90%E7%89%B9%E5%86%99%E3%80%912024-06-25%2012_21_11.png"></a><div class="content"><a class="title" href="/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/" title="Linux安装MySQL">Linux安装MySQL</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/" title="自动续签证书"><img alt="自动续签证书" src="https://cloud.lushiwu.top/f/AYfy/%E5%8E%9A%E6%B6%82%E5%A5%B3%E5%AD%A9%20%E6%89%8B%E7%BB%98%E7%94%BB4K.jpeg"></a><div class="content"><a class="title" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/" title="自动续签证书">自动续签证书</a><a class="article-recent_post_categories" href="/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/">Linux</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" title="服务器安全设置"><img alt="服务器安全设置" src="/img/JavaBasics.jpg"></a><div class="content"><a class="title" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" title="服务器安全设置">服务器安全设置</a><a class="article-recent_post_categories" href="/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/">Linux</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" title="Vaultwarden搭建"><img alt="Vaultwarden搭建" src="/img/VaultwardenBuild.png"></a><div class="content"><a class="title" href="/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/" title="Vaultwarden搭建">Vaultwarden搭建</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/" title="Spring八股文"><img alt="Spring八股文" src="/img/springbaguwen.png"></a><div class="content"><a class="title" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/" title="Spring八股文">Spring八股文</a><a class="article-recent_post_categories" href="/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/">Java</a></div></div></div></div></div></div></main><footer id="footer"><div id="footer_deal"></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2024 By&nbsp;<a class="footer-bar-link" href="/">陆时忤</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="主题">主题</a><a class="footer-bar-link cc" href="/null" aria-label="copyright"><i class="solitude st-copyright-line"></i><i class="solitude st-creative-commons-by-line"></i><i class="solitude st-creative-commons-nc-line"></i><i class="solitude st-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- right_menu--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="solitude st-arrow-left-line"></i></div><div class="rightMenu-item" id="menu-forward"><i class="solitude st-arrow-right-line"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="solitude st-restart-line"></i></div><div class="rightMenu-item" id="menu-top"><i class="solitude st-arrow-up-line"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="solitude st-copy-fill"></i><span>复制文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="solitude st-clipboard-fill"></i><span>粘贴文本</span></div><div class="rightMenu-item" id="menu-commenttext"><i class="solitude st-chat-new-fill"></i><span>引用到评论</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="solitude st-window-fill"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="solitude st-link-line"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="solitude st-copy-fill"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="solitude st-download-cloud-fill"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-search"><i class="solitude st-search-line"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-search-google"><i class="fab fa-google"></i><span>谷歌搜索</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-copy-page-url" onclick="copyPageUrl()||rm.hideRightMenu()"><i class="solitude st-copy-fill"></i><span>复制地址</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-darkmode" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span class="menu-darkmode-text">深色模式</span></div></div></div><div id="rightmenu-mask"></div><!-- inject body--><div><script src="/js/utils.js?v=1.12.1"></script><script src="/js/main.js?v=1.12.1"></script><script src="/js/third_party/waterfall.min.js?v=1.12.1"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/third_party/universe.min.js?v=1.12.1"></script><script>dark()
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><script src="/js/right_menu.js?v=1.12.1"></script><div class="js-pjax"><script>(() => {
+    const initValine = () => {
+        const valine = new Valine({
+            el: '#vcomment',
+            appId: '6fxWT1ZYIResHpMFi9T0yavB-MdYXbMMI',
+            appKey: 'WxPcASgfCAdbAP8sNIkPgh47',
+            avatar: '',
+            serverURLs: 'https://6fxwt1zy.api.lncldglobal.com',
+            emojiMaps: "",
+            path: window.location.pathname,
+            visitor: true,
+            ...null
+        })
+        GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#comment .vcontent img:not(.vemoji)'))
+        sco.owoBig({body: '.vwrap', item: '.vemojis i'})
+    }
+    const loadValine = async () => {
+        if (typeof Valine === 'function') setTimeout(initValine, 0)
+        else {
+            await utils.getScript('https://cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js').then(initValine)
+        }
+        false && barrageValine()
+    }
+    if ('Valine' === 'Valine' || false) {
+        if (false) utils.loadComment(document.getElementById('vcomment'), loadValine)
+        else loadValine()
+    } else {
+        window.loadTwoComment = loadValine
+    }
+})()
+</script><script defer pjax src="https://pv.lemonso.com/js"></script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- google adsense--><!-- search--><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="solitude st-close-fill"></i></button></nav><div class="search-wrap"><div class="search-box"><input class="search-box-input" id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="输入关键词快速查找"></div><div id="search-results"><div id="search-hits"></div></div><div id="search-pagination"></div><div id="search-tips"></div></div></div><div id="search-mask"></div></div><script src="/js/search/local.js?v=1.12.1"></script><!-- Tianli-Talk--><!-- music--></body></html><script>const posts=["2024/06/25/Linux安装MySQL/","2024/06/24/自动续签证书/","2024/06/24/服务器安全设置/","2024/06/24/Vaultwarden搭建/","2024/06/22/Spring八股文/","2024/06/22/Myql八股文/","2024/06/22/Java集合八股文/","2024/06/21/Java基础八股文/","2024/06/18/使用AList定时备份服务器文件/","2024/06/16/Hexo备份/","2024/06/16/安装部署Hexo/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); }</script>
