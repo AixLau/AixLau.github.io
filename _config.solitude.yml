@@ -229,7 +229,7 @@ aside:
     # 在任意页显示
     page: false
     # 开启后不悬停目录有模糊效果
-    vague: true
+    vague: false
 
   # 侧边栏文章列表
   # Sidebar article list
@@ -348,12 +348,11 @@ post:
   # Subscription button jump link in copyright
   rss: # /atom.xml
   # 文章主题色获取
-  # Article theme color acquisition
   covercolor:
-    enable: false
-    mode: local # local：本地取色 / api：img2color取色 : local: local color / api: img2color color
-    api: https://api.qjqq.cn/api/Imgcolor?img= # api地址 / api address
-    time: 43200000 # api取色间隔（毫秒），默认为12小时 / api color interval (milliseconds), default is 12 hours
+    enable: true
+    mode: api # local：本地取色 / api：img2color取色 : local: local color / api: img2color color
+    api: https://img2color-go.vercel.app/api?img= # api地址 / api address
+    time: 43200000  # api取色间隔（毫秒），默认为12小时 / api color interval (milliseconds), default is 12 hours
   # footer
   footer:
     enable: false
@@ -511,7 +510,7 @@ meting_api: "https://meting.qjqq.cn/?server=:server&type=:type&id=:id&auth=:auth
 # 音乐馆页
 # music page
 music:
-  enable: false
+  enable: true
   # 音乐ID：歌单ID / 专辑ID / 歌手ID
   # Music ID: playlist ID / album ID / singer ID
   id: 1994908354
@@ -531,7 +530,7 @@ music:
 # 音乐胶囊
 # capsule music
 capsule:
-  enable: false
+  enable: true
   # 歌单id / playlist id
   id: 8407304077
   # 播放列表的服务商。netease：网易云 / tencent：腾讯 / kugou：酷狗 / xiami：小米 / baidu：百度
@@ -711,7 +710,7 @@ katex:
 # comment
 # getting start: https://solitude.js.org/comments/comment
 comment:
-  use:  valine # waline, twikoo, valine, artalk, giscus
+  use: valine # waline, twikoo, valine, artalk, giscus
   commentBarrage: false # 热评开关 
   lazyload: false # 懒加载
   count: true # 评论数展示

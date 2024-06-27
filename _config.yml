@@ -30,6 +30,10 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
+
+
+
+
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
@@ -104,3 +108,31 @@ deploy:
   type: git
   repo: git@github.com:AixLau/aixlau.github.io.git
   branch: master
+markdown:
+  preset: 'default'
+  render:
+    html: true
+    xhtmlOut: false
+    langPrefix: 'language-'
+    breaks: true
+    linkify: true
+    typographer: true
+    quotes: '“”‘’'
+  enable_rules:
+  disable_rules:
+  plugins:
+
+  anchors:
+    level: 1
+    collisionSuffix: ''
+    permalink: true
+    permalinkClass: 'headerlink'
+    permalinkSide: 'left'
+    permalinkSymbol: ''
+    case: 0
+    separator: '-'
+  images:
+    lazyload: true
+    prepend_root: false
+    post_asset: false
+  inline: false

@@ -4,7 +4,7 @@ date: 2024-06-25 12:18:14
 tags:
     - MySQL
     - Linux
-categorizes: 
+categories: 
     - Linux
     - MySQL
 cover: https://cloud.lushiwu.top/f/kXCn/%E3%80%90%E7%89%B9%E5%86%99%E3%80%912024-06-25%2012_21_11.png
@@ -113,8 +113,8 @@ FLUSH PRIVILEGES;
 **解释：**
 
 - **GRANT ALL PRIVILEGES**：授予用户所有权限，包括SELECT、INSERT、UPDATE、DELETE、CREATE、DROP等操作权限。
-- **ON *.***：授予权限的范围。`*.*`表示所有数据库和所有表。
-- **TO 'yourusername'@'%'**：指定权限接收者。`'yourusername'`是用户名，`'%'`是主机名通配符，表示允许从任何IP地址连接的用户。
+- **ON**：授予权限的范围。`*.*`表示所有数据库和所有表。
+- **TO**：指定权限接收者。`'yourusername'`是用户名，`'%'`是主机名通配符，表示允许从任何IP地址连接的用户。
 - **WITH GRANT OPTION**：允许用户将他自己拥有的权限授予其他用户。
 
 ## 步骤7：配置防火墙

@@ -4,6 +4,7 @@ date: 2024-06-16 16:26:47
 tags: Blog
 categories: 博客
 cover: https://i3.mjj.rip/2024/06/16/fe0897e761d9bba69e09dcf386d73be0.png
+recommend: true
 ---
 # 安装 Hexo 博客
 

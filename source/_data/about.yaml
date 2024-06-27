@@ -70,7 +70,7 @@ personalities:
   title: '调停者'
   color: '#56a178'
   type: 'INFP-A'
-  image: 'https:/example.com/ESFJ-A.svg'
+  image: /img/INFP-A.svg
   link: 'https://www.16personalities.com/'
   linkText: '16personalities'
   typeLink: 'https://www.16personalities.com/ch/infp-%E4%BA%BA%E6%A0%BC'

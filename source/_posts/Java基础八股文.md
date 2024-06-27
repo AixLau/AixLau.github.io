@@ -6,6 +6,7 @@ tags:
     - 八股文
 categories: Java
 cover: /img/JavaBasics.jpg
+recommend: true
 ---
 ### Java 基础八股文
 
