@@ -64,10 +64,11 @@ language: zh-CN
 hexo server
 ```
 在浏览器地址栏输入
+
 ```txt
 http://localhost:4000
 ```
-![效果图](https://i3.mjj.rip/2024/06/16/ada426fbfc38e208cb6b5a9bb3a08c15.png)
+![效果图](https://alist.lushiwu.top/d/OneDrive/Cloud/ada426fbfc38e208cb6b5a9bb3a08c15.png)
 
 ## 一键部署到 GitHub Pages
 
