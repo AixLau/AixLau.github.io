@@ -351,7 +351,7 @@ post:
   covercolor:
     enable: true
     mode: api # local：本地取色 / api：img2color取色 : local: local color / api: img2color color
-    api: https://img2color-go.vercel.app/api?img= # api地址 / api address
+    api: https://color.lushiwu.top/api?img= # api地址 / api address
     time: 43200000  # api取色间隔（毫秒），默认为12小时 / api color interval (milliseconds), default is 12 hours
   # footer
   footer:
@@ -708,9 +708,8 @@ katex:
 
 # 评论
 # comment
-# getting start: https://solitude.js.org/comments/comment
 comment:
-  use: valine # waline, twikoo, valine, artalk, giscus
+  use: twikoo # waline, twikoo, valine, artalk, giscus
   commentBarrage: false # 热评开关 
   lazyload: false # 懒加载
   count: true # 评论数展示
@@ -718,11 +717,10 @@ comment:
   avatar: https://cravatar.cn # Gravatar link
 
 # twikoo 配置信息
-# twikoo settings
 twikoo: # https://twikoo.js.org/
-  envId: # url: https://twikoo.sondy.top/
+  envId: https://aixlau-twikoo.hf.space/ # url: https://twikoo.sondy.top/
   region: # 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
-  style: true # Use custom styles when turned on / 开启后使用自定义样式
+  style: true # 开启后使用自定义样式
   accessToken: # AccessToken
   option: # twikoo option
 
