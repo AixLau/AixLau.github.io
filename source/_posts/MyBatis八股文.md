@@ -1,12 +1,12 @@
 ---
-title: MyBatis八股文
+title: MyBatis应用与总结
 date: 2024-06-26 17:53:37
 tags:
   - Java
   - MyBatis
-  - 八股文
+  - 总结
 categories: Java
-cover: https://cloud.lushiwu.top/f/pvh9/%E3%80%90%E5%B9%B2%E7%89%A9%E5%A6%B9%E5%B0%8F%E5%9F%8B%E3%80%912024-06-26%2017_55_33.png
+cover: https://alist.aixcc.top/d/OneDrive/Cloud/%E3%80%90%E5%B9%B2%E7%89%A9%E5%A6%B9%E5%B0%8F%E5%9F%8B%E3%80%912024-06-26%2017_55_33.png
 ---
 
 # MyBatis常见面试题总结

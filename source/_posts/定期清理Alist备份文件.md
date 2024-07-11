@@ -3,7 +3,7 @@ title: 定期清理Alist备份文件
 date: 2024-07-02 19:34:29
 tags: Alist
 categories: Linux
-cover: https://alist.lushiwu.top/d/OneDrive/Cloud/【天空】2024-07-02 19_37_15.png
+cover: https://alist.aixcc.top/d/OneDrive/Cloud/【天空】2024-07-02 19_37_15.png
 ---
 
 # 使用 Alist 和 Bash 脚本实现自动化管理

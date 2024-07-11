@@ -721,7 +721,7 @@ twikoo: # https://twikoo.js.org/
   envId: https://aixlau-twikoo.hf.space/ # url: https://twikoo.sondy.top/
   region: # 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
   style: true # 开启后使用自定义样式
-  accessToken: # AccessToken
+  accessToken: lushiwu@65# AccessToken
   option: # twikoo option
 
 # waline 配置信息

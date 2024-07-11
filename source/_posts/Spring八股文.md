@@ -1,10 +1,10 @@
 ---
-title: Spring八股文
+title: Spring应用与总结
 date: 2024-06-22 18:11:04
 tags:
   - Java
   - Spring
-  - 八股文
+  - 总结
 categories: Java
 cover: /img/springbaguwen.png
 ---

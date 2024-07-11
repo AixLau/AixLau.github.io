@@ -1,11 +1,11 @@
 ---
-title: Redis八股文
+title: Redis应用与总结
 date: 2024-06-26 20:18:49
 tags: 
   - Redis
-  - 八股文
+  - 总结
 categories: Java
-cover: https://cloud.lushiwu.top/f/V3I4/%E3%80%90%E5%9C%9F%E9%97%B4%E5%9F%8B%E3%80%912024-06-26%2020_21_21.png
+cover: https://alist.aixcc.top/d/OneDrive/Cloud/%E3%80%90%E5%9C%9F%E9%97%B4%E5%9F%8B%E3%80%912024-06-26%2020_21_21.png
 ---
 
 ## Redis 常见面试题总结

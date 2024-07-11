@@ -2,7 +2,7 @@
 title: Vaultwarden搭建
 date: 2024-06-24 16:56:37
 tags: Linux
-cover: https://cloud.lushiwu.top/f/o8UV/%E3%80%90%E8%93%9D%E7%9C%BC%E7%9D%9B%E3%80%912024-06-25%2013_32_45.png
+cover: https://alist.aixcc.top/d/OneDrive/Cloud/%E3%80%90%E8%93%9D%E7%9C%BC%E7%9D%9B%E3%80%912024-06-25%2013_32_45.png
 categorizes: Linux
 ---
 

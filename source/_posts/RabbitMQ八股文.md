@@ -1,12 +1,12 @@
 ---
-title: RabbitMQ八股文
+title: RabbitMQ应用与总结
 date: 2024-06-26 23:14:15
 tags:
   - RabbitMQ
-  - 八股文
+  - 总结
   - Java
 categories: Java
-cover: https://cloud.lushiwu.top/f/68ia/%E3%80%90%E9%87%8E%E5%8E%9F%E6%96%B0%E4%B9%8B%E5%8A%A9%E3%80%912024-06-26%2023_14_57.png
+cover: https://alist.aixcc.top/d/OneDrive/Cloud/%E3%80%90%E9%87%8E%E5%8E%9F%E6%96%B0%E4%B9%8B%E5%8A%A9%E3%80%912024-06-26%2023_14_57.png
 ---
 
 ## RabbitMQ常见面试题总结

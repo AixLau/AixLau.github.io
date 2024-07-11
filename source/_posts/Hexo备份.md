@@ -3,7 +3,7 @@ title: Hexo备份
 date: 2024-06-16 19:19:00
 tags: Blog
 categories: 博客
-cover: https://i3.mjj.rip/2024/06/16/fe0897e761d9bba69e09dcf386d73be0.png
+cover: https://alist.aixcc.top/d/OneDrive/Cloud/hexo.png
 ---
 # 使用 Hexo 和 GitHub 实现多平台工作和数据备份
 

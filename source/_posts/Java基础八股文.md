@@ -1,9 +1,9 @@
 ---
-title: Java基础八股文
+title: Java基础总结
 date: 2024-06-21 20:41:04
 tags: 
     - Java
-    - 八股文
+    - 笔记
 categories: Java
 cover: /img/JavaBasics.jpg
 recommend: true

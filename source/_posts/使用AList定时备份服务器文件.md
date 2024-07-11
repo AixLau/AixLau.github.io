@@ -1,11 +1,11 @@
 ---
-title: 使用AList定时备份服务器文件
+title: 使用AList定时备份文件
 date: 2024-06-18 16:37:21
 tags: Alist
 categories: Linux
 cover: /img/alistback.jpg
 ---
-# 使用AList定时备份服务器文件
+# 使用AList定时备份文件
 本教程详细介绍如何使用 `AList` 通过 `API` 自动备份服务器文件，包括获取 `JWT Token` 和自动上传备份文件至 `AList` 服务器。
 ## 环境配置
 首先，确保服务器上安装了 `curl` 和 `jq`。`curl` 用于发送 `HTTP` 请求，而 `jq` 用于解析 `JSON` 响应。
@@ -95,6 +95,17 @@ vim /opt/alist/upload_backup.sh
 ```bash
 #!/bin/bash
 
+# 日志文件夹位置
+LOG_FILE="/opt/alist/log/upload_back_$(date +'%Y%m%d%H%M%S').log"
+
+# 函数：带时间戳的echo
+log() {
+  echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+# 删除超过30天的日志文件
+find /opt/alist/log -type f -name "*.log" -mtime +30 -exec rm -f {} \;
+
 # 目标 API URL
 API_URL="https://<alist服务器域名或IP地址>/api/fs/put"
 
@@ -117,16 +128,23 @@ ENCODED_FILE_PATH=$(echo -n "<alist上的路径>$(basename $BACKUP_PATH)" | jq -
 token=$(cat /tmp/alist_token.txt)
 
 # 使用curl PUT请求上传文件
-response=$(curl -X PUT "$API_URL" \
+response=$(curl -s -X PUT "$API_URL" \
     -H "Authorization: $token" \
     -H "File-Path: $ENCODED_FILE_PATH" \
     -H "Content-Type: application/octet-stream" \
     -H "Content-Length: $CONTENT_LENGTH" \
-    -T "$BACKUP_PATH" \
-    --progress-bar)
+    -T "$BACKUP_PATH")
 
+# 检查上传是否成功并记录日志
+log "$response"
 # 删除本地临时备份文件
 rm "$BACKUP_PATH"
+if [[ $? -eq 0 ]]; then
+    log "Local backup file deleted"
+else
+    log "Failed to delete local backup file"
+    exit 1
+fi
 ```
 
 - **赋予脚本执行权限**：

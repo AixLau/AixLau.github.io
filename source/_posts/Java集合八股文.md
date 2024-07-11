@@ -1,9 +1,9 @@
 ---
-title: Java集合八股文
+title: Java集合总结
 date: 2024-06-22 16:48:56
 tags: 
    - Java
-   - 八股文
+   - 笔记
 categorizes: Java
 cover: /img/JavaCollection.png
 ---
