@@ -181,7 +181,7 @@ commentBarrage:
 f12: 开发者模式已打开，请遵循GPL协议。
 
 right_menu:
-  copy: 复制文本
+  copy: 复制选中文本
   paste: 粘贴文本
   comment: 引用到评论
   new: 新窗口打开

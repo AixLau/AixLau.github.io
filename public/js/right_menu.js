@@ -9,17 +9,12 @@ document.onmouseup = document.ondbclick = selectText;
 const rm = {
     mask: document.getElementById("rightmenu-mask"),
     menu: document.getElementById("rightMenu"),
-    get width() {
-        return this.menu.offsetWidth;
-    },
-    get height() {
-        return this.menu.offsetHeight;
-    },
+    width: 0,
+    height: 0,
     domhref: "",
     domsrc: "",
     globalEvent: null,
     menuItems: {
-        searchGoogle: document.getElementById("menu-search-google"),
         other: document.getElementsByClassName("rightMenuOther"),
         plugin: document.getElementsByClassName("rightMenuPlugin"),
         back: document.getElementById("menu-backward"),
@@ -54,15 +49,11 @@ const rm = {
         rm.showRightMenu(false);
         rm.mask.style.display = "none";
     },
-    // 添加 searchGoogle 函数定义
-    searchGoogle(text) {
-        const encodedText = encodeURIComponent(text);
-        const googleUrl = `https://www.google.com/search?q=${encodedText}`;
-        window.open(googleUrl, '_blank');
-    },
     reLoadSize() {
-        this.menu.style.display = "block";
-        this.menu.style.display = "none";
+        rm.menu.style.display = "block";
+        rm.width = rm.menu.offsetWidth;
+        rm.height = rm.menu.offsetHeight;
+        rm.menu.style.display = 'none';
     },
     copyText(e) {
         navigator.clipboard && navigator.clipboard.writeText(e);
@@ -108,9 +99,9 @@ const rm = {
 };
 
 function stopMaskScroll() {
-    utils.addEventListenerPjax(rm.menu, "mousewheel", rm.hideRightMenu);
-    utils.addEventListenerPjax(rm.mask, "mousewheel", rm.hideRightMenu);
-    utils.addEventListenerPjax(rm.mask, "click", rm.hideRightMenu);
+    utils.addEventListenerPjax(rm.menu, "mousewheel", rm.hideRightMenu, { passive: true });
+    utils.addEventListenerPjax(rm.mask, "mousewheel", rm.hideRightMenu, { passive: true });
+    utils.addEventListenerPjax(rm.mask, "click", rm.hideRightMenu, { passive: true });
 }
 
 window.oncontextmenu = (ele) => {
@@ -127,12 +118,10 @@ window.oncontextmenu = (ele) => {
     if (selectTextNow && window.getSelection()) {
         display = true;
         rm.menuItems.copy.style.display = "block";
-        rm.menuItems.searchGoogle.style.display = "block";
         GLOBAL_CONFIG.comment && (rm.menuItems.comment.style.display = "block");
         rm.menuItems.search && (rm.menuItems.search.style.display = "block");
     } else {
         rm.menuItems.copy.style.display = "none";
-        rm.menuItems.searchGoogle.style.display = "none";
         GLOBAL_CONFIG.comment && (rm.menuItems.comment.style.display = "none");
         rm.menuItems.search && (rm.menuItems.search.style.display = "none");
     }
@@ -235,11 +224,7 @@ window.oncontextmenu = (ele) => {
         rm.copyText(selectTextNow);
         rm.hideRightMenu();
     });
-    // 在事件监听器中添加对谷歌搜索的处理
-    addEventListener(rm.menuItems.searchGoogle, "click", () => {
-        rm.searchGoogle(selectTextNow);
-        rm.hideRightMenu();
-    });
+
     if (utils.saveToLocal.get("commentBarrageSwitch") !== null) {
         rm.menuItems.barrage && rm.barrage(!utils.saveToLocal.get("commentBarrageSwitch"));
     }

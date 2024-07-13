@@ -1,12 +1,3 @@
-function copyPageUrl() {
-    const pageUrl = window.location.href;
-    navigator.clipboard.writeText(pageUrl).then(function() {
-      utils.snackbarShow("页面地址已复制到剪贴板", false, 3000); // 显示通知
-    }, function() {
-      utils.snackbarShow("复制失败，请重试", false, 3000); // 显示通知
-    });
-  } 
-
 const sidebarFn = () => {
     const $toggleMenu = document.getElementById('toggle-menu');
     const $mobileSidebarMenus = document.getElementById('sidebar-menus');
@@ -37,7 +28,6 @@ const sidebarFn = () => {
 }
 const scrollFn = () => {
     const innerHeight = window.innerHeight;
-    if (document.body.scrollHeight <= innerHeight) return;
     let initTop = 0;
     const $header = document.getElementById('page-header');
     const throttledScroll = utils.throttle((e) => {
@@ -384,7 +374,7 @@ const sco = {
         }
         pageText.addEventListener("keydown", (event) => {
             if (event.keyCode === 13) {
-                this.toPage();
+                sco.toPage();
                 pjax.loadUrl(pageButton.href);
             }
         });

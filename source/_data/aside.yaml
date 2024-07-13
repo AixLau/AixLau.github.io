@@ -1,0 +1,10 @@
+- name: welcome
+  title: 来访者
+  class: card-welcome
+  id:
+  icon: solitude st-map-pin-fill
+  content_id: welcome-info
+  content_css: 'height:160px;overflow:hidden'
+  content_html: '<div class="welcome_swiper-container" id="welcome-container" style="width: 100%;height: 100%;margin-top: 6px">
+        <div id="welcome_container_wrapper" class="swiper-wrapper"></div>
+    </div>'
