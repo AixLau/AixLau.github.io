@@ -5,6 +5,7 @@ tags:
   - Vue
   - 前端
 categorizes: 前端
+categories: 前端
 cover: https://alist.aixcc.top/d/OneDrive/Cloud/202407132353984.webp
 ---
 
@@ -218,7 +219,7 @@ npm create vue@latest
 
 可以用函数的方式，更加优雅的组织代码，让相关功能的代码更加有序的组织在一起。
 
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354107.gif" alt="3.gif" style="height:300px;border-radius:10px"  /><img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354108.gif" alt="4.gif" style="height:300px;border-radius:10px"  />
+![3.gif](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354107.gif)![4.gif](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354108.gif)
 
 > 说明：以上四张动图原创作者：大帅老猿
 
@@ -500,7 +501,7 @@ function test(){
 
 > 1. `ref`创建的变量必须使用`.value`（可以使用`volar`插件自动添加`.value`）。
 >
->    <img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354109.png" alt="自动补充value" style="zoom:50%;border-radius:20px" /> 
+>    ![自动补充value](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354109.png) 
 >
 > 2. `reactive`重新分配一个新对象，会**失去**响应式（可以使用`Object.assign`去整体替换）。
 
@@ -554,7 +555,7 @@ function test(){
 
 作用：根据已有数据计算出新数据（和`Vue2`中的`computed`作用一致）。
 
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354110.gif" style="zoom:20%;" />  
+![](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354110.gif)  
 
 ```vue
 <template>
@@ -1256,7 +1257,7 @@ function test(){
 
 ## 4.1. 【对路由的理解】
 
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354111.png" alt="image-20231018144351536" style="zoom:20%;border-radius:40px" /> 
+![image-20231018144351536](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354111.png) 
 
 ## 4.2. 【基本切换效果】
 
@@ -1611,7 +1612,7 @@ console.log(router.replace)
 
 ## 5.1【准备一个效果】
 
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354112.gif" alt="pinia_example" style="zoom:30%;border:3px solid" /> 
+![pinia_example](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354112.gif) 
 
 ## 5.2【搭建 pinia 环境】
 
@@ -1637,7 +1638,7 @@ app.mount('#app')
 
 此时开发者工具中已经有了`pinia`选项
 
-<img src="https://cdn.nlark.com/yuque/0/2023/png/35780599/1684309952481-c67f67f9-d1a3-4d69-8bd6-2b381e003f31.png" style="zoom:80%;border:1px solid black;border-radius:10px" />
+![](https://cdn.nlark.com/yuque/0/2023/png/35780599/1684309952481-c67f67f9-d1a3-4d69-8bd6-2b381e003f31.png)
 
 ## 5.3【存储+读取数据】
 
@@ -1902,7 +1903,7 @@ export const useTalkStore = defineStore('talk',()=>{
 
 **常见搭配形式：**
 
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354113.png" alt="image-20231119185900990" style="zoom:60%;" /> 
+![image-20231119185900990](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354113.png) 
 
 ## 6.1. 【props】
 
@@ -2626,5 +2627,7 @@ const Child = defineAsyncComponent(()=>import('./Child.vue'))
 - 移除了`$children` 实例 `propert`。
 
   ......
+
+------
 
 **本文内容来源于尚硅谷Vue.js教程，原文地址：[尚硅谷Vue教程](http://www.atguigu.com/video/284/)。感谢尚硅谷提供的优秀文档资源。**
