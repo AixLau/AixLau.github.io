@@ -8,7 +8,7 @@ authorinfo:
     - '团队小组发动机 🧱'
     - '壮汉人狠话不多 💢'
   # image: 'https://7.isyangs.cn/1/65eb27e69bcff-1.png'
-  image: /img/avatar.jpg
+  image: https://alist.aixcc.top/d/OneDrive/img/202407151119531.webp
 
 title: 关于本站
 
@@ -70,12 +70,12 @@ personalities:
   title: '调停者'
   color: '#56a178'
   type: 'INFP-A'
-  image: /img/INFP-A.svg
+  image: https://alist.aixcc.top/d/OneDrive/img/INFP-A.svg
   link: 'https://www.16personalities.com/'
   linkText: '16personalities'
   typeLink: 'https://www.16personalities.com/ch/infp-%E4%BA%BA%E6%A0%BC'
   typeName: '调停者'
-  myphoto: https://alist.aixcc.top/d/OneDrive/Cloud/粉色长发蒙眼少女3440x1440带鱼屏.jpg
+  myphoto: https://alist.aixcc.top/d/OneDrive/img/202407151130330.webp
 
 motto:
   title: 座右铭

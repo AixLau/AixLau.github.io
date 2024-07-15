@@ -5,7 +5,7 @@ tags:
   - MySQL
   - 总结
 categories: MySQL
-cover: /img/mysqlbaguwen.png
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151143784.webp
 ---
 
 # 数据库

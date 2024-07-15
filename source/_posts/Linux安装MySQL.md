@@ -7,7 +7,7 @@ tags:
 categories: 
     - Linux
     - MySQL
-cover: https://alist.aixcc.top/d/OneDrive/Cloud/%E3%80%90%E7%89%B9%E5%86%99%E3%80%912024-06-25%2012_21_11.png
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151131084.webp
 ---
 
 # 如何在Ubuntu上安装和配置MySQL并允许远程访问

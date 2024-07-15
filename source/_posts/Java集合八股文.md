@@ -5,7 +5,7 @@ tags:
    - Java
    - 笔记
 categorizes: Java
-cover: /img/JavaCollection.png
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151141320.webp
 ---
 
 # Java集合

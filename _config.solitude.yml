@@ -10,7 +10,7 @@ site:
   # Web icon
   siteIcon: /img/pwa/favicon.ico
   # 页脚的Logo、加载动画默认的logo
-  icon: /img/avatar.jpg
+  icon: https://alist.aixcc.top/d/OneDrive/img/202407151119531.webp
 
 # 导航栏
 nav:
@@ -66,7 +66,7 @@ hometop:
     # tip: 76x76 size
     icon:
       HTML: # 名字 / Name
-        img: https://alist.aixcc.top/d/OneDrive/Cloud/65f2e42921677-34.png # 图片 / Image
+        img: https://7.isyangs.cn/34/65f2e42921677-34.png # 图片 / Image
         color: "#e9572b" # 背景色 / Background color
       Rect: # 名字 / Name
         img: https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg # 图片 / Image
@@ -92,21 +92,21 @@ hometop:
       Nginx:
         img: https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg
       JS:
-        img: https://alist.aixcc.top/d/OneDrive/Cloud/65f2e43ceddda-34.png
+        img: https://7.isyangs.cn/34/65f2e43ceddda-34.png
         color: "#f7cb4f"
       Mysql: 
         img: https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg
       Docker:
-        img: https://alist.aixcc.top/d/OneDrive/Cloud/65f2e45462045-34.png
+        img: https://7.isyangs.cn/34/65f2e45462045-34.png
         color: "#57b6e6"
       Flutter:
-        img: https://alist.aixcc.top/d/OneDrive/Cloud/65f2e47acbe98-34.png
+        img: https://7.isyangs.cn/34/65f2e47acbe98-34.png
         color: "#ffffff"
       WebPack:
-        img: https://alist.aixcc.top/d/OneDrive/Cloud/65f2e488bf8ed-34.png
+        img: https://7.isyangs.cn/34/65f2e488bf8ed-34.png
         color: "#2e3a41"
       Git:
-        img: https://alist.aixcc.top/d/OneDrive/Cloud/65f2e499066fa-34.png
+        img: https://7.isyangs.cn/34/65f2e499066fa-34.png
         color: "#df5b40"
 
   # 左下跳转按钮
@@ -125,7 +125,7 @@ hometop:
     # 点击跳转链接
     url: https://aixcc.top/
     # 显示背景图片
-    img: https://alist.aixcc.top/d/OneDrive/Cloud/black.gif
+    img: https://alist.aixcc.top/d/OneDrive/img/202407151205211.gif
     # 阴影颜色
     color: "none"
 
@@ -171,11 +171,11 @@ aside:
     author:
       # 头像
       # Avatar
-      img: https://alist.aixcc.top/d/OneDrive/Cloud/avatar.jpg
+      img: https://alist.aixcc.top/d/OneDrive/img/202407151119531.webp
       # 表情图片链接
       # Emoticon image link
       # tip: 26x26 size
-      sticker: https://alist.aixcc.top/d/OneDrive/Cloud/65f2e4e0423cc-34.png # 不填不显示
+      sticker: # 不填不显示
     # 点击作者头像跳转链接
     # Click the author's avatar to jump link
     url: https://aixcc.top/

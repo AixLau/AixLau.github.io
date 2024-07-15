@@ -6,17 +6,20 @@ tags:
   - 前端
 categorizes: 前端
 categories: 前端
-cover: https://alist.aixcc.top/d/OneDrive/Cloud/202407132353984.webp
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151139287.webp
 ---
 
 # 1. Vue3简介
 
 - 2020年9月18日，`Vue.js`发布版`3.0`版本，代号：`One Piece`（n
+
 - 经历了：[4800+次提交](https://github.com/vuejs/core/commits/main)、[40+个RFC](https://github.com/vuejs/rfcs/tree/master/active-rfcs)、[600+次PR](https://github.com/vuejs/vue-next/pulls?q=is%3Apr+is%3Amerged+-author%3Aapp%2Fdependabot-preview+)、[300+贡献者](https://github.com/vuejs/core/graphs/contributors)
+
 - 官方发版地址：[Release v3.0.0 One Piece · vuejs/core](https://github.com/vuejs/core/releases/tag/v3.0.0)
+
 - 截止2023年10月，最新的公开版本为：`3.3.4`
 
-  <img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354099.png" alt="image.png" style="zoom:30%;" /> 
+  ![image.png](https://alist.aixcc.top/d/OneDrive/img/202407151232363.webp) 
 
 ## 1.1. 【性能的提升】
 
@@ -27,6 +30,7 @@ cover: https://alist.aixcc.top/d/OneDrive/Cloud/202407132353984.webp
 - 内存减少`54%`。
 
   
+
 ## 1.2.【 源码的升级】
 
 - 使用`Proxy`代替`defineProperty`实现响应式。
@@ -34,30 +38,41 @@ cover: https://alist.aixcc.top/d/OneDrive/Cloud/202407132353984.webp
 - 重写虚拟`DOM`的实现和`Tree-Shaking`。
 
   
+
 ## 1.3. 【拥抱TypeScript】
 
 - `Vue3`可以更好的支持`TypeScript`。
 
   
+
 ## 1.4. 【新的特性】
 
 1. `Composition API`（组合`API`）：
+
    - `setup`
+
    - `ref`与`reactive`
+
    - `computed`与`watch`
-   
+
      ......
-   
+
 2. 新的内置组件：
+
    - `Fragment`
+
    - `Teleport`
+
    - `Suspense`
 
      ......
 
 3. 其他改变：
+
    - 新的生命周期钩子
+
    - `data` 选项应始终被声明为一个函数
+
    - 移除`keyCode`支持作为` v-on` 的修饰符
 
      ......
@@ -67,6 +82,7 @@ cover: https://alist.aixcc.top/d/OneDrive/Cloud/202407132353984.webp
 # 2. 创建Vue3工程
 
 ## 2.1. 【基于 vue-cli 创建】
+
 点击查看[官方文档](https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create)
 
 > 备注：目前`vue-cli`已处于维护模式，官方推荐基于 `Vite` 创建项目。
@@ -94,13 +110,18 @@ npm run serve
 ---
 
 ## 2.2. 【基于 vite 创建】(推荐)
+
 `vite` 是新一代前端构建工具，官网地址：[https://vitejs.cn](https://vitejs.cn/)，`vite`的优势如下：
 
 - 轻量快速的热重载（`HMR`），能实现极速的服务启动。
 - 对 `TypeScript`、`JSX`、`CSS` 等支持开箱即用。
 - 真正的按需编译，不再等待整个应用编译完成。
 - `webpack`构建 与 `vite`构建对比图如下：
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354101.png" alt="webpack构建" title="webpack构建" style="zoom:20%;box-shadow:0 0 10px black" />	<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354102.png" alt="vite构建" title="vite构建" style="zoom: 20%;box-shadow:0 0 10px black" />
+
+![](https://alist.aixcc.top/d/OneDrive/img/202407151232253.webp)
+
+![](https://alist.aixcc.top/d/OneDrive/img/202407151232053.webp)
+
 * 具体操作如下（点击查看[官方文档](https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application)）
 
 ```powershell
@@ -127,6 +148,7 @@ npm create vue@latest
 ## 是否添加Prettiert代码格式化
 √ Add Prettier for code formatting?  No
 ```
+
 自己动手编写一个App组件
 
 ```vue
@@ -154,15 +176,16 @@ npm create vue@latest
 
 安装官方推荐的`vscode`插件：
 
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354103.png" alt="Snipaste_2023-10-08_20-46-34" style="zoom:50%;" /> 
+![Snipaste_2023-10-08_20-46-34](https://alist.aixcc.top/d/OneDrive/img/202407151232847.webp) 
 
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354104.png" alt="image-20231218085906380" style="zoom:42%;" /> 
+![image-20231218085906380](https://alist.aixcc.top/d/OneDrive/img/202407151232668.webp) 
 
 总结：
 
 - `Vite` 项目中，`index.html` 是项目的入口文件，在项目最外层。
 - 加载`index.html`后，`Vite` 解析 `<script type="module" src="xxx">` 指向的`JavaScript`。
 - `Vue3`**中是通过 **`createApp` 函数创建一个应用实例。
+
 ## 2.3. 【一个简单的效果】
 
 `Vue3`向下兼容`Vue2`语法，且`Vue3`中的模板中可以没有根标签
@@ -205,26 +228,30 @@ npm create vue@latest
 
 
 # 3. Vue3核心语法
+
 ## 3.1.  【OptionsAPI 与 CompositionAPI】
 
 - `Vue2`的`API`设计是`Options`（配置）风格的。
 - `Vue3`的`API`设计是`Composition`（组合）风格的。
+
 ###  Options API 的弊端
 
 `Options`类型的 `API`，数据、方法、计算属性等，是分散在：`data`、`methods`、`computed`中的，若想新增或者修改一个需求，就需要分别修改：`data`、`methods`、`computed`，不便于维护和复用。
 
-<img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354105.gif" alt="1.gif" style="zoom:70%;border-radius:20px" /><img src="https://alist.aixcc.top/d/OneDrive/Cloud/202407132354106.gif" alt="2.gif" style="zoom:70%;border-radius:20px" />
+![](https://img.aixcc.top/file/c3edadbf9a9bbfd22d442.gif)![](https://img.aixcc.top/file/d978f7c4fd1f8a2a2e8f9.gif)
 
 ### Composition API 的优势
 
 可以用函数的方式，更加优雅的组织代码，让相关功能的代码更加有序的组织在一起。
 
-![3.gif](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354107.gif)![4.gif](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354108.gif)
+![](https://img.aixcc.top/file/9acc07d0f3690f12a9fda.gif)![](https://img.aixcc.top/file/2e7d2a90529d10cad9c93.gif)
 
 > 说明：以上四张动图原创作者：大帅老猿
 
 ## 3.2. 【拉开序幕的 setup】
+
 ### setup 概述
+
 `setup`是`Vue3`中一个新的配置项，值是一个函数，它是 `Composition API` **“表演的舞台**_**”**_，组件中所用到的：数据、方法、计算属性、监视......等等，均配置在`setup`中。
 
 特点如下：
@@ -232,6 +259,7 @@ npm create vue@latest
 - `setup`函数返回的对象中的内容，可直接在模板中使用。
 - `setup`中访问`this`是`undefined`。
 - `setup`函数会在`beforeCreate`之前调用，它是“领先”所有钩子执行的。
+
 ```vue
 <template>
   <div class="person">
@@ -271,21 +299,26 @@ npm create vue@latest
   }
 </script>
 ```
+
 ### setup 的返回值
 
 - 若返回一个**对象**：则对象中的：属性、方法等，在模板中均可以直接使用**（重点关注）。**
 - 若返回一个**函数**：则可以自定义渲染内容，代码如下：
+
 ```jsx
 setup(){
   return ()=> '你好啊！'
 }
 ```
+
 ### setup 与 Options API 的关系
 
 - `Vue2` 的配置（`data`、`methos`......）中**可以访问到** `setup`中的属性、方法。
 - 但在`setup`中**不能访问到**`Vue2`的配置（`data`、`methos`......）。
 - 如果与`Vue2`冲突，则`setup`优先。
+
 ### setup 语法糖
+
 `setup`函数有一个语法糖，这个语法糖，可以让我们把`setup`独立出去，代码如下：
 
 ```vue
@@ -327,10 +360,12 @@ setup(){
   }
 </script>
 ```
+
 扩展：上述代码，还需要编写一个不写`setup`的`script`标签，去指定组件名字，比较麻烦，我们可以借助`vite`中的插件简化
 
 1. 第一步：`npm i vite-plugin-vue-setup-extend -D`
 2. 第二步：`vite.config.ts`
+
 ```jsx
 import { defineConfig } from 'vite'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
@@ -341,14 +376,16 @@ export default defineConfig({
 ```
 
 3. 第三步：`<script setup lang="ts" name="Person">`
+
 ## 3.3. 【ref 创建：基本类型的响应式数据】
 
 - **作用：**定义响应式变量。
 - **语法：**`let xxx = ref(初始值)`。
 - **返回值：**一个`RefImpl`的实例对象，简称`ref对象`或`ref`，`ref`对象的`value`**属性是响应式的**。
 - **注意点：**
-   - `JS`中操作数据需要：`xxx.value`，但模板中不需要`.value`，直接使用即可。
-   - 对于`let name = ref('张三')`来说，`name`不是响应式的，`name.value`是响应式的。
+  - `JS`中操作数据需要：`xxx.value`，但模板中不需要`.value`，直接使用即可。
+  - 对于`let name = ref('张三')`来说，`name`不是响应式的，`name.value`是响应式的。
+
 ```vue
 <template>
   <div class="person">
@@ -386,12 +423,14 @@ export default defineConfig({
   }
 </script>
 ```
+
 ## 3.4. 【reactive 创建：对象类型的响应式数据】
 
 - **作用：**定义一个**响应式对象**（基本类型不要用它，要用`ref`，否则报错）
 - **语法：**`let 响应式对象= reactive(源对象)`。
 - **返回值：**一个`Proxy`的实例对象，简称：响应式对象。
 - **注意点：**`reactive`定义的响应式数据是“深层次”的。
+
 ```vue
 <template>
   <div class="person">
@@ -438,10 +477,12 @@ function test(){
 }
 </script>
 ```
+
 ## 3.5. 【ref 创建：对象类型的响应式数据】
 
 - 其实`ref`接收的数据可以是：**基本类型**、**对象类型**。
 - 若`ref`接收的是对象类型，内部其实也是调用了`reactive`函数。
+
 ```vue
 <template>
   <div class="person">
@@ -490,7 +531,9 @@ function test(){
 }
 </script>
 ```
+
 ## 3.6. 【ref 对比 reactive】
+
 宏观角度看：
 
 > 1. `ref`用来定义：**基本类型数据**、**对象类型数据**；
@@ -501,11 +544,12 @@ function test(){
 
 > 1. `ref`创建的变量必须使用`.value`（可以使用`volar`插件自动添加`.value`）。
 >
->    ![自动补充value](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354109.png) 
+>    ![自动补充value](https://alist.aixcc.top/d/OneDrive/img/202407151232718.webp) 
 >
 > 2. `reactive`重新分配一个新对象，会**失去**响应式（可以使用`Object.assign`去整体替换）。
 
 - 使用原则：
+
 > 1. 若需要一个基本类型的响应式数据，必须使用`ref`。
 > 2. 若需要一个响应式对象，层级不深，`ref`、`reactive`都可以。
 > 3. 若需要一个响应式对象，且层级较深，推荐使用`reactive`。
@@ -515,6 +559,7 @@ function test(){
 - 作用：将一个响应式对象中的每一个属性，转换为`ref`对象。
 - 备注：`toRefs`与`toRef`功能一致，但`toRefs`可以批量转换。
 - 语法如下：
+
 ```vue
 <template>
   <div class="person">
@@ -551,11 +596,12 @@ function test(){
   }
 </script>
 ```
+
 ## 3.8. 【computed】
 
 作用：根据已有数据计算出新数据（和`Vue2`中的`computed`作用一致）。
 
-![](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354110.gif)  
+![](https://img.aixcc.top/file/35111db5e18d3bb69aee9.gif)  
 
 ```vue
 <template>
@@ -598,17 +644,21 @@ function test(){
   } 
 </script>
 ```
+
 ## 3.9.【watch】
 
 - 作用：监视数据的变化（和`Vue2`中的`watch`作用一致）
 - 特点：`Vue3`中的`watch`只能监视以下**四种数据**：
+
 > 1. `ref`定义的数据。
 > 2. `reactive`定义的数据。
 > 3. 函数返回一个值（`getter`函数）。
 > 4. 一个包含上述内容的数组。
 
 我们在`Vue3`中使用`watch`的时候，通常会遇到以下几种情况：
+
 ### * 情况一
+
 监视`ref`定义的【基本类型】数据：直接写数据名即可，监视的是其`value`值的改变。
 
 ```vue
@@ -637,7 +687,9 @@ function test(){
   })
 </script>
 ```
+
 ### * 情况二
+
 监视`ref`定义的【对象类型】数据：直接写数据名，监视的是对象的【地址值】，若想监视对象内部的数据，要手动开启深度监视。
 
 > 注意：
@@ -687,8 +739,11 @@ function test(){
   
 </script>
 ```
+
 ### *  情况三
+
 监视`reactive`定义的【对象类型】数据，且默认开启了深度监视。
+
 ```vue
 <template>
   <div class="person">
@@ -741,7 +796,9 @@ function test(){
   })
 </script>
 ```
+
 ### * 情况四
+
 监视`ref`或`reactive`定义的【对象类型】数据中的**某个属性**，注意点如下：
 
 1. 若该属性值**不是**【对象类型】，需要写成函数形式。
@@ -804,8 +861,11 @@ function test(){
   },{deep:true})
 </script>
 ```
+
 ### * 情况五
+
 监视上述的多个数据
+
 ```vue
 <template>
   <div class="person">
@@ -857,6 +917,7 @@ function test(){
 
 </script>
 ```
+
 ## 3.10. 【watchEffect】
 
 * 官网：立即运行一个函数，同时响应式地追踪其依赖，并在依赖更改时重新执行该函数。
@@ -921,7 +982,7 @@ function test(){
     })
   </script>
   ```
-  
+
   
 
 ## 3.11. 【标签的 ref 属性】
@@ -1010,69 +1071,68 @@ function test(){
 ## 3.12. 【props】
 
 > ```js
->// 定义一个接口，限制每个Person对象的格式
+> // 定义一个接口，限制每个Person对象的格式
 > export interface PersonInter {
->  id:string,
->  name:string,
->     age:number
->    }
->    
+> id:string,
+> name:string,
+>  age:number
+> }
+> 
 > // 定义一个自定义类型Persons
 > export type Persons = Array<PersonInter>
 > ```
-> 
+>
 > `App.vue`中代码：
 >
 > ```vue
-><template>
+> <template>
 > 	<Person :list="persons"/>
 > </template>
->   
-> <script lang="ts" setup name="App">
->   import Person from './components/Person.vue'
->   import {reactive} from 'vue'
->     import {type Persons} from './types'
->   
->     let persons = reactive<Persons>([
->      {id:'e98219e12',name:'张三',age:18},
->       {id:'e98219e13',name:'李四',age:19},
->        {id:'e98219e14',name:'王五',age:20}
->      ])
->    </script>
->   
-> ```
 > 
+> <script lang="ts" setup name="App">
+> import Person from './components/Person.vue'
+> import {reactive} from 'vue'
+>  import {type Persons} from './types'
+> 
+>  let persons = reactive<Persons>([
+>   {id:'e98219e12',name:'张三',age:18},
+>    {id:'e98219e13',name:'李四',age:19},
+>     {id:'e98219e14',name:'王五',age:20}
+>   ])
+> </script>
+> 
+> ```
+>
 > `Person.vue`中代码：
 >
 > ```Vue
-><template>
+> <template>
 > <div class="person">
->  <ul>
->      <li v-for="item in list" :key="item.id">
->         {{item.name}}--{{item.age}}
->       </li>
->     </ul>
->    </div>
->    </template>
->   
+> <ul>
+>   <li v-for="item in list" :key="item.id">
+>      {{item.name}}--{{item.age}}
+>    </li>
+>  </ul>
+> </div>
+> </template>
+> 
 > <script lang="ts" setup name="Person">
 > import {defineProps} from 'vue'
 > import {type PersonInter} from '@/types'
->   
->   // 第一种写法：仅接收
-> // const props = defineProps(['list'])
->   
->   // 第二种写法：接收+限制类型
-> // defineProps<{list:Persons}>()
->   
->   // 第三种写法：接收+限制类型+指定默认值+限制必要性
-> let props = withDefaults(defineProps<{list?:Persons}>(),{
->      list:()=>[{id:'asdasg01',name:'小猪佩奇',age:18}]
->   })
->    console.log(props)
->   </script>
->   ```
 > 
+> // 第一种写法：仅接收
+> // const props = defineProps(['list'])
+> 
+> // 第二种写法：接收+限制类型
+> // defineProps<{list:Persons}>()
+> 
+> // 第三种写法：接收+限制类型+指定默认值+限制必要性
+> let props = withDefaults(defineProps<{list?:Persons}>(),{
+>   list:()=>[{id:'asdasg01',name:'小猪佩奇',age:18}]
+> })
+> console.log(props)
+> </script>
+> ```
 
 ## 3.13. 【生命周期】
 
@@ -1185,7 +1245,7 @@ function test(){
     return {sum,increment,decrement}
   }		
   ```
-  
+
 - `useDog.ts`中内容如下：
 
   ```js
@@ -1257,7 +1317,7 @@ function test(){
 
 ## 4.1. 【对路由的理解】
 
-![image-20231018144351536](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354111.png) 
+![](https://alist.aixcc.top/d/OneDrive/img/202407151232332.webp) 
 
 ## 4.2. 【基本切换效果】
 
@@ -1286,6 +1346,7 @@ function test(){
   })
   export default router
   ```
+
 * `main.ts`代码如下：
 
   ```js
@@ -1335,8 +1396,8 @@ function test(){
    >
    > ```js
    > const router = createRouter({
-   >   	history:createWebHistory(), //history模式
-   >   	/******/
+   > 	history:createWebHistory(), //history模式
+   > 	/******/
    > })
    > ```
 
@@ -1348,8 +1409,8 @@ function test(){
    >
    > ```js
    > const router = createRouter({
-   >   	history:createWebHashHistory(), //hash模式
-   >   	/******/
+   > 	history:createWebHashHistory(), //hash模式
+   > 	/******/
    > })
    > ```
 
@@ -1437,7 +1498,7 @@ routes:[
    })
    export default router
    ```
-   
+
 3. 跳转路由（记得要加完整路径）：
 
    ```vue
@@ -1612,7 +1673,7 @@ console.log(router.replace)
 
 ## 5.1【准备一个效果】
 
-![pinia_example](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354112.gif) 
+![](https://img.aixcc.top/file/f14ee7ea7c72a9003d7b8.gif) 
 
 ## 5.2【搭建 pinia 环境】
 
@@ -1638,7 +1699,7 @@ app.mount('#app')
 
 此时开发者工具中已经有了`pinia`选项
 
-![](https://cdn.nlark.com/yuque/0/2023/png/35780599/1684309952481-c67f67f9-d1a3-4d69-8bd6-2b381e003f31.png)
+![](https://alist.aixcc.top/d/OneDrive/img/202407151232851.webp)
 
 ## 5.3【存储+读取数据】
 
@@ -1691,7 +1752,7 @@ app.mount('#app')
      getters:{}
    })
    ```
-   
+
 5. 组件中使用`state`中的数据
 
    ```vue
@@ -1903,7 +1964,7 @@ export const useTalkStore = defineStore('talk',()=>{
 
 **常见搭配形式：**
 
-![image-20231119185900990](https://alist.aixcc.top/d/OneDrive/Cloud/202407132354113.png) 
+![image-20231119185900990](https://alist.aixcc.top/d/OneDrive/img/202407151232507.webp) 
 
 ## 6.1. 【props】
 
@@ -2240,7 +2301,7 @@ function sendToy(){
    * 在祖先组件中通过`provide`配置向后代组件提供数据
    * 在后代组件中通过`inject`配置来声明接收数据
 
-4. 具体编码：
+3. 具体编码：
 
    【第一步】父组件中，使用`provide`提供数据
 
@@ -2274,11 +2335,11 @@ function sendToy(){
      provide('car',car)
    </script>
    ```
-   
+
    > 注意：子组件中不用编写任何东西，是不受到任何打扰的
-   
+
    【第二步】孙组件中使用`inject`配置项接受数据。
-   
+
    ```vue
    <template>
      <div class="grand-child">
@@ -2306,7 +2367,7 @@ function sendToy(){
 
 ### 1. 默认插槽
 
-![img](http://49.232.112.44/images/default_slot.png)
+![img](https://alist.aixcc.top/d/OneDrive/img/202407151232099.webp)
 
 ```vue
 父组件中：
@@ -2353,7 +2414,7 @@ function sendToy(){
 
 1. 理解：<span style="color:red">数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。</span>（新闻数据在`News`组件中，但使用数据所遍历出来的结构由`App`组件决定）
 
-3. 具体编码：
+2. 具体编码：
 
    ```vue
    父组件中：
@@ -2439,6 +2500,7 @@ function sendToy(){
    * 任何尝试修改这个对象的操作都会被阻止（在开发模式下，还会在控制台中发出警告）。
 
 4. 应用场景：
+
    * 创建不可变的状态快照。
    * 保护全局状态或配置不被修改。
 

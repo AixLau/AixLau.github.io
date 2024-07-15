@@ -3,7 +3,7 @@ title: 安装部署Hexo
 date: 2024-06-16 16:26:47
 tags: Blog
 categories: 博客
-cover: https://alist.aixcc.top/d/OneDrive/Cloud/hexo.png
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151114520.webp
 recommend: true
 ---
 # 安装 Hexo 博客
@@ -68,7 +68,7 @@ hexo server
 ```txt
 http://localhost:4000
 ```
-![效果图](https://alist.lushiwu.top/d/OneDrive/Cloud/ada426fbfc38e208cb6b5a9bb3a08c15.png)
+![效果图](https://alist.aixcc.top/d/OneDrive/img/202407151244117.webp)
 
 ## 一键部署到 GitHub Pages
 
@@ -95,4 +95,4 @@ deploy:
 hexo clean && hexo deploy
 ```
 浏览 <GitHub 用户名>.github.io 检查你的网站能否运作。
-![效果图](https://i3.mjj.rip/2024/06/16/dccb8218ecd63ca2ee5f0d9d80587f10.png)
+![](https://alist.aixcc.top/d/OneDrive/img/202407151244117.webp)

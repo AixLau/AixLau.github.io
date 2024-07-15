@@ -5,7 +5,7 @@ tags:
     - Java
     - 笔记
 categories: Java
-cover: /img/JavaBasics.jpg
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151140578.webp
 recommend: true
 ---
 #### 对象相等和引用相等的区别

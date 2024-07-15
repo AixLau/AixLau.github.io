@@ -3,7 +3,7 @@ title: 使用AList定时备份文件
 date: 2024-06-18 16:37:21
 tags: Alist
 categories: Linux
-cover: /img/alistback.jpg
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151131096.webp
 ---
 # 使用AList定时备份文件
 本教程详细介绍如何使用 `AList` 通过 `API` 自动备份服务器文件，包括获取 `JWT Token` 和自动上传备份文件至 `AList` 服务器。

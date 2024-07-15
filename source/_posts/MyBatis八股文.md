@@ -6,7 +6,7 @@ tags:
   - MyBatis
   - 总结
 categories: Java
-cover: https://alist.aixcc.top/d/OneDrive/Cloud/%E3%80%90%E5%B9%B2%E7%89%A9%E5%A6%B9%E5%B0%8F%E5%9F%8B%E3%80%912024-06-26%2017_55_33.png
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151140097.webp
 ---
 
 # MyBatis常见面试题总结

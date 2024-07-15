@@ -6,7 +6,7 @@ tags:
   - Spring
   - 总结
 categories: Java
-cover: /img/springbaguwen.png
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151158232.webp
 ---
 
 ## Spring 常见面试题总结

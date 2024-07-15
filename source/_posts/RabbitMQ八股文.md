@@ -6,7 +6,7 @@ tags:
   - 总结
   - Java
 categories: Java
-cover: https://alist.aixcc.top/d/OneDrive/Cloud/%E3%80%90%E9%87%8E%E5%8E%9F%E6%96%B0%E4%B9%8B%E5%8A%A9%E3%80%912024-06-26%2023_14_57.png
+cover: https://alist.aixcc.top/d/OneDrive/img/202407151141368.webp
 ---
 
 ## RabbitMQ常见面试题总结
