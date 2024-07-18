@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://example.com</id>
+    <title>陆时忤的博客 • Posts by &#34;mysql&#34; tag</title>
+    <link href="http://example.com" />
+    <updated>2024-06-25T04:18:14.000Z</updated>
+    <category term="Blog" />
+    <category term="Java" />
+    <category term="笔记" />
+    <category term="MySQL" />
+    <category term="Linux" />
+    <category term="Mac" />
+    <category term="Maven" />
+    <category term="MyBatis" />
+    <category term="总结" />
+    <category term="RabbitMQ" />
+    <category term="Redis" />
+    <category term="Spring" />
+    <category term="Vue" />
+    <category term="前端" />
+    <category term="Alist" />
+    <category term="Homebrew" />
+    <category term="SSL" />
+    <category term="域名" />
+    <entry>
+        <id>http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</id>
+        <title>Linux安装MySQL</title>
+        <link rel="alternate" href="http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"/>
+        <content type="html">&lt;h1 id=&#34;如何在Ubuntu上安装和配置MySQL并允许远程访问&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何在Ubuntu上安装和配置MySQL并允许远程访问&#34;&gt;&lt;/a&gt;如何在Ubuntu上安装和配置MySQL并允许远程访问&lt;/h1&gt;
+&lt;p&gt;在本文中，我们将介绍如何在Ubuntu上安装和配置MySQL，并设置允许远程访问。我们将从安装MySQL开始，然后进行基本的安全配置，修改MySQL配置文件以允许远程连接，并创建可以远程访问的用户。&lt;/p&gt;
+&lt;h2 id=&#34;步骤1：更新包列表并安装MySQL服务器&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤1：更新包列表并安装MySQL服务器&#34;&gt;&lt;/a&gt;步骤1：更新包列表并安装MySQL服务器&lt;/h2&gt;
+&lt;p&gt;首先，确保你的包列表是最新的：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; update&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后安装MySQL服务器：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; mysql-server&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果你需要安装特定版本的MySQL（例如8.0），可以使用以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-y&lt;/span&gt; mysql-server-8.0&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;步骤2：检查MySQL服务状态并启用MySQL服务&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤2：检查MySQL服务状态并启用MySQL服务&#34;&gt;&lt;/a&gt;步骤2：检查MySQL服务状态并启用MySQL服务&lt;/h2&gt;
+&lt;p&gt;检查MySQL服务是否正在运行：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl status mysql&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;确保MySQL服务在系统启动时自动启动：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl &lt;span class=&#34;token builtin class-name&#34;&gt;enable&lt;/span&gt; mysql&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;步骤3：运行安全安装脚本&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤3：运行安全安装脚本&#34;&gt;&lt;/a&gt;步骤3：运行安全安装脚本&lt;/h2&gt;
+&lt;p&gt;MySQL提供了一个安全安装脚本，可以帮助你进行一些基本的安全配置。运行以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; mysql_secure_installation&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在提示中，你将需要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;选择密码规则&lt;/li&gt;
+&lt;li&gt;删除匿名用户&lt;/li&gt;
+&lt;li&gt;禁用远程root登录&lt;/li&gt;
+&lt;li&gt;删除测试数据库和表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;步骤4：修改MySQL配置文件以允许远程连接&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤4：修改MySQL配置文件以允许远程连接&#34;&gt;&lt;/a&gt;步骤4：修改MySQL配置文件以允许远程连接&lt;/h2&gt;
+&lt;p&gt;打开MySQL配置文件&lt;code&gt;mysqld.cnf&lt;/code&gt;，通常位于&lt;code&gt;/etc/mysql/mysql.conf.d/&lt;/code&gt;目录中：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt; /etc/mysql/mysql.conf.d/mysqld.cnf&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;找到以下行：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;bind-address &amp;#x3D; 127.0.0.1&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;将其注释掉或改为&lt;code&gt;0.0.0.0&lt;/code&gt;，使MySQL监听所有网络接口：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;# bind-address &amp;#x3D; 127.0.0.1
+bind-address &amp;#x3D; 0.0.0.0&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;保存配置文件并退出编辑器。&lt;/p&gt;
+&lt;h2 id=&#34;步骤5：重启MySQL服务&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤5：重启MySQL服务&#34;&gt;&lt;/a&gt;步骤5：重启MySQL服务&lt;/h2&gt;
+&lt;p&gt;重启MySQL服务以使更改生效：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl restart mysql&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;步骤6：创建可以远程访问的用户&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤6：创建可以远程访问的用户&#34;&gt;&lt;/a&gt;步骤6：创建可以远程访问的用户&lt;/h2&gt;
+&lt;p&gt;登录到MySQL命令行：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;mysql &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; root &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在MySQL提示符中运行以下命令，创建一个允许从任何IP地址连接的用户，并授予所有权限：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-sql&#34; data-language=&#34;sql&#34;&gt;&lt;code class=&#34;language-sql&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;CREATE&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;USER&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;yourusername&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;@&#39;%&#39;&lt;/span&gt; IDENTIFIED &lt;span class=&#34;token keyword&#34;&gt;BY&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;yourpassword&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;GRANT&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;ALL&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;ON&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;TO&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;yourusername&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;@&#39;%&#39;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;WITH&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;GRANT&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;OPTION&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;解释：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GRANT ALL PRIVILEGES&lt;/strong&gt;：授予用户所有权限，包括SELECT、INSERT、UPDATE、DELETE、CREATE、DROP等操作权限。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ON&lt;/strong&gt;：授予权限的范围。&lt;code&gt;*.*&lt;/code&gt;表示所有数据库和所有表。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TO&lt;/strong&gt;：指定权限接收者。&lt;code&gt;&#39;yourusername&#39;&lt;/code&gt;是用户名，&lt;code&gt;&#39;%&#39;&lt;/code&gt;是主机名通配符，表示允许从任何IP地址连接的用户。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WITH GRANT OPTION&lt;/strong&gt;：允许用户将他自己拥有的权限授予其他用户。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;步骤7：配置防火墙&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤7：配置防火墙&#34;&gt;&lt;/a&gt;步骤7：配置防火墙&lt;/h2&gt;
+&lt;p&gt;确保防火墙允许MySQL的默认端口3306的流量。如果使用的是UFW（Uncomplicated Firewall），可以运行以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; ufw allow &lt;span class=&#34;token number&#34;&gt;3306&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; ufw reload&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;步骤8：验证远程连接&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤8：验证远程连接&#34;&gt;&lt;/a&gt;步骤8：验证远程连接&lt;/h2&gt;
+&lt;p&gt;在远程机器上，使用MySQL客户端或其他工具连接到MySQL服务器：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;mysql &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; yourusername &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; your_server_ip&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;其他操作&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#其他操作&#34;&gt;&lt;/a&gt;其他操作&lt;/h2&gt;
+&lt;h3 id=&#34;删除某些权限或用户&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#删除某些权限或用户&#34;&gt;&lt;/a&gt;删除某些权限或用户&lt;/h3&gt;
+&lt;p&gt;如果你想删除某些权限，或者从特定数据库中删除权限，可以使用&lt;code&gt;REVOKE&lt;/code&gt;命令。例如：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-sql&#34; data-language=&#34;sql&#34;&gt;&lt;code class=&#34;language-sql&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;REVOKE&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;ALL&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;GRANT&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;OPTION&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;FROM&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;existinguser&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;@&#39;%&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;查看某个用户的当前权限&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#查看某个用户的当前权限&#34;&gt;&lt;/a&gt;查看某个用户的当前权限&lt;/h3&gt;
+&lt;p&gt;如果你想查看某个用户的当前权限，可以使用以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-sql&#34; data-language=&#34;sql&#34;&gt;&lt;code class=&#34;language-sql&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;SHOW&lt;/span&gt; GRANTS &lt;span class=&#34;token keyword&#34;&gt;FOR&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;existinguser&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;@&#39;%&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过这些步骤，你可以在Ubuntu上成功安装和配置MySQL，并设置允许远程访问。如果遇到任何问题或需要进一步帮助，请随时在评论区留言！&lt;/p&gt;
+</content>
+        <category term="MySQL" />
+        <category term="Linux" />
+        <updated>2024-06-25T04:18:14.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://example.com/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <title>MySQL应用与总结</title>
+        <link rel="alternate" href="http://example.com/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <content type="html">&lt;h1 id=&#34;数据库&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#数据库&#34;&gt;&lt;/a&gt;数据库&lt;/h1&gt;
+&lt;h2 id=&#34;索引&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#索引&#34;&gt;&lt;/a&gt;索引&lt;/h2&gt;
+&lt;h3 id=&#34;为什么使用索引会加快查询？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么使用索引会加快查询？&#34;&gt;&lt;/a&gt;为什么使用索引会加快查询？&lt;/h3&gt;
+&lt;p&gt;数据库文件是存储在磁盘上的，磁盘 I/O 是数据库操作中最耗时的部分之一。没有索引时，数据库会进行全表扫描（Sequential Scan），这意味着它必须读取表中的每一行数据来查找匹配的行（时间效率为 O(n)）。当表的数据量非常大时，就会导致大量的磁盘 I/O 操作。&lt;/p&gt;
+&lt;p&gt;有了索引，就可以直接跳到索引指示的数据位置，而不必扫描整张表，从而大大减少了磁盘 I/O 操作的次数。&lt;/p&gt;
+&lt;p&gt;MySQL 的 InnoDB 存储引擎默认使用 B+ 树来作为索引的数据结构，而 B+ 树的查询效率非常高，时间复杂度为 O(logN)。&lt;/p&gt;
+&lt;p&gt;索引文件相较于数据库文件，体积小得多，查到索引之后再映射到数据库记录，查询效率就会高很多。&lt;/p&gt;
+&lt;p&gt;索引就好像书的目录，通过目录去查找对应的章节内容会比一页一页的翻书快很多。&lt;/p&gt;
+&lt;h3 id=&#34;MySQL中的索引有哪些类型？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#MySQL中的索引有哪些类型？&#34;&gt;&lt;/a&gt;MySQL中的索引有哪些类型？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;B-Tree索引&lt;/strong&gt;：是MySQL中最常用的索引类型。适用于等值查询、范围查询、排序和分组操作。B-Tree索引的优点是查询效率高，尤其适合范围查询和排序操作，但对于频繁更新的列，索引维护成本较高。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;哈希索引&lt;/strong&gt;：通过哈希函数将键值映射到哈希表的位置，查找速度非常快。它适用于等值查询，但不支持范围查询、排序和分组。此外，哈希冲突会降低性能。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;全文索引&lt;/strong&gt;：用于全文搜索，支持对文本字段的关键词查询。它适合需要全文检索的场景，如搜索引擎和文章内容搜索，全文检索速度快，但建立和维护成本高，不适合实时更新的数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;空间索引&lt;/strong&gt;：（R-Tree索引）用于地理信息系统中的空间查询，适合多维数据的快速查询，如地理位置查询和地图服务。它能够有效地进行范围查询和最近邻查询，但不适合其他类型的数据，且建立和维护成本较高。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;前缀索引&lt;/strong&gt;：是对字符串类型的列的前几个字符创建索引，适用于字符串列较长且前缀部分区分度较高的场景。它能节省索引空间并提高查询效率，但只适用于前缀匹配查询，不支持全文匹配。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;聚簇索引&lt;/strong&gt;：决定数据在磁盘上的物理存储顺序，每个表只能有一个聚簇索引，通常是主键。它的数据访问速度快，特别适合范围查询，但更新开销较大，且非聚簇索引需要包含聚簇索引列作为引用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;非聚簇索引&lt;/strong&gt;：的索引和数据分别存储，叶节点存储指向数据的指针。它的更新开销较小，可以有多个非聚簇索引，但查询时需要先访问索引再访问数据，速度略慢于聚簇索引。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;唯一索引&lt;/strong&gt;：确保索引列中的值是唯一的，适用于需要唯一性约束的场景，如用户名、电子邮件地址等。它能确保数据的唯一性，防止重复数据，但插入和更新时需要检查唯一性，开销较大。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;组合索引&lt;/strong&gt;：是对多个列创建的索引，能够提高多列查询的效率，适用于WHERE子句中涉及多列的查询。它能显著提高查询效率，但索引创建和维护成本较高，且需要考虑索引的顺序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;日志&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#日志&#34;&gt;&lt;/a&gt;日志&lt;/h2&gt;
+&lt;h3 id=&#34;MySQL-日志文件有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#MySQL-日志文件有哪些？&#34;&gt;&lt;/a&gt;MySQL 日志文件有哪些？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;错误日志&lt;/strong&gt;：记录 MySQL 服务器启动、运行或停止时出现的问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;慢查询日志&lt;/strong&gt;：记录执行时间超过&lt;code&gt;long_query_time&lt;/code&gt;值的所有 SQL 语句。这个时间值是可配置的，默认情况下，慢查询日志功能是关闭的。可以用来识别和优化慢 SQL。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一般查询日志&lt;/strong&gt;：记录所有 MySQL 服务器的链接信息以及所有的 SQL 语句，不论这些语句是否修改了数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;二进制日志&lt;/strong&gt;：记录了所有修改数据库状态的 SQL 语句，以及每个语句的执行时间，如 INSERT、UPDATE、DELETE 等，但不包括 SELECT 和 SHOW 这类的操作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重做日志&lt;/strong&gt;：记录对于&lt;code&gt;InnDB&lt;/code&gt;表的每个写操作，不是 SQL 级的，而是物理级别的，主要用于崩溃恢复。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;回滚日志&lt;/strong&gt;：记录数据被修改前的值，用于事务回滚。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="MySQL" />
+        <category term="总结" />
+        <updated>2024-06-22T10:02:39.000Z</updated>
+    </entry>
+</feed>

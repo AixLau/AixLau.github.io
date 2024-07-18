@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://example.com</id>
+    <title>陆时忤的博客 • Posts by &#34;redis&#34; tag</title>
+    <link href="http://example.com" />
+    <updated>2024-06-26T12:18:49.000Z</updated>
+    <category term="Blog" />
+    <category term="Java" />
+    <category term="笔记" />
+    <category term="MySQL" />
+    <category term="Linux" />
+    <category term="Mac" />
+    <category term="Maven" />
+    <category term="MyBatis" />
+    <category term="总结" />
+    <category term="RabbitMQ" />
+    <category term="Redis" />
+    <category term="Spring" />
+    <category term="Vue" />
+    <category term="前端" />
+    <category term="Alist" />
+    <category term="Homebrew" />
+    <category term="SSL" />
+    <category term="域名" />
+    <entry>
+        <id>http://example.com/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <title>Redis应用与总结</title>
+        <link rel="alternate" href="http://example.com/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <content type="html">&lt;h2 id=&#34;Redis-常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Redis-常见面试题总结&#34;&gt;&lt;/a&gt;Redis 常见面试题总结&lt;/h2&gt;
+&lt;h3 id=&#34;Redis-为什么这么快？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Redis-为什么这么快？&#34;&gt;&lt;/a&gt;Redis 为什么这么快？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Redis 基于内存，内存的访问速度比磁盘块很多；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Redis 主要是单线程事件循环和 IO 多路复用；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Redis 内置了多重优化过后的数据类型、结构实现，性能非常高&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Redis 通信协议实现简单且解析高效。&lt;/p&gt;
+&lt;h4 id=&#34;为什么不直接使用-Redis-当主数据库呢？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么不直接使用-Redis-当主数据库呢？&#34;&gt;&lt;/a&gt;为什么不直接使用 Redis 当主数据库呢？&lt;/h4&gt;
+&lt;p&gt;主要是因为内存成本太高且 Redis 提供的数据持久化仍然会有数据丢失风险。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;为什么用-Redis？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么用-Redis？&#34;&gt;&lt;/a&gt;为什么用 Redis？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;访问速度更快&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;高并发&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;功能全面&lt;/p&gt;
+&lt;p&gt;Redis 除了可以用作缓存之外，还可以用于分布式锁、限流、消息队列、延时队列等场景。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;Redis-除了做缓存，还能做什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Redis-除了做缓存，还能做什么？&#34;&gt;&lt;/a&gt;Redis 除了做缓存，还能做什么？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;分布式锁&lt;/strong&gt;：通过 Redis 来做分布式锁是一种比较常见的方式。通常情况下，我们都是基于 Redisson 来实现分布式锁。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;限流&lt;/strong&gt;：一半通过 Redis 和 Lua 脚本的方式来实现限流。如果不想写 Lua 脚本的话，也可以直接利用 Redisson中的&lt;code&gt;RRateLimiter&lt;/code&gt;来实现分布式限流，其底层实现就是基于 Lua 代码+令牌桶算法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;消息队列&lt;/strong&gt;：Redis 自带的 List 数据结构可以作为一个简单的队列使用。Redis 5.0 中增加的 Stream 类型的数据结构更加适合用来做消息队列。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;延时队列&lt;/strong&gt;：Redisson 内置了延时队列（基于 Sorted Set 实现的）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分布式 Session&lt;/strong&gt;：利用 String 或者 Hash 数据类型保存 Session 数据，所有的服务器都可以访问。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;Redis-常用的数据类型有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Redis-常用的数据类型有哪些？&#34;&gt;&lt;/a&gt;Redis 常用的数据类型有哪些？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;5 种基本数据类型&lt;/strong&gt;：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3 种特殊数据类型&lt;/strong&gt;：HyperLogLog（基数统计）、Bitmap（位图）、Geospatial（地理位置）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;String-的应用场景有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#String-的应用场景有哪些？&#34;&gt;&lt;/a&gt;String 的应用场景有哪些？&lt;/h3&gt;
+&lt;p&gt;String 是 Redis 中最简单同时也是最常用的一个数据类型。可以用来存储任何类型的数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;常规数据（比如 Session、Token、序列化后的对象、图片的路径）的缓存；&lt;/li&gt;
+&lt;li&gt;计数比如用户单位时间的请求数（简单限流可以用到）、页面单位时间的访问数；&lt;/li&gt;
+&lt;li&gt;分布式锁（利用&lt;code&gt;SETNX key value&lt;/code&gt;命令可以实现一个最简易的分布式锁）；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;Redis-持久化机制&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Redis-持久化机制&#34;&gt;&lt;/a&gt;Redis 持久化机制&lt;/h3&gt;
+&lt;p&gt;Redis提供了两种主要的持久化机制：RDB（Redis DataBase）快照和 AOF(Append Only File）日志。这两种机制各有特点，满足不同的持久化需求。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;RDB（Redis DataBase）快照&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;RDB 持久化是指在指定的时间间隔内将 Redis 的内存数据生成快照并保存到磁盘。它会创建一个二进制文件（通常是 dump.rdb），包含某个时间点上的数据。&lt;/p&gt;
+&lt;p&gt;​	&lt;strong&gt;优点：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	RDB 文件是一个紧凑的二进制文件，可以较快地进行备份和恢复。&lt;/p&gt;
+&lt;p&gt;​	RDB 文件保存时不会对 Redis 的性能产生显著的影响，适合用于大规模数据的冷备份。&lt;/p&gt;
+&lt;p&gt;​	&lt;strong&gt;缺点：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	RDB 快照是定期进行的，如果 Redis 意外宕机，可能会丢失最后一次快照之后的所有数据。&lt;/p&gt;
+&lt;p&gt;​	RDB 快照需要较长的时间进行，所以不适用于需要频繁备份的数据场景。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AOF（Append Only File）日志&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;AOF 持久化记录每个写操作到日志文件中（通常是 appendonly.aof），Redis 可以通过重新执行日志中的命令来恢复数据。AOF日志文件默认不定期压缩，以减小文件体积。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​		&lt;strong&gt;优点：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​		AOF可以提供更高的数据持久性，因为它记录每次写操作，数据丢失的窗口更小。&lt;/p&gt;
+&lt;p&gt;​		AOF 文件是可读的文本文件，便于分析和调试。&lt;/p&gt;
+&lt;p&gt;​		&lt;strong&gt;缺点：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​		AOF 文件通常比 RDB 文件更大，恢复速度相对慢。&lt;/p&gt;
+&lt;p&gt;​		AOF在每次写操作时都会记录日志，可能会对 Redis 性能产生一定影响，特别是在写操作频繁的情况下。&lt;/p&gt;
+&lt;h4 id=&#34;混合持久化&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#混合持久化&#34;&gt;&lt;/a&gt;混合持久化&lt;/h4&gt;
+&lt;p&gt;Redis 4.0 引入了混合持久化（Hybid Persistence），结合了 RDB 和 AOF 的优点。在进行快照时，将当前的 RDB 快照和 AOF 日志混合存储，以提高数据恢复速度和性能。&lt;/p&gt;
+&lt;h3 id=&#34;缓存穿透&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#缓存穿透&#34;&gt;&lt;/a&gt;缓存穿透&lt;/h3&gt;
+&lt;h4 id=&#34;什么是缓存穿透？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是缓存穿透？&#34;&gt;&lt;/a&gt;什么是缓存穿透？&lt;/h4&gt;
+&lt;p&gt;缓存穿透是指查询一个在缓存和数据库中都不存在的数据，每次请求都会穿透缓存直接查询数据库，可能导致数据库压力过大。&lt;/p&gt;
+&lt;h4 id=&#34;有哪些解决办法？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#有哪些解决办法？&#34;&gt;&lt;/a&gt;有哪些解决办法？&lt;/h4&gt;
+&lt;p&gt;最基本的就是做好参数校验，一些不合法的参数请求直接抛出异常信息返回给客户端。&lt;/p&gt;
+&lt;p&gt;比如查询数据库 id 不能小于 0、传入邮箱格式不对的时候直接返回错误信息给客户端等等。&lt;/p&gt;
+&lt;h5 id=&#34;1-使用缓存空值&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-使用缓存空值&#34;&gt;&lt;/a&gt;1. 使用缓存空值&lt;/h5&gt;
+&lt;p&gt;将查询结果为空的数据也缓存起来，但要设置一个较短的过期时间，防止缓存中大量的空值数据占用内存。&lt;/p&gt;
+&lt;h5 id=&#34;2-布隆过滤器&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#2-布隆过滤器&#34;&gt;&lt;/a&gt;2. 布隆过滤器&lt;/h5&gt;
+&lt;p&gt;布隆过滤器是一种概率型数据结构，可以用来判断一个元素是否在一个集合中。将所有可能存在查询条件都存入布隆过滤器，在查询缓存和数据库之前先通过布隆过滤器进行判断，如果布隆过滤器判断该元素不存在，则直接返回。&lt;/p&gt;
+&lt;h5 id=&#34;3-接口限流&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#3-接口限流&#34;&gt;&lt;/a&gt;3. 接口限流&lt;/h5&gt;
+&lt;p&gt;根据用户或者 IP 对接口进行限流，对于异常频繁的访问行为，还可以采用黑名单机制，例如将异常 IP 列入黑名单。&lt;/p&gt;
+&lt;h3 id=&#34;缓存击穿&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#缓存击穿&#34;&gt;&lt;/a&gt;缓存击穿&lt;/h3&gt;
+&lt;h4 id=&#34;什么是缓存击穿？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是缓存击穿？&#34;&gt;&lt;/a&gt;什么是缓存击穿？&lt;/h4&gt;
+&lt;p&gt;缓存击穿是指某些缓存中的热点数据在缓存失效后，大量并发请求同时到达缓存并穿透到了数据库，对数据库造成了巨大的压力，通常发生在缓存中存放的热门数据突然过期的情况下。&lt;/p&gt;
+&lt;h4 id=&#34;有哪些解决方法？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#有哪些解决方法？&#34;&gt;&lt;/a&gt;有哪些解决方法？&lt;/h4&gt;
+&lt;h5 id=&#34;1-永不过期&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-永不过期&#34;&gt;&lt;/a&gt;1. 永不过期&lt;/h5&gt;
+&lt;p&gt;将热点数据设置为永不过期，防止其被清除出缓存，从而避免缓存失效带来的问题。&lt;/p&gt;
+&lt;h5 id=&#34;2-提前预热&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#2-提前预热&#34;&gt;&lt;/a&gt;2.提前预热&lt;/h5&gt;
+&lt;p&gt;在系统启动或业务高峰期来临之前，提前将热点数据加载到缓存中，避免缓存过期。&lt;/p&gt;
+&lt;h5 id=&#34;3-加锁&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#3-加锁&#34;&gt;&lt;/a&gt;3. 加锁&lt;/h5&gt;
+&lt;p&gt;当缓存失效时，使用分布式锁来控制只有一个请求可以访问数据库并重建缓存，其余请求等待缓存重建完成后再访问缓存。&lt;/p&gt;
+&lt;h4 id=&#34;缓存穿透和缓存击穿有什么区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#缓存穿透和缓存击穿有什么区别？&#34;&gt;&lt;/a&gt;缓存穿透和缓存击穿有什么区别？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;缓存穿透是查询一个在缓存和数据中都不存在的数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;缓存击穿是缓存中热点数据在缓存失效后，大量并发请求同时到达缓存并穿透到数据库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;缓存雪崩&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#缓存雪崩&#34;&gt;&lt;/a&gt;缓存雪崩&lt;/h3&gt;
+&lt;h4 id=&#34;什么是缓存雪崩？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是缓存雪崩？&#34;&gt;&lt;/a&gt;什么是缓存雪崩？&lt;/h4&gt;
+&lt;p&gt;缓存雪崩是指缓存中大量数据在同一时间过期或者缓存服务器宕机了，导致大量请求直接访问数据库，与缓存击穿不同的是，缓存雪崩涉及大量缓存同时失效或缓存服务不可用。&lt;/p&gt;
+&lt;h4 id=&#34;有哪些解决方法？-2&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#有哪些解决方法？-2&#34;&gt;&lt;/a&gt;有哪些解决方法？&lt;/h4&gt;
+&lt;h5 id=&#34;针对Redis-服务不可用的情况：&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#针对Redis-服务不可用的情况：&#34;&gt;&lt;/a&gt;针对Redis 服务不可用的情况：&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Redis 集群&lt;/strong&gt;：采用 Redis 集群，避免单机出现问题整个缓存服务器都无法使用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多级缓存&lt;/strong&gt;：通过构建多级缓存（如本地缓存和分布式缓存），在缓存失效时优先从本地缓存读取数据，减轻数据库压力。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;针对大量缓存同时失效的情况&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#针对大量缓存同时失效的情况&#34;&gt;&lt;/a&gt;针对大量缓存同时失效的情况:&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;过期时间随机化&lt;/strong&gt;：避免大量缓存在同一时间失效，可以设置缓存数据过期时间增加一个随机值，使缓存数据的过期时间分散。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缓存预热&lt;/strong&gt;：在系统启动或流量高峰前，提前将热点数据加载到缓存中，避免缓存雪崩。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;主动更新&lt;/strong&gt;：对于经常更新的热点数据，可以在其过期之前主动更新缓存，确保缓存中的数据始终有效。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;如何保证缓存和数据库数据一致性？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何保证缓存和数据库数据一致性？&#34;&gt;&lt;/a&gt;如何保证缓存和数据库数据一致性？&lt;/h3&gt;
+&lt;h4 id=&#34;1-Cache-Aside-Pattern（旁路缓存模式）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-Cache-Aside-Pattern（旁路缓存模式）&#34;&gt;&lt;/a&gt;1. Cache Aside Pattern（旁路缓存模式）&lt;/h4&gt;
+&lt;p&gt;当需要读取数据时，先从缓存读取，若缓存未命中，再从数据库读取，并将数据写入缓存。当数据更新时，先更新数据库，然后使缓存失效。&lt;/p&gt;
+&lt;h4 id=&#34;2-Write-Through-Cache（写直达缓存）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#2-Write-Through-Cache（写直达缓存）&#34;&gt;&lt;/a&gt;2. Write Through Cache（写直达缓存）&lt;/h4&gt;
+&lt;p&gt;所有的数据更新操作都会先写入缓存，再写入数据库，这样可以确保缓存和数据库的一致性，但写操作的性能会受到一定影响。&lt;/p&gt;
+&lt;h4 id=&#34;3-Write-Behind-Cache（异步写缓存）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#3-Write-Behind-Cache（异步写缓存）&#34;&gt;&lt;/a&gt;3. Write Behind Cache（异步写缓存）&lt;/h4&gt;
+&lt;p&gt;写操作会先写入缓存，并在后台异步更新数据库。这种方式可以提高操作的性能，但实现和维护比较复杂。&lt;/p&gt;
+&lt;h4 id=&#34;4-Cache-and-Database-Double-Write（双写一致性）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#4-Cache-and-Database-Double-Write（双写一致性）&#34;&gt;&lt;/a&gt;4. Cache and Database Double Write（双写一致性）&lt;/h4&gt;
+&lt;p&gt;确保每次写操作，同时更新缓存和数据库。需要通过合适的事务机制或分布式锁来保证这两个操作的原子性。&lt;/p&gt;
+&lt;h4 id=&#34;5-使用消息队列实现最终一致性&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#5-使用消息队列实现最终一致性&#34;&gt;&lt;/a&gt;5. 使用消息队列实现最终一致性&lt;/h4&gt;
+&lt;p&gt;写操作更新数据库后，将更新时间发送到消息队列，消费者接收消息后更新缓存，实现最终一致性。&lt;/p&gt;
+&lt;h4 id=&#34;总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#总结&#34;&gt;&lt;/a&gt;总结&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cache Aside Pattern（旁路缓存模式）&lt;/strong&gt;：读操作先查缓存，缓存未命中再查数据库，写操作先更新数据库，再使缓存失效。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write Through Cache（写直达缓存）&lt;/strong&gt;：写操作先更新缓存，再同步更新数据库。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write Behind Cache（异步写缓存）&lt;/strong&gt;：写操作先更新缓存，再异步批量更新数据库。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;双写一致性（Cache and Database Double Write）&lt;/strong&gt;：写操作时同时更新缓存和数据库，确保原子性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用消息队列实现最终一致性&lt;/strong&gt;：更新数据库后发送消息队列，消费者接收消息后更新缓存，实现最终一致性。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="总结" />
+        <category term="Redis" />
+        <updated>2024-06-26T12:18:49.000Z</updated>
+    </entry>
+</feed>

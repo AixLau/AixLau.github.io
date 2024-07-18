@@ -1,0 +1,606 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>陆时忤的博客 • Posts by &#34;java&#34; tag</title>
+        <link>http://example.com</link>
+        <description>要再见 不要再见</description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 14 Jul 2024 22:13:37 +0800</pubDate>
+        <lastBuildDate>Sun, 14 Jul 2024 22:13:37 +0800</lastBuildDate>
+        <category>Blog</category>
+        <category>Java</category>
+        <category>笔记</category>
+        <category>MySQL</category>
+        <category>Linux</category>
+        <category>Mac</category>
+        <category>Maven</category>
+        <category>MyBatis</category>
+        <category>总结</category>
+        <category>RabbitMQ</category>
+        <category>Redis</category>
+        <category>Spring</category>
+        <category>Vue</category>
+        <category>前端</category>
+        <category>Alist</category>
+        <category>Homebrew</category>
+        <category>SSL</category>
+        <category>域名</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</guid>
+            <title>Mac安装JDK</title>
+            <link>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</link>
+            <category>Java</category>
+            <category>Mac</category>
+            <pubDate>Sun, 14 Jul 2024 22:13:37 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;Mac-上的-JDK-的安装与卸载&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Mac-上的-JDK-的安装与卸载&#34;&gt;&lt;/a&gt;Mac 上的 JDK 的安装与卸载&lt;/h1&gt;
+&lt;h2 id=&#34;从-AdoptOpenJDK-到-Temurin&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#从-AdoptOpenJDK-到-Temurin&#34;&gt;&lt;/a&gt;从 AdoptOpenJDK 到 Temurin&lt;/h2&gt;
+&lt;h2 id=&#34;卸载-AdoptOpenJDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#卸载-AdoptOpenJDK&#34;&gt;&lt;/a&gt;卸载 AdoptOpenJDK&lt;/h2&gt;
+&lt;p&gt;如果您的系统中安装了 AdoptOpenJDK，并且想要替换或升级 JDK 版本，可以按照以下步骤进行卸载：&lt;/p&gt;
+&lt;h3 id=&#34;步骤-1：卸载-AdoptOpenJDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-1：卸载-AdoptOpenJDK&#34;&gt;&lt;/a&gt;步骤 1：卸载 AdoptOpenJDK&lt;/h3&gt;
+&lt;p&gt;打开终端，并使用 Homebrew Cask 进行卸载。如果您尚未安装 Homebrew，请访问 &lt;a href=&#34;https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/&#34;&gt;Homebrew 安装指南&lt;/a&gt; 获取详细的安装教程。以卸载 adoptopenjdk8 为例，输入以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew remove &lt;span class=&#34;token parameter variable&#34;&gt;--cask&lt;/span&gt; adoptopenjdk8&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重复上述命令，替换 &lt;code&gt;adoptopenjdk8&lt;/code&gt; 为其他版本号以卸载其他版本的 JDK。&lt;/p&gt;
+&lt;h3 id=&#34;步骤-2：移除-Homebrew-的-Tap&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-2：移除-Homebrew-的-Tap&#34;&gt;&lt;/a&gt;步骤 2：移除 Homebrew 的 Tap&lt;/h3&gt;
+&lt;p&gt;完成所有版本的卸载后，执行以下命令来移除 AdoptOpenJDK 的 tap：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew untap AdoptOpenJDK/openjdk&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样就和 AdoptOpenJDK 完成了告别。&lt;/p&gt;
+&lt;h2 id=&#34;清除旧的-Oracle-JDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#清除旧的-Oracle-JDK&#34;&gt;&lt;/a&gt;清除旧的 Oracle JDK&lt;/h2&gt;
+&lt;p&gt;对于仍在使用 Oracle JDK 的用户，也是时候更新了。请按照以下步骤从您的系统中彻底清除 Oracle JDK：&lt;/p&gt;
+&lt;h3 id=&#34;步骤-3：删除旧的-JDK-文件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-3：删除旧的-JDK-文件&#34;&gt;&lt;/a&gt;步骤 3：删除旧的 JDK 文件&lt;/h3&gt;
+&lt;p&gt;删除 &lt;code&gt;/Library/Java/JavaVirtualMachines/&lt;/code&gt; 目录下的 JDK 文件夹。此外，清理以下位置的内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/Library/Internet Plug-Ins/JavaAppletPlugin.plugin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/Library/PreferencePanes/JavaControlPanel.prefPane&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~/Library/Application Support/Oracle/Java&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装-Temurin-JDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Temurin-JDK&#34;&gt;&lt;/a&gt;安装 Temurin JDK&lt;/h2&gt;
+&lt;p&gt;在清除旧的 JDK 之后，我们将安装 Temurin，这是 AdoptOpenJDK 的继任者，由 Eclipse Foundation 维护。&lt;/p&gt;
+&lt;h3 id=&#34;步骤-4：配置-Homebrew-Cask-版本&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-4：配置-Homebrew-Cask-版本&#34;&gt;&lt;/a&gt;步骤 4：配置 Homebrew Cask 版本&lt;/h3&gt;
+&lt;p&gt;首先，确保你的 Homebrew 能够访问所有 cask 版本：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew search temurin&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151217190.webp&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;步骤-5：安装-Temurin&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-5：安装-Temurin&#34;&gt;&lt;/a&gt;步骤 5：安装 Temurin&lt;/h3&gt;
+&lt;p&gt;现在，您可以安装所需版本的 Temurin。例如，要安装 Temurin@8，运行以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--cask&lt;/span&gt; temurin@8&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;结论&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#结论&#34;&gt;&lt;/a&gt;结论&lt;/h2&gt;
+&lt;p&gt;通过以上步骤，您可以在 Mac 上轻松切换 JDK 版本。无论是卸载旧的 AdoptOpenJDK 还是安装新的 Temurin JDK，都能确保您的开发环境与 Java 的最新进展保持同步。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/</guid>
+            <title>项目讲解</title>
+            <link>http://example.com/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/</link>
+            <category>Java</category>
+            <pubDate>Thu, 27 Jun 2024 15:34:31 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;随便写写&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#随便写写&#34;&gt;&lt;/a&gt;随便写写&lt;/h1&gt;
+&lt;h3 id=&#34;登录注册模块&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#登录注册模块&#34;&gt;&lt;/a&gt;登录注册模块&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;注册&lt;/strong&gt;：使用阿里云的短信服务将后端生成的验证码通过阿里云短信服务发送到用户手机号，并将前端传来的注册信息封装成一个 vo 类，根据用户的手机号对用户表进行查询，如果发现这个手机号已经注册，则抛出一个异常，前端显示“手机号已注册”，否则将该用户信息存入用户表。&lt;/li&gt;
+&lt;li&gt;登录：将前端传来的登录信息与数据库中的信息进行比对，如果该数据库中有该信息则返回根据用户信息生成的一个 token 值，前端可以根据该 tokne 获取到用户名进行显示。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;前后端分离项目中跨域问题是如何解决的？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#前后端分离项目中跨域问题是如何解决的？&#34;&gt;&lt;/a&gt;前后端分离项目中跨域问题是如何解决的？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;注解&lt;/strong&gt;：可以通过使用&lt;code&gt;@CrossOrigin&lt;/code&gt;注解来解决跨域问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nginx&lt;/strong&gt;：使用 Nginx 反向代理配置添加CORS头来解决跨域问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;网关&lt;/strong&gt;：使用 GetWay 网关中配置CORS规则，允许跨域请求&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <title>RabbitMQ应用与总结</title>
+            <link>http://example.com/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <category>Java</category>
+            <category>总结</category>
+            <category>RabbitMQ</category>
+            <pubDate>Wed, 26 Jun 2024 23:14:15 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;RabbitMQ常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#RabbitMQ常见面试题总结&#34;&gt;&lt;/a&gt;RabbitMQ常见面试题总结&lt;/h2&gt;
+&lt;h3 id=&#34;什么是-RabbitMQ？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-RabbitMQ？&#34;&gt;&lt;/a&gt;什么是 RabbitMQ？&lt;/h3&gt;
+&lt;p&gt;RabbitMQ 是一个开源的消息代理软件，广泛用于消息队列中。它实现了高级消息队列协议（AMQP），支持多重消息模式，能够在分布式系统重提供可靠的消息传递。。RabbitMQ 用于不同系统或服务之间异步传递消息，从而解耦生产者和消费者，增强系统的可扩展性和容错能力。&lt;/p&gt;
+&lt;h3 id=&#34;RabbitMQ-的组件有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#RabbitMQ-的组件有哪些？&#34;&gt;&lt;/a&gt;RabbitMQ 的组件有哪些？&lt;/h3&gt;
+&lt;h4 id=&#34;1-Producer（生产者）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-Producer（生产者）&#34;&gt;&lt;/a&gt;1. Producer（生产者）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;生产者是消息的发送方，它将消息发送到 RabbitMQ 交换器。&lt;/li&gt;
+&lt;li&gt;生成者负责创建和发送消息，不直接与队列通信。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-Exchange（交换器）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#2-Exchange（交换器）&#34;&gt;&lt;/a&gt;2. Exchange（交换器）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;交换器接收来自生产者的消息，并根据绑定规则将消息路由到一个或多个队列。&lt;/li&gt;
+&lt;li&gt;交换器有不同类型，主要包括：&lt;code&gt;direct&lt;/code&gt;、&lt;code&gt;topic&lt;/code&gt;、&lt;code&gt;fanout&lt;/code&gt;和&lt;code&gt;headers&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;Exchange-类型&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Exchange-类型&#34;&gt;&lt;/a&gt;Exchange 类型&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Direct Exchange&lt;/strong&gt;：根据消息的路由键完全匹配队列的绑定键进行路由。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Topic Exchange&lt;/strong&gt;：根据消息的路由键模式（使用通配符）进行路由，适用于主题匹配的场景。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fanout Exchange&lt;/strong&gt;：将消息广播到所有与该交换器绑定的队列，不考虑路由键。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Headers Exchange&lt;/strong&gt;：根据消息的头属性进行路由，相对较少使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-Queue（队列）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#3-Queue（队列）&#34;&gt;&lt;/a&gt;3. Queue（队列）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;队列是 RabbitMQ 存储消息的容器，消费者从队列中接收消息。&lt;/li&gt;
+&lt;li&gt;队列按照先进先出的顺序存储消息，可以持久化、镜像等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;4-Bindng（绑定）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#4-Bindng（绑定）&#34;&gt;&lt;/a&gt;4. Bindng（绑定）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;绑定是交换器与队列之间的连接，通过绑定将消息路由到特定的队列。&lt;/li&gt;
+&lt;li&gt;绑定可以包含路由键和绑定参数，用于匹配消息的路由键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;5-Consumer（消费者）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#5-Consumer（消费者）&#34;&gt;&lt;/a&gt;5. Consumer（消费者）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;消费者是消息的接收方，它从 RabbitMQ 队列中接收和处理消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消费者可以是主动拉取消息，也可以是被动推送消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;6-Connection（连接）和Channel（信道）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#6-Connection（连接）和Channel（信道）&#34;&gt;&lt;/a&gt;6. Connection（连接）和Channel（信道）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;连接是应用程序与 RabbitMQ 之间的 TCP 连接。&lt;/li&gt;
+&lt;li&gt;信道是建立在连接之上的虚拟连接，应用程序通过信道与 RabbitMQ 进行通信。信道是轻量级的，可以在一个连接上创建多个信道。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;7-Virtual-Host（虚拟机）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#7-Virtual-Host（虚拟机）&#34;&gt;&lt;/a&gt;7. Virtual Host（虚拟机）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;虚拟机用于隔离不同的应用，每个虚拟机都有自己的交换器、队列、绑定和权限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;8-Broker（代理服务器）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#8-Broker（代理服务器）&#34;&gt;&lt;/a&gt;8. Broker（代理服务器）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Broker 是 RabbitMQ 服务器实例，负责接收、存储和转发消息。&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <title>MyBatis应用与总结</title>
+            <link>http://example.com/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <category>Java</category>
+            <category>MyBatis</category>
+            <category>总结</category>
+            <pubDate>Wed, 26 Jun 2024 17:53:37 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;MyBatis常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#MyBatis常见面试题总结&#34;&gt;&lt;/a&gt;MyBatis常见面试题总结&lt;/h1&gt;
+&lt;h3 id=&#34;和-的区别是什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#和-的区别是什么？&#34;&gt;&lt;/a&gt;#{} 和 ${} 的区别是什么？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$&amp;#123;&amp;#125;&lt;/code&gt;是 Properties 文件中的变量占位符，它可以用于标签属性值和 slq 内部，属于原样文本替换，可以替换任意内容。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#&amp;#123;&amp;#125;&lt;/code&gt;是 sql 的参数占位符，Mybatis 会将 sql 中&lt;code&gt;#&amp;#123;&amp;#125;&lt;/code&gt;替换为？号，在 sql 执行前会使用PreparedStatement 的参数设置方法，按序给 sql 的 ？号占位符设置参数值。使用&lt;code&gt;#&amp;#123;&amp;#125;&lt;/code&gt;可以有效防止 sql 注入。&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <title>Spring应用与总结</title>
+            <link>http://example.com/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <category>Java</category>
+            <category>总结</category>
+            <category>Spring</category>
+            <pubDate>Sat, 22 Jun 2024 18:11:04 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;Spring-常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-常见面试题总结&#34;&gt;&lt;/a&gt;Spring 常见面试题总结&lt;/h2&gt;
+&lt;h3 id=&#34;什么是Spring框架？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是Spring框架？&#34;&gt;&lt;/a&gt;什么是Spring框架？&lt;/h3&gt;
+&lt;p&gt;Spring 是一款开源的轻量级Java开发框架，提高开发人员的开发效率以及系统的维护性。&lt;/p&gt;
+&lt;h3 id=&#34;谈谈自己对于Spring-IoC的了解&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#谈谈自己对于Spring-IoC的了解&#34;&gt;&lt;/a&gt;谈谈自己对于Spring IoC的了解&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;IoC&lt;/strong&gt; （Inversion of Control 控制反转）是一种设计模式，用来实现对象之间的解耦。&lt;/p&gt;
+&lt;p&gt;IoC 的思想就是将原本在程序中手动创建对象的控制权，交给 Spring 框架来管理。&lt;/p&gt;
+&lt;h4 id=&#34;为什么叫控制反转？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么叫控制反转？&#34;&gt;&lt;/a&gt;为什么叫控制反转？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;控制&lt;/strong&gt;：指的是对象创建（实例化、管理）的权利&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;反转&lt;/strong&gt;：控制权交给外部环境（Spring框架、IoC容器）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将对象之间的相互依赖关系交给 IoC 容器来管理，并由 IoC 容器完成对象的注入。这样可以很大程度上简化应用开发，把应用从复杂的依赖关系中解放出来。IoC 容器就像是一个工厂一样，当我们需要创建一个对象的时候，只需要配置好配置文件或注解即可，完全不用考虑对象是如何被创建出来的。&lt;/p&gt;
+&lt;h3 id=&#34;什么是-Bean？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-Bean？&#34;&gt;&lt;/a&gt;什么是 Bean？&lt;/h3&gt;
+&lt;p&gt;Bean 就是哪些被 IoC 容器所管理的对象。&lt;/p&gt;
+&lt;h3 id=&#34;Component和-Bean的区别是什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Component和-Bean的区别是什么？&#34;&gt;&lt;/a&gt;@Component和@Bean的区别是什么？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;@Component 注解用于类，@Bean 注解用于方法。&lt;/li&gt;
+&lt;li&gt;@Component 是通过类路径扫描来自动侦测以及自动装配到 Spring 容器中(我们可以使用 @ComponentScan 注解定义要扫描的路径从中找出标识了需要装配的类自动装配到 Spring 的 IoC 容器中)。@Bean 注解通常是我们在标有该注解的方法中定义产生这个 bean，@Bean 告诉了 Spring 这是某个类的实例，当我需要的时候给我。&lt;/li&gt;
+&lt;li&gt;@Bean 注解比 @Component 注解的自定义性更强，而且很多地方只能通过 @Bean 注解来实现。比如当我们引用第三方库中的类需要装配到 Spring 容器时，就只能通过 @Bean 来实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;注入Bean的注解有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#注入Bean的注解有哪些？&#34;&gt;&lt;/a&gt;注入Bean的注解有哪些？&lt;/h3&gt;
+&lt;p&gt;Spring 内置的&lt;code&gt;@Autowired&lt;/code&gt; 还有 JDK 内置的 &lt;code&gt;@Resource&lt;/code&gt; 和 &lt;code&gt;@Inject&lt;/code&gt; 都可以用于注入 Bean。&lt;/p&gt;
+&lt;h3 id=&#34;Autowired和-Resource的区别是什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Autowired和-Resource的区别是什么？&#34;&gt;&lt;/a&gt;@Autowired和@Resource的区别是什么？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;@Autowired&lt;/code&gt; 是 Spring 提供的注解，&lt;code&gt;@Resource&lt;/code&gt; 是 JDK 提供的注解。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Autowired&lt;/code&gt; 默认的注入方式为&lt;code&gt;byType&lt;/code&gt;（根据类型进行匹配），&lt;code&gt;@Resource&lt;/code&gt;默认注入方式为 &lt;code&gt;byName&lt;/code&gt;（根据名称进行匹配）。&lt;/li&gt;
+&lt;li&gt;当一个接口存在多个实现类的情况下，&lt;code&gt;@Autowired&lt;/code&gt; 和 &lt;code&gt;@Resource&lt;/code&gt; 都需要通过名称才能正确匹配到对应的  Bean。&lt;code&gt;Autowired&lt;/code&gt; 可以通过 &lt;code&gt;@Qualifier&lt;/code&gt; 注解来显式指定名称，&lt;code&gt;@Resource&lt;/code&gt; 可以通过 name 属性来显式指定名称。&lt;/li&gt;
+&lt;li&gt;@Autowired 支持在构造函数、方法、字段和参数上使用。&lt;code&gt;@Resource&lt;/code&gt; 主要用于字段和方法上的注入，不支持在构造函数或参数上使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;Bean-的作用域有哪些&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Bean-的作用域有哪些&#34;&gt;&lt;/a&gt;Bean 的作用域有哪些?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Singleton&lt;/strong&gt; Srping 中的bean 默认都是单例的，在整个 IoC 容器中只创建一个 bean 实例，无论多少次请求该bean 都返回同一个实例。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;prototype&lt;/strong&gt;  每次请求都会创建一个新的 bean 实例。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Request&lt;/strong&gt; 每次 Http 请求都会创建一个新的 bean 实例。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Session&lt;/strong&gt; 每个 Http Session 中会有一个 bean 实例。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;Bean-是线程安全的吗？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Bean-是线程安全的吗？&#34;&gt;&lt;/a&gt;Bean 是线程安全的吗？&lt;/h3&gt;
+&lt;p&gt;在 Spring 中 Bean 是否安全，取决于其作用域和状态。&lt;/p&gt;
+&lt;p&gt;单例 Bean 在 IoC 中只创建一个实例，这个实例会被多个线程共享。所以单例 Bean 不是线程安全的，如果考虑线程安全问题，可以使用同步（synchronization）或者无状态（stateless）设计。原型 Bean 因为每次请求都会创建新的实例，所以原型作用域的 Bean 是线程安全的。&lt;/p&gt;
+&lt;h3 id=&#34;Bean的生命周期了解么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Bean的生命周期了解么？&#34;&gt;&lt;/a&gt;Bean的生命周期了解么？&lt;/h3&gt;
+&lt;p&gt;bean 的生命周期分为五个阶段：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;调用构造器或者是通过工厂的方式创建 bean&lt;/li&gt;
+&lt;li&gt;给 bean 的属性注入值&lt;/li&gt;
+&lt;li&gt;调用初始化方法，进行初始化&lt;/li&gt;
+&lt;li&gt;bean 被完全初始化和配置，就可以使用了&lt;/li&gt;
+&lt;li&gt;当 IOC 容器关闭的时候，销毁 bean&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;谈谈对于AOP的了解&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#谈谈对于AOP的了解&#34;&gt;&lt;/a&gt;谈谈对于AOP的了解&lt;/h3&gt;
+&lt;p&gt;AOP（面向切面编程）将与业务无关但在多个模块中重复出现的通用逻辑（如事务管理、日志管理、权限控制等）从业务逻辑中分离出来。通过将这些横切关注点封装到独立的模块中，从而减少系统的重复代码，降低模块之间的耦合度，并提高系统的扩展性和可维护性。&lt;/p&gt;
+&lt;p&gt;Spring AOP 是通过动态代理来实现切面功能，&lt;strong&gt;JDK动态代理&lt;/strong&gt;：用于代理实现了接口的类。&lt;strong&gt;CGLIB代理&lt;/strong&gt;：用于代理没有实现接口的类，通过生成目标类的子类来实现。&lt;/p&gt;
+&lt;h3 id=&#34;Spring-AOP-和-AspectJ-AOP-有什么区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-AOP-和-AspectJ-AOP-有什么区别？&#34;&gt;&lt;/a&gt;Spring AOP 和 AspectJ AOP 有什么区别？&lt;/h3&gt;
+&lt;p&gt;Spring AOP 和 AspectJ AOP 的主要区别在于实现机制、功能范围和性能。Spring AOP 基于动态代理实现，主要适用于方法级别的拦截，配置简单，适合大多数常用的 AOP 场景。AspectJ AOP 则基于编译时和类加载时织入，支持更广泛的连接点(如构造函数、字段等)，功能更强大，但配置和使用相对复杂，性能也更高，适用于需要精细控制和高性能场景。&lt;/p&gt;
+&lt;h3 id=&#34;AspectJ-定义的通知类型有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#AspectJ-定义的通知类型有哪些？&#34;&gt;&lt;/a&gt;AspectJ 定义的通知类型有哪些？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;（前置通知）：在方法执行之前运行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;After&lt;/strong&gt;（后置通知）：在方法执行之后运行，无论方法是否成功完成。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AfterReturning&lt;/strong&gt;（返回通知）：在方法成功完成后运行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AfterThorowing&lt;/strong&gt;（异常通知）：在方法抛出异常后运行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Around&lt;/strong&gt;（环绕通知）：既可以在方法执行之前运行，也可以在方法执行之后运行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;多个切面执行顺序如何控制？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#多个切面执行顺序如何控制？&#34;&gt;&lt;/a&gt;多个切面执行顺序如何控制？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;通常使用&lt;code&gt;@Order&lt;/code&gt; 注解直接定义切面顺序&lt;/li&gt;
+&lt;li&gt;实现&lt;code&gt;Ordered&lt;/code&gt;接口重写&lt;code&gt;getOrder&lt;/code&gt;方法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;说说自己对于-Spring-MVC-了解？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#说说自己对于-Spring-MVC-了解？&#34;&gt;&lt;/a&gt;说说自己对于 Spring MVC 了解？&lt;/h3&gt;
+&lt;p&gt;SpringMVC是一个基于Java的实现了MVC设计模式的轻量级Web框架。它通过分离应用程序的业务逻辑、用户界面和控制流程，简化了Web应用程序的开发和维护。&lt;/p&gt;
+&lt;h3 id=&#34;SpringMVC-的工作流程是什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#SpringMVC-的工作流程是什么？&#34;&gt;&lt;/a&gt;SpringMVC 的工作流程是什么？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;客户端请求首先到达&lt;code&gt;DispatcherServlet&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DispatcherServlet&lt;/code&gt;通过&lt;code&gt;HandlerMapping&lt;/code&gt;找到具体的处理器（Controller）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DispatcherServlet&lt;/code&gt;通过&lt;code&gt;HandlerAdapter&lt;/code&gt;调用处理器中的具体方法。&lt;/li&gt;
+&lt;li&gt;处理器方法执行完毕后返回&lt;code&gt;ModelAndView&lt;/code&gt;对象，包含视图名称和模型数据。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DispatcherServlet&lt;/code&gt;使用&lt;code&gt;ViewResolver&lt;/code&gt;将视图名称解析为具体的视图。&lt;/li&gt;
+&lt;li&gt;最后，&lt;code&gt;DispatcherServlet&lt;/code&gt;将模型数据传递给视图，视图渲染并返回响应给客户端。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;客户端发送请求 -&amp;gt; 2. DispatcherServlet接收请求 -&amp;gt; 3. HandlerMapping查找控制器 -&amp;gt; 4. HandlerAdapter调用控制器方法 -&amp;gt; 5. Controller处理请求 -&amp;gt; 6. ViewResolver解析视图 -&amp;gt; 7. 视图渲染 -&amp;gt; 8. 返回响应给客户端&lt;/p&gt;
+&lt;h3 id=&#34;统一异常处理怎么做？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#统一异常处理怎么做？&#34;&gt;&lt;/a&gt;统一异常处理怎么做？&lt;/h3&gt;
+&lt;p&gt;使用注解的方式统一异常处理，使用&lt;code&gt;@controllerAdvice&lt;/code&gt;和&lt;code&gt;@ExceptionHandler&lt;/code&gt;这两个注解。&lt;/p&gt;
+&lt;h3 id=&#34;Spring-中用到了哪些设计模式？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-中用到了哪些设计模式？&#34;&gt;&lt;/a&gt;Spring 中用到了哪些设计模式？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;工厂设计模式&lt;/strong&gt;：Spring 使用工厂模式通过&lt;code&gt;BeanFactory&lt;/code&gt;、&lt;code&gt;ApplicationContext&lt;/code&gt;创建 bean 对象。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;代理设计模式&lt;/strong&gt;：SpringAOP 功能实现。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;单例设计模式&lt;/strong&gt;：Spring 中的 Bean 默认都是单例的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模版方法模式&lt;/strong&gt;：Spring 中&lt;code&gt;jdbcTemplate&lt;/code&gt;、&lt;code&gt;hibernateTemplate&lt;/code&gt;等以 Template 结尾的对数据库操作的类，都使用到了模版模式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;包装器设计模式&lt;/strong&gt;：项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们刚开业根据客户的需求能够动态切换不同的数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;观察者模式&lt;/strong&gt;：Spring 事件驱动模型就是观察者模式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;适配器模式&lt;/strong&gt;：Spring AOP 的增强或通知使用到了适配器模式、SpringMVC 中也用到了适配器模式适配&lt;code&gt;Controller&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;Spring-循环依赖了解吗，怎么解决？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-循环依赖了解吗，怎么解决？&#34;&gt;&lt;/a&gt;Spring 循环依赖了解吗，怎么解决？&lt;/h3&gt;
+&lt;p&gt;Spring 中的循环依赖就是指两个及以上的 Bean互相依赖，形成一个循环。比如 BeanA 依赖于 BenaB，而 BeanB 又依赖 BeanA。这种情况可能导致 Spring 容器无法正确初始化这些 Bean。&lt;/p&gt;
+&lt;h4 id=&#34;使用-setter-注入&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-setter-注入&#34;&gt;&lt;/a&gt;使用 setter 注入&lt;/h4&gt;
+&lt;p&gt;Spring 中可以通过 Setter 注入解决循环依赖问题，因为Spring 在注入 Bean 的属性时会先创建 Bean 的实例，然后再注入依赖的属性。这样可以保证即使两个 Bean 互相依赖，Spring 也能正确的初始化它们。&lt;/p&gt;
+&lt;h4 id=&#34;使用-Lazy-注解&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Lazy-注解&#34;&gt;&lt;/a&gt;使用 @Lazy 注解&lt;/h4&gt;
+&lt;p&gt;在其中一个 Bean 的依赖上使用&lt;code&gt;@Lazy&lt;/code&gt;注解，这样 Spring 容器在首次访问该 Bean 时才会进行初始化，避免循环依赖问题。&lt;/p&gt;
+&lt;h3 id=&#34;Spring-管理事务的方式有几种？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-管理事务的方式有几种？&#34;&gt;&lt;/a&gt;Spring 管理事务的方式有几种？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;编程式事务&lt;/strong&gt;：在代码中硬编码（在分布式系统中推荐使用）：通过&lt;code&gt;TranscationTemplate&lt;/code&gt;或者&lt;code&gt;TransactionManager&lt;/code&gt;在手动管理事务，事务范围过大会出现事务未提交导致超时，因此事务要比锁的粒度更小。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;声明式事务&lt;/strong&gt;：在 XML 配置文件中配置或者直接基于注解（单体应用或者简单业务系统推荐使用）：实际时通过 AOP 实现（基于&lt;code&gt;@Transcational&lt;/code&gt;的全注解方式使用最多）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;Srping事务中哪几种事务传播行为？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Srping事务中哪几种事务传播行为？&#34;&gt;&lt;/a&gt;Srping事务中哪几种事务传播行为？&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;事务传播行为是为了解决业务层方法之间互相调用的事务问题。&lt;/p&gt;
+&lt;p&gt;当事务方法被另一个事务方法调用时，必须制定事务应该如何传播。&lt;/p&gt;
+&lt;p&gt;例如：方法可能继续在现有的事务中运行，也可能开启一个新事物，并在自己的事物中运行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;TransactionDefinition.PROPAGATION_REQUIRED&lt;/code&gt;&lt;/strong&gt;：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事物。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;什么是-SpringBoot？为什么要有-SpringBoot？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-SpringBoot？为什么要有-SpringBoot？&#34;&gt;&lt;/a&gt;什么是 SpringBoot？为什么要有 SpringBoot？&lt;/h3&gt;
+&lt;p&gt;SpringBoot 可以简化 Spring 开发（减少配置文件、开箱即用 ）&lt;/p&gt;
+&lt;h3 id=&#34;如何在-SpringBoot-应用程序中使用-Jetty-而不是-Tomcat？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何在-SpringBoot-应用程序中使用-Jetty-而不是-Tomcat？&#34;&gt;&lt;/a&gt;如何在 SpringBoot 应用程序中使用 Jetty 而不是 Tomcat？&lt;/h3&gt;
+&lt;p&gt;SpringBoot（spirng-boot-starter-web）使用Tomcat 作为默认的嵌入式 servlet 容器，如果想使用 Jetty 的话，只需要修改 pom.xml （Maven）文件就可以了。&lt;/p&gt;
+&lt;h3 id=&#34;介绍一下-SpringBootApplication-注解&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#介绍一下-SpringBootApplication-注解&#34;&gt;&lt;/a&gt;介绍一下 @SpringBootApplication 注解&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;@SpringBootApplication&lt;/code&gt;可以看作是&lt;code&gt;@Configuration、@EnableAutoConfiguration、@ComponentScan&lt;/code&gt;注解的集合。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;@Configuration&lt;/code&gt;：运行在上下文中注册额外的&lt;code&gt;bean&lt;/code&gt;或导入其他配置类&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@EnableAutoConfiguration&lt;/code&gt;：启用 Springboot 的自动配置机制&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@ComponentScan&lt;/code&gt;：扫描被&lt;code&gt;@Component&lt;/code&gt;(&lt;code&gt;@Service&lt;/code&gt;,&lt;code&gt;@Controller&lt;/code&gt;)注解的 bean，默认会扫描该类所在的包下的所有的类。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;SpringBoot-的自动配置是如何实现的？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#SpringBoot-的自动配置是如何实现的？&#34;&gt;&lt;/a&gt;SpringBoot 的自动配置是如何实现的？&lt;/h3&gt;
+&lt;p&gt;当 SpringBoot 应用启动时，@EnableAutoConfiguration`注解会触发自动配置类的加载。&lt;/p&gt;
+&lt;p&gt;SpringBoot 会扫描&lt;code&gt;spring.factories&lt;/code&gt;文件，并加载列出自动配置类。然后 SpringBoot 会根据条件注解的判断，决定是否进行相应的配置。&lt;/p&gt;
+&lt;h3 id=&#34;SpringBoot-常用的两种配置文件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#SpringBoot-常用的两种配置文件&#34;&gt;&lt;/a&gt;SpringBoot 常用的两种配置文件&lt;/h3&gt;
+&lt;p&gt;我们可以通过&lt;code&gt;applcation.properties&lt;/code&gt;或者&lt;code&gt;application.yml&lt;/code&gt;对SpringBoot 程序进行简单的配置。如果不进行配置的话，就是使用默认配置。&lt;/p&gt;
+&lt;h3 id=&#34;什么是-YAML-YAML配置的优势在哪里？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-YAML-YAML配置的优势在哪里？&#34;&gt;&lt;/a&gt;什么是 YAML ? YAML配置的优势在哪里？&lt;/h3&gt;
+&lt;p&gt;YAML 是一种人类可读的数据序列化语言。它通常用于配置文件。与属性文件相比，如果我们想要在配置文件中添加复杂的树形，YAML 文件就更加结构化，而且更少混淆。可以看出 YAML 具有分层配置数据。&lt;/p&gt;
+&lt;p&gt;相比 Properties 配置文件，YAML 配置方式更加直观清晰，简洁明了，有层次感。&lt;/p&gt;
+&lt;p&gt;但是 YAML 配置文件不支持&lt;code&gt;@PropertySource&lt;/code&gt; 注解导入自定义的 YAML 配置。&lt;/p&gt;
+&lt;h3 id=&#34;SpringBoot-常用的读取配置文件的方法有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#SpringBoot-常用的读取配置文件的方法有哪些？&#34;&gt;&lt;/a&gt;SpringBoot 常用的读取配置文件的方法有哪些？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;通过&lt;code&gt;@Value(&amp;quot;$&amp;#123;property&amp;#125;&amp;quot;)&lt;/code&gt;读取比较简单的配置信息&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;@value&lt;/code&gt; 这种方式是不被推荐的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过&lt;code&gt;@ConfigurationProperties&lt;/code&gt;读取并与 bean 绑定&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过&lt;code&gt;@ConfigurationProperies&lt;/code&gt;读取并校验&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过&lt;code&gt;@PropertySource&lt;/code&gt;读取指定的 properties 文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;SpringBoot-如何做请求参数校验？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#SpringBoot-如何做请求参数校验？&#34;&gt;&lt;/a&gt;SpringBoot 如何做请求参数校验？&lt;/h3&gt;
+&lt;p&gt;使用 JSR 提供的校验注解&lt;/p&gt;
+&lt;h3 id=&#34;SpringBoot-如何监控系统运行状态？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#SpringBoot-如何监控系统运行状态？&#34;&gt;&lt;/a&gt;SpringBoot 如何监控系统运行状态？&lt;/h3&gt;
+&lt;p&gt;可以使用 SpringBoot Actuator 来对 SpringBoot 项目进行简单的监控。&lt;/p&gt;
+&lt;h3 id=&#34;SpringBoot-中如何实现定时任务？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#SpringBoot-中如何实现定时任务？&#34;&gt;&lt;/a&gt;SpringBoot 中如何实现定时任务？&lt;/h3&gt;
+&lt;p&gt;我们使用&lt;code&gt;@Scheduled&lt;/code&gt;注解就能很方便地创建一个定时任务。&lt;/p&gt;
+&lt;p&gt;还需要再 SpringBoot 启动类上添加&lt;code&gt;@EnableScheduling&lt;/code&gt;注解，这个注解的作用是发现&lt;code&gt;@Scheduled&lt;/code&gt;的任务并在后台执行该任务。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <title>Java集合总结</title>
+            <link>http://example.com/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <category>Java</category>
+            <category>笔记</category>
+            <pubDate>Sat, 22 Jun 2024 16:48:56 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;Java集合&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Java集合&#34;&gt;&lt;/a&gt;Java集合&lt;/h1&gt;
+&lt;h3 id=&#34;说说-List-Set-Queue-Map-四者的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#说说-List-Set-Queue-Map-四者的区别？&#34;&gt;&lt;/a&gt;说说 List, Set, Queue, Map 四者的区别？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;List&lt;/code&gt;：存储的元素是有序的、可重复的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Set&lt;/code&gt;：存储的元素不可重复。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Queue&lt;/code&gt;：按特定的排队规则来确定先后顺序，存储的元素是 有序的、可重复的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Map&lt;/code&gt;：使用键值对存储，&lt;code&gt;key&lt;/code&gt;是无序的、不可重复的，&lt;code&gt;value&lt;/code&gt;是无序的、可重复的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;List&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#List&#34;&gt;&lt;/a&gt;List&lt;/h2&gt;
+&lt;h3 id=&#34;ArrayList-和-Array-（数组）的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#ArrayList-和-Array-（数组）的区别？&#34;&gt;&lt;/a&gt;ArrayList 和 Array （数组）的区别？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ArrayList&lt;/strong&gt;：基于动态数组实现，提供了丰富的 API 方法，支持动态调整大小，适用于需要灵活增删元素的场景。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Array（数组）&lt;/strong&gt;：固定大小，提供基本的索引方式访问，适用于大小固定且对性能要求高的场景。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ArrayList-可以添加-null-吗？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#ArrayList-可以添加-null-吗？&#34;&gt;&lt;/a&gt;ArrayList 可以添加 null 吗？&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;ArrayList&lt;/code&gt;中可以存储任何类型的对象，包括&lt;code&gt;null&lt;/code&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;ArrayList和LinkedList的区别是什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#ArrayList和LinkedList的区别是什么？&#34;&gt;&lt;/a&gt;ArrayList和LinkedList的区别是什么？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ArrayList&lt;/strong&gt; 是基于动态数组实现的，适用于频繁访问元素的场景，插入和删除操作在中间位置性能比较差。&lt;/li&gt;
+&lt;li&gt;**LinkedList **是基于双向链表实现的，适用于频繁插入和删除元素的场景，随机访问性能较差，但插入和删除操作性能好。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ArrayList如何去重？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#ArrayList如何去重？&#34;&gt;&lt;/a&gt;ArrayList如何去重？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;使用HashSet&lt;/strong&gt;：通过&lt;code&gt;HashSet&lt;/code&gt;的特性去重，然后转换回&lt;code&gt;ArrayList&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用Stream API&lt;/strong&gt;：使用Java 8引入的Stream的&lt;code&gt;distinct()&lt;/code&gt;方法去重。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;手动遍历&lt;/strong&gt;：手动遍历&lt;code&gt;ArrayList&lt;/code&gt;并使用另一个&lt;code&gt;ArrayList&lt;/code&gt;存储不重复的元素。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;Map&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Map&#34;&gt;&lt;/a&gt;Map&lt;/h2&gt;
+&lt;h3 id=&#34;HashMap和LinkedHashMap的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#HashMap和LinkedHashMap的区别？&#34;&gt;&lt;/a&gt;HashMap和LinkedHashMap的区别？&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;LinkedHashMap&lt;/code&gt;继承自&lt;code&gt;HashMap&lt;/code&gt;，在哈希表的基础上增加了一条双向链表，用于维护插入顺序和访问顺序。&lt;/p&gt;
+&lt;h3 id=&#34;HashMap-和-HashTable-有什么区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#HashMap-和-HashTable-有什么区别？&#34;&gt;&lt;/a&gt;HashMap 和 HashTable 有什么区别？&lt;/h3&gt;
+&lt;p&gt;因为 HashMap 不支持同步操作，所以不是线程安全的，适用于单线程环境，HashTable是线程安全的，所有的方法都是同步的，适用于多线程环境，但是由于使用了同步机制，性能相对较低。&lt;/p&gt;
+&lt;h4 id=&#34;初始化容量和扩容方式：&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#初始化容量和扩容方式：&#34;&gt;&lt;/a&gt;初始化容量和扩容方式：&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HashMap&lt;/strong&gt;：默认初始容量为 16，负载因子为 0.75，扩容时，容量变为当前容量的两倍。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hashtable&lt;/strong&gt;：默认初始容量为 11，负载因子为 0.75，扩容时，容量变为当前容量的两倍+1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ConcurrentHashMap和Hashtable的区别&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#ConcurrentHashMap和Hashtable的区别&#34;&gt;&lt;/a&gt;ConcurrentHashMap和Hashtable的区别?&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;ConcurrentHashMap&lt;/code&gt;和&lt;code&gt;Hashtable&lt;/code&gt;都是线程安全的Map实现，但它们在实现机制、性能和使用场景方面有显著区别。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;实现机制&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ConcurrentHashMap&lt;/code&gt;采用分段锁（Segmented Locking）机制，将整个Map分为多个段，每个段独立加锁，从而提高并发性能。在Java 8中，使用了一种基于CAS（Compare-And-Swap）操作和细粒度锁的优化方案。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Hashtable&lt;/code&gt;使用全表锁（Synchronized），每次读写操作都需要获取整个Map的锁，确保线程安全性，但也导致性能瓶颈。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;性能&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ConcurrentHashMap&lt;/code&gt;性能优越，特别适合高并发环境。读操作几乎无锁，写操作通过分段锁或细粒度锁减少锁竞争，适用于读多写少的场景。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Hashtable&lt;/code&gt;性能较差，因为每个操作都需要全表锁，多个线程争用同一个锁，容易导致锁竞争和性能下降。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;锁粒度&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ConcurrentHashMap&lt;/code&gt;锁粒度小，允许更高的并发度，多个线程可以同时操作不同的段。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Hashtable&lt;/code&gt;锁粒度大，所有操作都需要获取全表锁，降低了并发能力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Null键和值&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ConcurrentHashMap&lt;/code&gt;不允许存储&lt;code&gt;null&lt;/code&gt;键和&lt;code&gt;null&lt;/code&gt;值，尝试存储&lt;code&gt;null&lt;/code&gt;会抛出&lt;code&gt;NullPointerException&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Hashtable&lt;/code&gt;也不允许存储&lt;code&gt;null&lt;/code&gt;键和&lt;code&gt;null&lt;/code&gt;值，存储&lt;code&gt;null&lt;/code&gt;时会抛出&lt;code&gt;NullPointerException&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;迭代器安全性&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ConcurrentHashMap&lt;/code&gt;提供弱一致性迭代器（Weakly Consistent Iterator），可以在迭代过程中进行并发修改，不会抛出&lt;code&gt;ConcurrentModificationException&lt;/code&gt;，但不保证读取到的值是最新的。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Hashtable&lt;/code&gt;提供快速失败的迭代器（Fail-Fast），在迭代过程中如果检测到结构性修改，会抛出&lt;code&gt;ConcurrentModificationException&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;总结：&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#总结：&#34;&gt;&lt;/a&gt;总结：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ConcurrentHashMap&lt;/strong&gt;适用于高并发环境，性能优越，采用分段锁或细粒度锁机制，支持弱一致性迭代器，但不允许&lt;code&gt;null&lt;/code&gt;键和值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hashtable&lt;/strong&gt;适用于低并发或简单多线程场景，使用全表锁机制，性能较差，提供快速失败的迭代器，也不允许&lt;code&gt;null&lt;/code&gt;键和值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;HashMap-的底层原理&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#HashMap-的底层原理&#34;&gt;&lt;/a&gt;HashMap 的底层原理&lt;/h3&gt;
+&lt;h5 id=&#34;1-数据结构&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-数据结构&#34;&gt;&lt;/a&gt;1. 数据结构&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;HashMap&lt;/code&gt;底层使用了数组和链表（在 Java 8 中引入了红黑树）来存储元素。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;数组&lt;/strong&gt;：是用来存储 HashMap 的桶，每个桶是一个链表的头结点。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;链表&lt;/strong&gt;：是处理哈希冲突（多个键的哈希值相同）。当冲突较少时使用链表存储。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;红黑树&lt;/strong&gt;：是当链表长度超过一定阈值（默认是 8）时，将链表转换为红黑树，以提高性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2-插入元素&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#2-插入元素&#34;&gt;&lt;/a&gt;2. 插入元素&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;计算键的哈希值，并确定在数组中的索引位置。&lt;/li&gt;
+&lt;li&gt;检查该位置是否已经有元素：
+&lt;ul&gt;
+&lt;li&gt;如果没有元素，直接插入。&lt;/li&gt;
+&lt;li&gt;如果已经有元素，使用链表或红黑树来解决冲突。检查链表中是否存在相同的键，如果存在则更新值；如果不存在则将新节点插入链表或红黑树中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;3-查找元素&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#3-查找元素&#34;&gt;&lt;/a&gt;3. 查找元素&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;计算键的哈希值，并确定在数组中的索引位置。&lt;/li&gt;
+&lt;li&gt;在该位置的链表或红黑树中查找匹配键，返回对应的值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;4-删除元素&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#4-删除元素&#34;&gt;&lt;/a&gt;4. 删除元素&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;计算键的哈希值，并确定在数组中的索引位置。&lt;/li&gt;
+&lt;li&gt;在该位置的链表或红黑树中找到匹配的键，删除对应的节点，并调整链表或红黑树结构。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;5-扩容机制&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#5-扩容机制&#34;&gt;&lt;/a&gt;5. 扩容机制&lt;/h5&gt;
+&lt;p&gt;当&lt;code&gt;HashMap&lt;/code&gt;中的元素数量超过数组容量的阈值（默认是数组容量的 0.75 倍）时，会进行扩容操作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建一个新的数组，容量是原来的两倍。&lt;/li&gt;
+&lt;li&gt;将原数组中的所有元素重新哈希并放入新数组中。&lt;/li&gt;
+&lt;li&gt;重新调整链表或红黑树结构。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#总结&#34;&gt;&lt;/a&gt;总结&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;数据结构&lt;/strong&gt;：&lt;code&gt;HashMap&lt;/code&gt;使用数组、链表和红黑树存储元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;哈希算法&lt;/strong&gt;：通过键的&lt;code&gt;hashCode()&lt;/code&gt;计算哈希值，并通过哈希值确定数组索引。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;插入元素&lt;/strong&gt;：根据哈希值确定插入位置，处理哈希冲突，必要时扩容。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;查找元素&lt;/strong&gt;：根据哈希值快速定位到数组索引，再通过链表或红黑树查找具体元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;删除元素&lt;/strong&gt;：定位到数组索引，删除链表或红黑树中的节点。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;扩容机制&lt;/strong&gt;：当元素数量超过阈值时，&lt;code&gt;HashMap&lt;/code&gt;会自动扩容，重新分配数组并调整元素位置。&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <title>Java基础总结</title>
+            <link>http://example.com/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <category>Java</category>
+            <category>笔记</category>
+            <pubDate>Fri, 21 Jun 2024 20:41:04 +0800</pubDate>
+            <description><![CDATA[ &lt;h4 id=&#34;对象相等和引用相等的区别&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#对象相等和引用相等的区别&#34;&gt;&lt;/a&gt;对象相等和引用相等的区别&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;对象相等&lt;/strong&gt;：比较的是内存中存放的内容是否相等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;引用相等&lt;/strong&gt;：比较的是它们指向的内存地址是否相等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;如果一个类没有声明构造方法，该程序能正确执行吗？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如果一个类没有声明构造方法，该程序能正确执行吗？&#34;&gt;&lt;/a&gt;如果一个类没有声明构造方法，该程序能正确执行吗？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;如果一个类没有声明构造方法也可以执行，因为一个类没有声明构造方法也会有一个默认的不带参数的构造方法。&lt;/li&gt;
+&lt;li&gt;如果添加了类的构造方法，无论是否有参，&lt;code&gt;Java&lt;/code&gt;都不会添加默认不带参数的构造方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;构造方法有哪些特点？是否可被重写？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#构造方法有哪些特点？是否可被重写？&#34;&gt;&lt;/a&gt;构造方法有哪些特点？是否可被重写？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;构造方法的特点&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;名字与类名相同。&lt;/li&gt;
+&lt;li&gt;没有返回值。&lt;/li&gt;
+&lt;li&gt;生成类的对象时自动执行，无需调用。&lt;br&gt;
+构造方法不能被重写，但是可以被重载。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;面向对象的三大特征&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#面向对象的三大特征&#34;&gt;&lt;/a&gt;面向对象的三大特征&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;封装&lt;/strong&gt;：封装是指将对象的状态（属性）和行为（方法）绑定在一起，并将其内部实现细节隐藏起来，只通过公开的接口与外界进行交互。封装的目的是保护对象的内部状态，防止外部直接访问和修改，从而提高代码的安全性和可维护性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;继承&lt;/strong&gt;：继承是指一个类（子类）继承另一个类（父类）的属性和方法，从而实现代码重用和逻辑扩展。通过继承，子类可以拥有父类的所有属性和方法，并可以对其进行扩展和修改。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多态&lt;/strong&gt;：多态是指同一个方法在不同的对象中具有不同的实现，从而实现接口的统一调用。多态性使得同一个方法调用可以根据对象的实际类型执行不同的操作。多态可以通过方法重载（编译时多态）和方法重写（运行时多态）来实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;接口和抽象类有什么共同点和区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#接口和抽象类有什么共同点和区别？&#34;&gt;&lt;/a&gt;接口和抽象类有什么共同点和区别？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;共同点&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;都不能被实例化。&lt;/li&gt;
+&lt;li&gt;都可以包含抽象方法。&lt;/li&gt;
+&lt;li&gt;都可以有默认的实现方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;区别&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;接口主要用于对类的行为进行约束，实现了某个接口就具有了对应的行为。&lt;/li&gt;
+&lt;li&gt;抽象类主要用于代码的复用，强调所属关系。&lt;/li&gt;
+&lt;li&gt;一个类只能继承一个类，但是可以实现多个接口。&lt;/li&gt;
+&lt;li&gt;接口中的成员变量只能是静态常量，不能被修改且必须有初始值。&lt;/li&gt;
+&lt;li&gt;抽象类的成员变量默认是包级私有的，可以在子类中被重新定义，也可以重新赋值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;深拷贝和浅拷贝的区别？什么是引用拷贝？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#深拷贝和浅拷贝的区别？什么是引用拷贝？&#34;&gt;&lt;/a&gt;深拷贝和浅拷贝的区别？什么是引用拷贝？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;浅拷贝&lt;/strong&gt;：创建一个新对象，它只复制对象中的基本数据类型，而引用类型只是复制引用，指向的是原对象中的同一个对象。浅拷贝可以用&lt;code&gt;Object&lt;/code&gt;的&lt;code&gt;clone()&lt;/code&gt;方法来实现。浅拷贝修改新对象的引用类型字段时，原对象的对应字段也会被修改。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;深拷贝&lt;/strong&gt;：不仅复制对象本身，还递归复制所有引用的对象，独立于原对象。深拷贝可以通过手动复制对象以及所有的引用对象，也可以使用序列化和反序列化来实现。修改新对象的引用类型字段时，原对象不会受到影响。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;引用拷贝&lt;/strong&gt;：直接复制对象的引用，使两个对象引用指向同一个内存地址。修改一个对象的内容，另一个对象也会同步变化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;和-equals-的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#和-equals-的区别？&#34;&gt;&lt;/a&gt;== 和 equals()的区别？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;对于基本数据类型，&lt;code&gt;==&lt;/code&gt; 比较的是值。&lt;/li&gt;
+&lt;li&gt;对于引用数据类型，&lt;code&gt;==&lt;/code&gt; 比较的是对象的内存地址。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;equals()&lt;/code&gt;没有重写时，等价于&lt;code&gt;==&lt;/code&gt;比较两个对象。&lt;/li&gt;
+&lt;li&gt;被重写时，一般都重写&lt;code&gt;equals()&lt;/code&gt;方法用来比较两个对象中的属性是否相等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;hashCode-有什么用？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#hashCode-有什么用？&#34;&gt;&lt;/a&gt;hashCode() 有什么用？&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;hashCode()&lt;/code&gt;方法用于生成对象的哈希码，哈希码是一个整数，能够确定该对象在哈希表中的索引位置。&lt;/p&gt;
+&lt;h4 id=&#34;为什么重写-equals-时必须重写-hashCode-方法？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么重写-equals-时必须重写-hashCode-方法？&#34;&gt;&lt;/a&gt;为什么重写 equals() 时必须重写 hashCode() 方法？&lt;/h4&gt;
+&lt;h5 id=&#34;equals-和hashCode-的合同（约定）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#equals-和hashCode-的合同（约定）&#34;&gt;&lt;/a&gt;&lt;code&gt;equals()&lt;/code&gt;和&lt;code&gt;hashCode()&lt;/code&gt;的合同（约定）&lt;/h5&gt;
+&lt;p&gt;如果两个对象根据&lt;code&gt;equals()&lt;/code&gt;方法是相等的，那么它们的&lt;code&gt;hashCode()&lt;/code&gt;值必须相同。&lt;/p&gt;
+&lt;p&gt;如果两个对象的&lt;code&gt;hashCode()&lt;/code&gt;值相同，它们不一定是相等的（但它们有可能是相等的）。&lt;/p&gt;
+&lt;h4 id=&#34;String、StringBuffer、StringBuilder-的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#String、StringBuffer、StringBuilder-的区别？&#34;&gt;&lt;/a&gt;String、StringBuffer、StringBuilder 的区别？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;String&lt;/strong&gt;：不可变的，因为不可变，所以它是线程安全的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;StringBuffer&lt;/strong&gt;：可变的，允许对字符串进行修改，线程安全，所有的方法都被&lt;code&gt;synchronized&lt;/code&gt;修饰。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;StringBuilder&lt;/strong&gt;：可变的，但不是线程安全的，没有被&lt;code&gt;synchronized&lt;/code&gt;修饰。由于没有同步机制，性能比&lt;code&gt;StringBuffer&lt;/code&gt;更高，适合单线程环境下使用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用场景&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;当字符串是固定不变的时候使用&lt;code&gt;String&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;当需要对字符串进行大量修改且在多线程环境下使用&lt;code&gt;StringBuffer&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;当需要对字符串进行大量修改且在单线程环境下使用&lt;code&gt;StringBuilder&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;字符串常量池的作用了解吗？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#字符串常量池的作用了解吗？&#34;&gt;&lt;/a&gt;字符串常量池的作用了解吗？&lt;/h4&gt;
+&lt;p&gt;字符串常量池的主要作用是优化内存使用和提高性能。字符串常量池是一块专门用来存储字符串常量的区域，主要目的是为了避免字符串的重复创建。当多个字符串具有相同内容时，&lt;code&gt;JVM&lt;/code&gt;会在常量池中共享相同的字符串实例，而不是为每个字符串创建新的对象。&lt;/p&gt;
+&lt;h4 id=&#34;Exception-和-Error-有什么区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Exception-和-Error-有什么区别？&#34;&gt;&lt;/a&gt;Exception 和 Error 有什么区别？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Exception&lt;/strong&gt;和&lt;strong&gt;Error&lt;/strong&gt;都是&lt;strong&gt;Throwable&lt;/strong&gt;的子类。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Exception&lt;/code&gt;是程序本身可以处理的异常，可以通过&lt;code&gt;catch&lt;/code&gt;来捕获。&lt;code&gt;Exception&lt;/code&gt;还可以分为&lt;code&gt;checked Exception&lt;/code&gt;和&lt;code&gt;Unchecked Exception&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Error&lt;/code&gt;是程序无法处理的异常。通常是JVM无法处理的系统级错误，例如内存不足、栈溢出。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;Checked-Exception-和-Unchecked-Exception-有什么区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Checked-Exception-和-Unchecked-Exception-有什么区别？&#34;&gt;&lt;/a&gt;Checked Exception 和 Unchecked Exception 有什么区别？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Checked Exception&lt;/strong&gt;必须被捕获或声明，否则编译器会报错。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unchecked Exception&lt;/strong&gt;也叫运行时异常，不强制要求处理，但最好捕获处理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;什么是泛型？有什么作用？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是泛型？有什么作用？&#34;&gt;&lt;/a&gt;什么是泛型？有什么作用？&lt;/h4&gt;
+&lt;p&gt;泛型是JDK5中引入的新特性，在编写类、接口和方法时可以使用类型参数，然后在使用时指定具体的类型。泛型允许在编译时检查类型，避免了运行时的类型错误。例如，创建一个List&lt;String&gt;(List集合指定了String类型参数)时，你就知道这个列表只能包含字符串。泛型消除强制类型转换，从集合中取出元素时不需要进行转换。Java编译器在编译时会移除所有的泛型类型信息&lt;/p&gt;
+&lt;h4 id=&#34;反射是什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#反射是什么？&#34;&gt;&lt;/a&gt;反射是什么？&lt;/h4&gt;
+&lt;p&gt;反射是&lt;code&gt;Java&lt;/code&gt;中的一种机制，允许程序在运行时获取有关自身的信息。并能动态地调用对象的方法、访问属性和创建对象实例。反射提供了动态操作类和对象的能力，是实现框架、工具和动态代理等技术的基础。&lt;/p&gt;
+&lt;h4 id=&#34;反射的优缺点？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#反射的优缺点？&#34;&gt;&lt;/a&gt;反射的优缺点？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;反射的优点&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;动态性和灵活性：反射允许我们在运行时加载和实例化类、调用方法和访问字段，让我们可以编写更通用和灵活的代码，特别是在插件系统或依赖注入框架中。&lt;/li&gt;
+&lt;li&gt;很多流行的&lt;code&gt;Java&lt;/code&gt;框架如&lt;code&gt;Spring&lt;/code&gt;都依赖反射来实现动态代理、依赖注入。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;反射的缺点&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;反射操作通常比直接调用方法或访问字段要慢，频繁使用反射可能会影响性能。&lt;/li&gt;
+&lt;li&gt;反射可以绕过Java的访问控制机制，可能破坏类的封装性和安全性。&lt;/li&gt;
+&lt;li&gt;使用反射的代码通常更复杂，反射相关的错误可能难以发现和修复。&lt;/li&gt;
+&lt;li&gt;反射跳过了编译时的类型检查，许多问题只能在运行时发现，增加了出错风险。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;何谓注解？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#何谓注解？&#34;&gt;&lt;/a&gt;何谓注解？&lt;/h4&gt;
+&lt;p&gt;注解是&lt;code&gt;Java&lt;/code&gt;中的一种元数据，用来提供代码的额外信息。注解不会直接影响代码的执行，但可以被编译器和运行环境使用，以进行编译检查、生成代码、动态处理等。注解使用@符号来声明，可以用于编译时的代码检查，例如&lt;code&gt;@Override&lt;/code&gt;注解可以确保方法重写。注解可以与工具结合使用，在编译时生成额外的代码，某些注解可以在运行时通过反射机制读取和处理，用于配置和控制程序行为。&lt;/p&gt;
+&lt;h4 id=&#34;什么是序列化？什么是反序列化？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是序列化？什么是反序列化？&#34;&gt;&lt;/a&gt;什么是序列化？什么是反序列化？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;序列化&lt;/strong&gt;：将一个Java对象转换成字节流的过程，可以将该对象保存到文件、数据库或者通过网络传输。序列化的主要目的是为了持久化对象状态和在不同Java虚拟机之间传输对象。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;反序列化&lt;/strong&gt;：将字节流恢复为Java对象的过程。通过反序列化使其恢复到序列化之前的状态。&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

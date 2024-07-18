@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://example.com</id>
+    <title>陆时忤的博客 • Posts by &#34;ssl&#34; tag</title>
+    <link href="http://example.com" />
+    <updated>2024-06-24T12:34:50.000Z</updated>
+    <category term="Blog" />
+    <category term="Java" />
+    <category term="笔记" />
+    <category term="MySQL" />
+    <category term="Linux" />
+    <category term="Mac" />
+    <category term="Maven" />
+    <category term="MyBatis" />
+    <category term="总结" />
+    <category term="RabbitMQ" />
+    <category term="Redis" />
+    <category term="Spring" />
+    <category term="Vue" />
+    <category term="前端" />
+    <category term="Alist" />
+    <category term="Homebrew" />
+    <category term="SSL" />
+    <category term="域名" />
+    <entry>
+        <id>http://example.com/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</id>
+        <title>自动续签证书</title>
+        <link rel="alternate" href="http://example.com/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"/>
+        <content type="html">&lt;h1 id=&#34;使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;/a&gt;使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书&lt;/h1&gt;
+&lt;p&gt;本文将介绍如何使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书。&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 是一个纯 Shell 脚本的 ACME 协议客户端，可以帮助你自动化管理 Let’s Encrypt 及其他 CA 颁发的证书。&lt;/p&gt;
+&lt;h2 id=&#34;下载并安装-acme-sh&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#下载并安装-acme-sh&#34;&gt;&lt;/a&gt;下载并安装 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;首先，下载并安装 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt;。在终端中执行以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; ~
+&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; https://get.acme.sh &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sh&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;youremail@domain.com&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装过程会执行以下几步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;将 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装到你的 &lt;strong&gt;home&lt;/strong&gt; 目录中：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;~&amp;#x2F;.acme.sh&amp;#x2F;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建一个 Shell 别名，方便使用。在 &lt;code&gt;.bashrc&lt;/code&gt; 中添加：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;alias&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;acme.sh&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=~&lt;/span&gt;/.acme.sh/acme.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;自动为你创建一个 cronjob，每天 0:00 自动检测所有的证书。如果证书即将过期，需要更新，则会自动更新证书。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;更高级的安装选项请参考：&lt;a href=&#34;https://github.com/Neilpang/acme.sh/wiki/How-to-install&#34;&gt;acme.sh 安装文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：安装过程不会影响现有系统的运行和文件，所有修改都位于 &lt;code&gt;~/.acme.sh/&lt;/code&gt; 目录中。&lt;/p&gt;
+&lt;h2 id=&#34;使用-DNS-验证方式生成-SSL-证书&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-DNS-验证方式生成-SSL-证书&#34;&gt;&lt;/a&gt;使用 DNS 验证方式生成 SSL 证书&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 实现了 ACME 协议支持的所有验证协议。一般有两种方式验证：HTTP 和 DNS 验证。这里我们使用 DNS 验证。&lt;/p&gt;
+&lt;h3 id=&#34;手动-DNS-验证&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#手动-DNS-验证&#34;&gt;&lt;/a&gt;手动 DNS 验证&lt;/h3&gt;
+&lt;p&gt;手动 DNS 验证方式不需要服务器或公网 IP，只需要在域名管理面板上添加一条 TXT 解析记录来验证域名所有权。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;运行以下命令，手动在域名上添加一条 TXT 解析记录：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;acme.sh &lt;span class=&#34;token parameter variable&#34;&gt;--issue&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--dns&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;mydomain.com&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+--yes-I-know-dns-manual-mode-enough-go-ahead-please&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 会生成相应的解析记录并显示出来，你需要在域名管理面板上添加该 TXT 记录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;等待解析完成后，重新生成证书：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;acme.sh &lt;span class=&#34;token parameter variable&#34;&gt;--renew&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;mydomain.com&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+--yes-I-know-dns-manual-mode-enough-go-ahead-please&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装生成的证书：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;acme.sh --install-cert &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;mydomain.com&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+--key-file /opt/nginx/key.pem  &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+--fullchain-file /opt/nginx/cert.pem &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#总结&#34;&gt;&lt;/a&gt;总结&lt;/h2&gt;
+&lt;p&gt;通过以上步骤，你已经成功使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理了 SSL 证书。虽然手动 DNS 验证方式不需要服务器或公网 IP，但每次请求新证书时都需要手动添加解析记录。如果希望实现自动化，可以使用支持 DNS API 的提供商并配置自动 DNS 验证。有关详细信息，请参考 &lt;a href=&#34;https://github.com/Neilpang/acme.sh/wiki/dnsapi&#34;&gt;acme.sh 的 DNS API 支持文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;希望本文对你有所帮助！&lt;/p&gt;
+</content>
+        <category term="Linux" />
+        <category term="SSL" />
+        <category term="域名" />
+        <updated>2024-06-24T12:34:50.000Z</updated>
+    </entry>
+</feed>

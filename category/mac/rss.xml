@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>陆时忤的博客 • Posts by &#34;mac&#34; category</title>
+        <link>http://example.com</link>
+        <description>要再见 不要再见</description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 14 Jul 2024 22:25:37 +0800</pubDate>
+        <lastBuildDate>Sun, 14 Jul 2024 22:25:37 +0800</lastBuildDate>
+        <category>Blog</category>
+        <category>Java</category>
+        <category>笔记</category>
+        <category>MySQL</category>
+        <category>Linux</category>
+        <category>Mac</category>
+        <category>Maven</category>
+        <category>MyBatis</category>
+        <category>总结</category>
+        <category>RabbitMQ</category>
+        <category>Redis</category>
+        <category>Spring</category>
+        <category>Vue</category>
+        <category>前端</category>
+        <category>Alist</category>
+        <category>Homebrew</category>
+        <category>SSL</category>
+        <category>域名</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</guid>
+            <title>Mac安装Maven</title>
+            <link>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</link>
+            <category>Mac</category>
+            <category>Maven</category>
+            <pubDate>Sun, 14 Jul 2024 22:25:37 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;Maven-环境设置：全面指南&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Maven-环境设置：全面指南&#34;&gt;&lt;/a&gt;Maven 环境设置：全面指南&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Apache Maven 是 Java 项目的强大项目管理工具，可以自动化并简化构建过程。本指南将指导你完成在机器上设置 Maven 的步骤，包括安装 Java、Maven 以及配置开发环境。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;前提条件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#前提条件&#34;&gt;&lt;/a&gt;前提条件&lt;/h2&gt;
+&lt;p&gt;在安装 Maven 之前，你需要确保计算机上已安装 Java 开发工具包（JDK）。Maven 3.3+ 需要 JDK 1.7 或更高版本才能运行。&lt;/p&gt;
+&lt;h3 id=&#34;1-检查-Java-安装&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-检查-Java-安装&#34;&gt;&lt;/a&gt;1. 检查 Java 安装&lt;/h3&gt;
+&lt;p&gt;打开终端并输入：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;java&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-version&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此命令将显示当前安装的 Java 版本。如果未安装 Java，请访问 &lt;a href=&#34;https://blog.aixcc.top//2024/07/14/Mac%E5%AE%89%E8%A3%85JDK&#34;&gt;Mac 安装 JDK&lt;/a&gt; 获取详细的安装教程&lt;/p&gt;
+&lt;h2 id=&#34;下载-Maven&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#下载-Maven&#34;&gt;&lt;/a&gt;下载 Maven&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;访问 &lt;a href=&#34;https://maven.apache.org/download.cgi&#34;&gt;Maven 下载页面&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151215642.webp&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载二进制归档文件（例如 &lt;code&gt;apache-maven-3.8.6-bin.tar.gz&lt;/code&gt;）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;安装-Maven&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Maven&#34;&gt;&lt;/a&gt;安装 Maven&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;将下载的归档文件解压到你选择的目录。在基于 Unix 的系统上，一个常见的目录是 &lt;code&gt;/opt&lt;/code&gt;。（也可以根据个人喜好选择其它目录）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;配置环境&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#配置环境&#34;&gt;&lt;/a&gt;配置环境&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用文本编辑器打开你的 shell 配置文件（例如，如果你使用 zsh，则为 &lt;code&gt;.zshrc&lt;/code&gt;）：&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt; ~/.zshrc&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;将 Maven 二进制文件添加到你的 PATH：&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;&lt;span class=&#34;token environment constant&#34;&gt;PATH&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/opt/apache-maven-3.8.6/bin:&lt;span class=&#34;token environment constant&#34;&gt;$PATH&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;保存文件并应用更改：&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;source&lt;/span&gt; ~/.zshrc&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;验证&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#验证&#34;&gt;&lt;/a&gt;验证&lt;/h3&gt;
+&lt;p&gt;要验证 Maven 是否正确安装，请键入：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;mvn &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此命令应显示 Maven 版本、Java 版本和操作系统详细信息。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151239977.webp&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置-Maven&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#配置-Maven&#34;&gt;&lt;/a&gt;配置 Maven&lt;/h2&gt;
+&lt;h3 id=&#34;设置本地仓库&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#设置本地仓库&#34;&gt;&lt;/a&gt;设置本地仓库&lt;/h3&gt;
+&lt;p&gt;Maven 将所有依赖项存储在本地。你可以在 Maven 配置文件中指定此仓库的自定义位置：&lt;/p&gt;
+&lt;p&gt;编辑 &lt;code&gt;/opt/apache-maven-3.8.6/conf/settings.xml&lt;/code&gt; 并添加以下内容：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-markup&#34; data-language=&#34;markup&#34;&gt;&lt;code class=&#34;language-markup&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;localRepository&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;存储路径&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;localRepository&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+# 例如&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;localRepository&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;/Users/lushiwu/Data/maven-repository&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;localRepository&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;配置仓库镜像&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#配置仓库镜像&#34;&gt;&lt;/a&gt;配置仓库镜像&lt;/h3&gt;
+&lt;p&gt;为了加速依赖项下载，配置如阿里云等镜像：&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;settings.xml&lt;/code&gt; 文件的 &lt;code&gt;&amp;lt;mirrors&amp;gt;&lt;/code&gt; 部分添加以下内容：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-markup&#34; data-language=&#34;markup&#34;&gt;&lt;code class=&#34;language-markup&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;mirror&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;id&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;aliyunmaven&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;id&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;mirrorOf&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;*&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;mirrorOf&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;name&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;阿里云 Maven 镜像&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;name&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;url&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;https://maven.aliyun.com/repository/public&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;url&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;mirror&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;在-IntelliJ-IDEA-中配置-Maven&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#在-IntelliJ-IDEA-中配置-Maven&#34;&gt;&lt;/a&gt;在 IntelliJ IDEA 中配置 Maven&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 IntelliJ IDEA。&lt;/li&gt;
+&lt;li&gt;导航至 &lt;code&gt;设置&lt;/code&gt; &amp;gt; &lt;code&gt;构建、执行、部署&lt;/code&gt; &amp;gt; &lt;code&gt;构建工具&lt;/code&gt; &amp;gt; &lt;code&gt;Maven&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;指定 &lt;code&gt;Maven 主目录&lt;/code&gt; 为 &lt;code&gt;/opt/apache-maven-3.8.6&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;设置 &lt;code&gt;用户设置文件&lt;/code&gt; 为你刚配置的 &lt;code&gt;settings.xml&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151215660.webp&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</guid>
+            <title>Mac安装JDK</title>
+            <link>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</link>
+            <category>Java</category>
+            <category>Mac</category>
+            <pubDate>Sun, 14 Jul 2024 22:13:37 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;Mac-上的-JDK-的安装与卸载&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Mac-上的-JDK-的安装与卸载&#34;&gt;&lt;/a&gt;Mac 上的 JDK 的安装与卸载&lt;/h1&gt;
+&lt;h2 id=&#34;从-AdoptOpenJDK-到-Temurin&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#从-AdoptOpenJDK-到-Temurin&#34;&gt;&lt;/a&gt;从 AdoptOpenJDK 到 Temurin&lt;/h2&gt;
+&lt;h2 id=&#34;卸载-AdoptOpenJDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#卸载-AdoptOpenJDK&#34;&gt;&lt;/a&gt;卸载 AdoptOpenJDK&lt;/h2&gt;
+&lt;p&gt;如果您的系统中安装了 AdoptOpenJDK，并且想要替换或升级 JDK 版本，可以按照以下步骤进行卸载：&lt;/p&gt;
+&lt;h3 id=&#34;步骤-1：卸载-AdoptOpenJDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-1：卸载-AdoptOpenJDK&#34;&gt;&lt;/a&gt;步骤 1：卸载 AdoptOpenJDK&lt;/h3&gt;
+&lt;p&gt;打开终端，并使用 Homebrew Cask 进行卸载。如果您尚未安装 Homebrew，请访问 &lt;a href=&#34;https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/&#34;&gt;Homebrew 安装指南&lt;/a&gt; 获取详细的安装教程。以卸载 adoptopenjdk8 为例，输入以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew remove &lt;span class=&#34;token parameter variable&#34;&gt;--cask&lt;/span&gt; adoptopenjdk8&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重复上述命令，替换 &lt;code&gt;adoptopenjdk8&lt;/code&gt; 为其他版本号以卸载其他版本的 JDK。&lt;/p&gt;
+&lt;h3 id=&#34;步骤-2：移除-Homebrew-的-Tap&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-2：移除-Homebrew-的-Tap&#34;&gt;&lt;/a&gt;步骤 2：移除 Homebrew 的 Tap&lt;/h3&gt;
+&lt;p&gt;完成所有版本的卸载后，执行以下命令来移除 AdoptOpenJDK 的 tap：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew untap AdoptOpenJDK/openjdk&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样就和 AdoptOpenJDK 完成了告别。&lt;/p&gt;
+&lt;h2 id=&#34;清除旧的-Oracle-JDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#清除旧的-Oracle-JDK&#34;&gt;&lt;/a&gt;清除旧的 Oracle JDK&lt;/h2&gt;
+&lt;p&gt;对于仍在使用 Oracle JDK 的用户，也是时候更新了。请按照以下步骤从您的系统中彻底清除 Oracle JDK：&lt;/p&gt;
+&lt;h3 id=&#34;步骤-3：删除旧的-JDK-文件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-3：删除旧的-JDK-文件&#34;&gt;&lt;/a&gt;步骤 3：删除旧的 JDK 文件&lt;/h3&gt;
+&lt;p&gt;删除 &lt;code&gt;/Library/Java/JavaVirtualMachines/&lt;/code&gt; 目录下的 JDK 文件夹。此外，清理以下位置的内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/Library/Internet Plug-Ins/JavaAppletPlugin.plugin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/Library/PreferencePanes/JavaControlPanel.prefPane&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~/Library/Application Support/Oracle/Java&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装-Temurin-JDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Temurin-JDK&#34;&gt;&lt;/a&gt;安装 Temurin JDK&lt;/h2&gt;
+&lt;p&gt;在清除旧的 JDK 之后，我们将安装 Temurin，这是 AdoptOpenJDK 的继任者，由 Eclipse Foundation 维护。&lt;/p&gt;
+&lt;h3 id=&#34;步骤-4：配置-Homebrew-Cask-版本&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-4：配置-Homebrew-Cask-版本&#34;&gt;&lt;/a&gt;步骤 4：配置 Homebrew Cask 版本&lt;/h3&gt;
+&lt;p&gt;首先，确保你的 Homebrew 能够访问所有 cask 版本：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew search temurin&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151217190.webp&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;步骤-5：安装-Temurin&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-5：安装-Temurin&#34;&gt;&lt;/a&gt;步骤 5：安装 Temurin&lt;/h3&gt;
+&lt;p&gt;现在，您可以安装所需版本的 Temurin。例如，要安装 Temurin@8，运行以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--cask&lt;/span&gt; temurin@8&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;结论&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#结论&#34;&gt;&lt;/a&gt;结论&lt;/h2&gt;
+&lt;p&gt;通过以上步骤，您可以在 Mac 上轻松切换 JDK 版本。无论是卸载旧的 AdoptOpenJDK 还是安装新的 Temurin JDK，都能确保您的开发环境与 Java 的最新进展保持同步。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</guid>
+            <title>安装Homebrew</title>
+            <link>http://example.com/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</link>
+            <category>Mac</category>
+            <category>Homebrew</category>
+            <pubDate>Sun, 14 Jul 2024 20:10:50 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;Mac-上安装-Homebrew：一步一步的指南&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Mac-上安装-Homebrew：一步一步的指南&#34;&gt;&lt;/a&gt;Mac 上安装 Homebrew：一步一步的指南&lt;/h1&gt;
+&lt;h2 id=&#34;什么是-Homebrew？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-Homebrew？&#34;&gt;&lt;/a&gt;什么是 Homebrew？&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; 是 Mac OS X 或 Linux 上的一款自由和开源的软件包管理系统，它简化了软件的安装过程。它允许用户方便地安装、配置、更新和卸载开源软件。它的设计理念是简化没有访问权限的用户在 macOS 上安装软件的过程。&lt;/p&gt;
+&lt;h2 id=&#34;安装前的准备&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装前的准备&#34;&gt;&lt;/a&gt;安装前的准备&lt;/h2&gt;
+&lt;p&gt;在安装 Homebrew 之前，请确保您的 Mac 符合以下条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;macOS 系统 (或 OS X 至少 10.10 及以上版本)&lt;/li&gt;
+&lt;li&gt;有权访问 macOS 的终端（Terminal）&lt;/li&gt;
+&lt;li&gt;安装了 Xcode 的命令行工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安装-Xcode-命令行工具&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Xcode-命令行工具&#34;&gt;&lt;/a&gt;安装 Xcode 命令行工具&lt;/h3&gt;
+&lt;p&gt;打开终端，输入以下命令来安装 Xcode 的命令行工具：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;xcode-select &lt;span class=&#34;token parameter variable&#34;&gt;--install&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;系统会弹出一个安装窗口，点击“安装”即可开始下载并安装所需的工具。&lt;/p&gt;
+&lt;h2 id=&#34;安装-Homebrew&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Homebrew&#34;&gt;&lt;/a&gt;安装 Homebrew&lt;/h2&gt;
+&lt;p&gt;完成 Xcode 命令行工具的安装后，您就可以安装 Homebrew 了。在终端中输入以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;/bin/bash &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-fsSL&lt;/span&gt; https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&#34;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此脚本将会下载并执行 Homebrew 的安装程序。过程中可能会要求您输入系统密码，因为安装涉及到对系统级目录的写入操作。&lt;/p&gt;
+&lt;h2 id=&#34;安装后的配置&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装后的配置&#34;&gt;&lt;/a&gt;安装后的配置&lt;/h2&gt;
+&lt;p&gt;安装完成后，按照终端中显示的指示，您可能需要添加 Homebrew 的路径到您的 shell 配置文件中。对于 bash 用户，可以添加以下行到 &lt;code&gt;~/.bash_profile&lt;/code&gt;：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; ~/.bash_profile
+&lt;span class=&#34;token builtin class-name&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;/opt/homebrew/bin/brew shellenv&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&#34;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果您使用的是 zsh，应添加到 &lt;code&gt;~/.zshrc&lt;/code&gt; 文件：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; ~/.zshrc
+&lt;span class=&#34;token builtin class-name&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;/opt/homebrew/bin/brew shellenv&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&#34;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;验证安装&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#验证安装&#34;&gt;&lt;/a&gt;验证安装&lt;/h2&gt;
+&lt;p&gt;安装完成后，重新启动终端或者运行以下命令来配置 shell：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;source&lt;/span&gt; ~/.bash_profile&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;或者，对于 zsh 用户：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;source&lt;/span&gt; ~/.zshrc&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后，您可以运行以下命令来检查 Homebrew 是否安装成功：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;brew doctor&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果显示 “Your system is ready to brew” 的信息，恭喜您，您已经成功安装并配置了 Homebrew。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151218277.webp&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;结论&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#结论&#34;&gt;&lt;/a&gt;结论&lt;/h2&gt;
+&lt;p&gt;通过安装 Homebrew，您的 Mac 将能够轻松地管理大量开源软件，从而大大提高您的生产效率和工作流程。无论您是开发人员还是日常用户，Homebrew 都是一个宝贵的工具，可以帮助您维护软件的最新状态。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2024/06/26/%E8%84%9A%E6%9C%AC/</guid>
+            <title>自定义 Alfred iTerm 脚本</title>
+            <link>http://example.com/2024/06/26/%E8%84%9A%E6%9C%AC/</link>
+            <category>Mac</category>
+            <pubDate>Wed, 26 Jun 2024 12:29:32 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;如何使用Alfred与iTerm2进行高效的命令行操作&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何使用Alfred与iTerm2进行高效的命令行操作&#34;&gt;&lt;/a&gt;如何使用Alfred与iTerm2进行高效的命令行操作&lt;/h2&gt;
+&lt;p&gt;这里是一篇关于如何使用 Alfred 和 iTerm2 集成自定义 AppleScript 的博客文章。这个集成可以极大地提升 macOS 用户在使用终端时的效率和便利性。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于 macOS 用户来说，Alfred 和 iTerm2 是两个非常强大的工具。Alfred 作为一款效率提升工具，能够通过快捷键和简单的命令来执行各种操作，而 iTerm2 则是一个功能丰富的替代 macOS 默认终端的应用。将这两者结合起来，你可以通过简单的 Alfred 命令来控制 iTerm2，执行脚本或者打开新的终端会话。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;自定义-Alfred-通过-iTerm2-执行脚本的步骤&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#自定义-Alfred-通过-iTerm2-执行脚本的步骤&#34;&gt;&lt;/a&gt;自定义 Alfred 通过 iTerm2 执行脚本的步骤&lt;/h3&gt;
+&lt;h4 id=&#34;第一步：获取脚本&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#第一步：获取脚本&#34;&gt;&lt;/a&gt;第一步：获取脚本&lt;/h4&gt;
+&lt;p&gt;首先，你需要&lt;a href=&#34;https://github.com/vitorgalvao/custom-alfred-iterm-scripts&#34;&gt;获取&lt;/a&gt;一个可以将 Alfred 和 iTerm2 集成的 AppleScript。这个脚本定义了如何通过 Alfred 命令来控制 iTerm2。使用以下命令可以将脚本直接复制到你的剪贴板：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--silent&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;https://raw.githubusercontent.com/vitorgalvao/custom-alfred-iterm-scripts/master/custom_iterm_script.applescript&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; pbcopy&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;第二步：配置-Alfred&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#第二步：配置-Alfred&#34;&gt;&lt;/a&gt;第二步：配置 Alfred&lt;/h4&gt;
+&lt;p&gt;打开 Alfred 的偏好设置：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 Alfred 的偏好设置（通过呼叫 Alfred 并按 &lt;code&gt;⌘,&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;导航到“功能” → “终端 / Shell” → “自定义”。&lt;/li&gt;
+&lt;li&gt;在“Application”下拉菜单中选择“自定义”，然后粘贴你的脚本到文本框中。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;第三步：自定义脚本行为&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#第三步：自定义脚本行为&#34;&gt;&lt;/a&gt;第三步：自定义脚本行为&lt;/h4&gt;
+&lt;p&gt;脚本的顶部有几个 &lt;code&gt;property&lt;/code&gt; 设置，可以根据你的需要进行调整：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;open_in_new_window&lt;/code&gt;: 设置为 &lt;code&gt;true&lt;/code&gt; 可以让每个 Alfred 命令在新窗口中打开。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;open_in_new_tab&lt;/code&gt;: 设置为 &lt;code&gt;true&lt;/code&gt; 会在新标签页中打开命令，&lt;code&gt;false&lt;/code&gt; 则在当前标签页重用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;iterm2_opens_quietly&lt;/code&gt;: 如果你的 iTerm2 配置为启动时不打开新窗口，将此设为 &lt;code&gt;true&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;第四步：使用&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#第四步：使用&#34;&gt;&lt;/a&gt;第四步：使用&lt;/h4&gt;
+&lt;p&gt;完成设置后，你可以通过 Alfred 运行任何命令。比如，通过 Alfred 的搜索框输入 &lt;code&gt;&amp;gt; ls&lt;/code&gt;，这个命令就会在 iTerm2 的当前窗口中执行，显示当前目录的内容。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;转载自GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/vitorgalvao/custom-alfred-iterm-scripts&#34;&gt;vitorgalvao/custom-alfred-iterm-scripts&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

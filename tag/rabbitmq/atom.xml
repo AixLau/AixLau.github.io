@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://example.com</id>
+    <title>陆时忤的博客 • Posts by &#34;rabbitmq&#34; tag</title>
+    <link href="http://example.com" />
+    <updated>2024-06-26T15:14:15.000Z</updated>
+    <category term="Blog" />
+    <category term="Java" />
+    <category term="笔记" />
+    <category term="MySQL" />
+    <category term="Linux" />
+    <category term="Mac" />
+    <category term="Maven" />
+    <category term="MyBatis" />
+    <category term="总结" />
+    <category term="RabbitMQ" />
+    <category term="Redis" />
+    <category term="Spring" />
+    <category term="Vue" />
+    <category term="前端" />
+    <category term="Alist" />
+    <category term="Homebrew" />
+    <category term="SSL" />
+    <category term="域名" />
+    <entry>
+        <id>http://example.com/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <title>RabbitMQ应用与总结</title>
+        <link rel="alternate" href="http://example.com/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <content type="html">&lt;h2 id=&#34;RabbitMQ常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#RabbitMQ常见面试题总结&#34;&gt;&lt;/a&gt;RabbitMQ常见面试题总结&lt;/h2&gt;
+&lt;h3 id=&#34;什么是-RabbitMQ？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-RabbitMQ？&#34;&gt;&lt;/a&gt;什么是 RabbitMQ？&lt;/h3&gt;
+&lt;p&gt;RabbitMQ 是一个开源的消息代理软件，广泛用于消息队列中。它实现了高级消息队列协议（AMQP），支持多重消息模式，能够在分布式系统重提供可靠的消息传递。。RabbitMQ 用于不同系统或服务之间异步传递消息，从而解耦生产者和消费者，增强系统的可扩展性和容错能力。&lt;/p&gt;
+&lt;h3 id=&#34;RabbitMQ-的组件有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#RabbitMQ-的组件有哪些？&#34;&gt;&lt;/a&gt;RabbitMQ 的组件有哪些？&lt;/h3&gt;
+&lt;h4 id=&#34;1-Producer（生产者）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-Producer（生产者）&#34;&gt;&lt;/a&gt;1. Producer（生产者）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;生产者是消息的发送方，它将消息发送到 RabbitMQ 交换器。&lt;/li&gt;
+&lt;li&gt;生成者负责创建和发送消息，不直接与队列通信。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-Exchange（交换器）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#2-Exchange（交换器）&#34;&gt;&lt;/a&gt;2. Exchange（交换器）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;交换器接收来自生产者的消息，并根据绑定规则将消息路由到一个或多个队列。&lt;/li&gt;
+&lt;li&gt;交换器有不同类型，主要包括：&lt;code&gt;direct&lt;/code&gt;、&lt;code&gt;topic&lt;/code&gt;、&lt;code&gt;fanout&lt;/code&gt;和&lt;code&gt;headers&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;Exchange-类型&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Exchange-类型&#34;&gt;&lt;/a&gt;Exchange 类型&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Direct Exchange&lt;/strong&gt;：根据消息的路由键完全匹配队列的绑定键进行路由。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Topic Exchange&lt;/strong&gt;：根据消息的路由键模式（使用通配符）进行路由，适用于主题匹配的场景。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fanout Exchange&lt;/strong&gt;：将消息广播到所有与该交换器绑定的队列，不考虑路由键。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Headers Exchange&lt;/strong&gt;：根据消息的头属性进行路由，相对较少使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-Queue（队列）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#3-Queue（队列）&#34;&gt;&lt;/a&gt;3. Queue（队列）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;队列是 RabbitMQ 存储消息的容器，消费者从队列中接收消息。&lt;/li&gt;
+&lt;li&gt;队列按照先进先出的顺序存储消息，可以持久化、镜像等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;4-Bindng（绑定）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#4-Bindng（绑定）&#34;&gt;&lt;/a&gt;4. Bindng（绑定）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;绑定是交换器与队列之间的连接，通过绑定将消息路由到特定的队列。&lt;/li&gt;
+&lt;li&gt;绑定可以包含路由键和绑定参数，用于匹配消息的路由键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;5-Consumer（消费者）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#5-Consumer（消费者）&#34;&gt;&lt;/a&gt;5. Consumer（消费者）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;消费者是消息的接收方，它从 RabbitMQ 队列中接收和处理消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消费者可以是主动拉取消息，也可以是被动推送消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;6-Connection（连接）和Channel（信道）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#6-Connection（连接）和Channel（信道）&#34;&gt;&lt;/a&gt;6. Connection（连接）和Channel（信道）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;连接是应用程序与 RabbitMQ 之间的 TCP 连接。&lt;/li&gt;
+&lt;li&gt;信道是建立在连接之上的虚拟连接，应用程序通过信道与 RabbitMQ 进行通信。信道是轻量级的，可以在一个连接上创建多个信道。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;7-Virtual-Host（虚拟机）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#7-Virtual-Host（虚拟机）&#34;&gt;&lt;/a&gt;7. Virtual Host（虚拟机）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;虚拟机用于隔离不同的应用，每个虚拟机都有自己的交换器、队列、绑定和权限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;8-Broker（代理服务器）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#8-Broker（代理服务器）&#34;&gt;&lt;/a&gt;8. Broker（代理服务器）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Broker 是 RabbitMQ 服务器实例，负责接收、存储和转发消息。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="Java" />
+        <category term="总结" />
+        <category term="RabbitMQ" />
+        <updated>2024-06-26T15:14:15.000Z</updated>
+    </entry>
+</feed>

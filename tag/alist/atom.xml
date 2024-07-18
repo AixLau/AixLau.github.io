@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://example.com</id>
+    <title>陆时忤的博客 • Posts by &#34;alist&#34; tag</title>
+    <link href="http://example.com" />
+    <updated>2024-07-02T11:34:29.000Z</updated>
+    <category term="Blog" />
+    <category term="Java" />
+    <category term="笔记" />
+    <category term="MySQL" />
+    <category term="Linux" />
+    <category term="Mac" />
+    <category term="Maven" />
+    <category term="MyBatis" />
+    <category term="总结" />
+    <category term="RabbitMQ" />
+    <category term="Redis" />
+    <category term="Spring" />
+    <category term="Vue" />
+    <category term="前端" />
+    <category term="Alist" />
+    <category term="Homebrew" />
+    <category term="SSL" />
+    <category term="域名" />
+    <entry>
+        <id>http://example.com/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</id>
+        <title>定期清理Alist备份文件</title>
+        <link rel="alternate" href="http://example.com/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/"/>
+        <content type="html">&lt;h1 id=&#34;使用-Alist-和-Bash-脚本实现自动化管理&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Alist-和-Bash-脚本实现自动化管理&#34;&gt;&lt;/a&gt;使用 Alist 和 Bash 脚本实现自动化管理&lt;/h1&gt;
+&lt;p&gt;在上次的博客中，我们介绍了如何使用 Alist 来定时备份服务器上的一些文件。本篇博客将介绍如何编写一个 Bash 脚本，定期清理这些备份文件，节省存储空间。&lt;/p&gt;
+&lt;h3 id=&#34;为什么需要定期清理备份文件？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么需要定期清理备份文件？&#34;&gt;&lt;/a&gt;为什么需要定期清理备份文件？&lt;/h3&gt;
+&lt;p&gt;备份文件在系统维护中起着重要作用，但如果不加管理，长期积累的备份文件会占用大量存储空间，甚至可能导致磁盘空间不足的问题。定期清理过期的备份文件，可以有效释放存储资源，确保系统的高效运行。&lt;/p&gt;
+&lt;h3 id=&#34;利用-Alist-提供的接口实现定期清理&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#利用-Alist-提供的接口实现定期清理&#34;&gt;&lt;/a&gt;利用 Alist 提供的接口实现定期清理&lt;/h3&gt;
+&lt;p&gt;Alist 提供了 &lt;code&gt;POST /api/fs/list&lt;/code&gt; 和 &lt;code&gt;POST /api/fs/remove&lt;/code&gt; 接口，分别用于列出文件和删除文件。通过这两个接口，我们可以方便地实现定期清理备份文件的功能。&lt;/p&gt;
+&lt;h3 id=&#34;脚本功能&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#脚本功能&#34;&gt;&lt;/a&gt;脚本功能&lt;/h3&gt;
+&lt;p&gt;该 Bash 脚本的主要功能包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;列出备份目录中的所有文件。&lt;/li&gt;
+&lt;li&gt;判断文件是否超过指定的时间（本文中设置为30天）。&lt;/li&gt;
+&lt;li&gt;删除超过指定时间的文件。&lt;/li&gt;
+&lt;li&gt;将操作结果记录到日志文件中。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;脚本实现&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#脚本实现&#34;&gt;&lt;/a&gt;脚本实现&lt;/h3&gt;
+&lt;p&gt;首先，在 &lt;code&gt;/opt/alist&lt;/code&gt; 目录下创建脚本文件和日志文件夹：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; /opt/alist/log
+&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; /opt/alist
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt; clean_backups.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在 &lt;code&gt;clean_backups.sh&lt;/code&gt; 文件中输入以下内容：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token shebang important&#34;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 设置日志文件&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;LOG_FILE&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/opt/alist/log/clean_back_&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +&lt;span class=&#34;token string&#34;&gt;&#39;%Y%m%d%H%M%S&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;.log&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 删除超过30天的日志文件&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; /opt/alist/log &lt;span class=&#34;token parameter variable&#34;&gt;-type&lt;/span&gt; f &lt;span class=&#34;token parameter variable&#34;&gt;-name&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;*.log&#34;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-mtime&lt;/span&gt; +30 &lt;span class=&#34;token parameter variable&#34;&gt;-exec&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;rm&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 函数：带时间戳的echo&lt;/span&gt;
+&lt;span class=&#34;token function-name function&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+  &lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;[&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +&lt;span class=&#34;token string&#34;&gt;&#39;%Y-%m-%d %H:%M:%S&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;] &lt;span class=&#34;token variable&#34;&gt;$1&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;tee&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$LOG_FILE&lt;/span&gt;&#34;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 读取token&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; /tmp/alist_token.txt &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+    &lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Token file not found.&#34;&lt;/span&gt;
+    &lt;span class=&#34;token builtin class-name&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;AUTH_TOKEN&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;cat&lt;/span&gt; /tmp/alist_token.txt&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 检查token是否读取成功&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-z&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$AUTH_TOKEN&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+    &lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Token is empty.&#34;&lt;/span&gt;
+    &lt;span class=&#34;token builtin class-name&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 配置参数&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;API_URL&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&amp;lt;Alist 地址&gt;&#34;&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;LIST_ENDPOINT&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$API_URL&lt;/span&gt;/api/fs/list&#34;&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;REMOVE_ENDPOINT&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$API_URL&lt;/span&gt;/api/fs/remove&#34;&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;BACKUP_PATH&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&amp;lt;Alist 存储路径&gt;&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 当前日期的时间戳（秒）&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;CURRENT_DATE&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%s&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 列出备份目录中的文件&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt;  &lt;span class=&#34;token parameter variable&#34;&gt;-X&lt;/span&gt; POST &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$LIST_ENDPOINT&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Authorization: &lt;span class=&#34;token variable&#34;&gt;$AUTH_TOKEN&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Content-Type: application/json&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&amp;#123;
+    &#34;path&#34;: &#34;&#39;&lt;/span&gt;&#34;$BACKUP_PATH&lt;span class=&#34;token string&#34;&gt;&#34;&#39;&#34;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&#39;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 从response中解析出文件名和创建时间&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;files&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$response&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; jq &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;.data.content[] | select(.is_dir == false) | &#34;\(.name) \(.created)&#34;&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 准备删除的文件列表&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;delete_files&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;read&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; name created&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;do&lt;/span&gt;
+  &lt;span class=&#34;token comment&#34;&gt;# 转换创建日期为时间戳（秒）&lt;/span&gt;
+  &lt;span class=&#34;token assign-left variable&#34;&gt;created_date&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$created&lt;/span&gt;&#34;&lt;/span&gt; +%s&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+  
+  &lt;span class=&#34;token comment&#34;&gt;# 计算文件的年龄 （天）&lt;/span&gt;
+  &lt;span class=&#34;token assign-left variable&#34;&gt;age_days&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$((&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CURRENT_DATE &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; created_date&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;86400&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;))&lt;/span&gt;&lt;/span&gt;
+
+  &lt;span class=&#34;token comment&#34;&gt;# 输出文件的年龄以供调试&lt;/span&gt;
+  log &lt;span class=&#34;token string&#34;&gt;&#34;File: &lt;span class=&#34;token variable&#34;&gt;$name&lt;/span&gt;, Created: &lt;span class=&#34;token variable&#34;&gt;$created&lt;/span&gt;, Age (days): &lt;span class=&#34;token variable&#34;&gt;$age_days&lt;/span&gt;&#34;&lt;/span&gt;
+
+  &lt;span class=&#34;token comment&#34;&gt;# 如果文件超过1天，添加到删除列表&lt;/span&gt;
+  &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$age_days&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-gt&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;30&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+    &lt;span class=&#34;token assign-left variable&#34;&gt;delete_files&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$name&lt;/span&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;done&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$files&lt;/span&gt;&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 输出将要删除的文件列表以供调试&lt;/span&gt;
+log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token for-or-select variable&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$&amp;#123;delete_files&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;@&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&amp;#125;&lt;/span&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;do&lt;/span&gt;
+  log &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&#34;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;done&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 删除过期文件&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$&amp;#123;&lt;span class=&#34;token operator&#34;&gt;#&lt;/span&gt;delete_files&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;@&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-gt&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+  &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token for-or-select variable&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$&amp;#123;delete_files&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;@&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&amp;#125;&lt;/span&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;do&lt;/span&gt;
+    &lt;span class=&#34;token assign-left variable&#34;&gt;delete_response&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-X&lt;/span&gt; POST &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$REMOVE_ENDPOINT&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+      &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Authorization: &lt;span class=&#34;token variable&#34;&gt;$AUTH_TOKEN&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+      &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Content-Type: application/json&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+      &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&amp;#123;
+          &#34;names&#34;: [&#34;&#39;&lt;/span&gt;&#34;$file&lt;span class=&#34;token string&#34;&gt;&#34;&#39;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;,
+          &lt;span class=&#34;token string&#34;&gt;&#34;dir&#34;&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&#39;&#34;&lt;/span&gt;$BACKUP_PATH&lt;span class=&#34;token string&#34;&gt;&#34;&#39;&#34;&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&#39;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&#34;token assign-left variable&#34;&gt;delete_code&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$delete_response&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; jq &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;.code&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&#34;token assign-left variable&#34;&gt;delete_message&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$delete_response&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; jq &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;.message&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$delete_code&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-eq&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;200&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+      log &lt;span class=&#34;token string&#34;&gt;&#34;Successfully deleted &lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&#34;&lt;/span&gt;
+    &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;
+      log &lt;span class=&#34;token string&#34;&gt;&#34;Failed to delete &lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;: &lt;span class=&#34;token variable&#34;&gt;$delete_message&lt;/span&gt;&#34;&lt;/span&gt;
+    &lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+  &lt;span class=&#34;token keyword&#34;&gt;done&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;
+  log &lt;span class=&#34;token string&#34;&gt;&#34;No files older than 15 day to delete.&#34;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;请将脚本中的 &lt;code&gt;API_URL&lt;/code&gt; 和 &lt;code&gt;BACKUP_PATH&lt;/code&gt; 替换为你自己的 Alist 地址和存储路径。&lt;/p&gt;
+&lt;p&gt;保存并退出编辑器（在 vim 中按 &lt;code&gt;Esc&lt;/code&gt;，然后输入 &lt;code&gt;:x&lt;/code&gt; 回车保存）。&lt;/p&gt;
+&lt;h3 id=&#34;详细解释&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#详细解释&#34;&gt;&lt;/a&gt;详细解释&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;设置日志文件&lt;/strong&gt;：日志文件名为 &lt;code&gt;clean_back_YYYYMMDDHHMMSS.log&lt;/code&gt;，存储在 &lt;code&gt;/opt/alist/log&lt;/code&gt; 目录中，记录脚本执行过程中的所有重要信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;定义 &lt;code&gt;log&lt;/code&gt; 函数&lt;/strong&gt;：这个函数为日志信息添加时间戳，并将日志信息同时输出到控制台和日志文件中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置 API 参数&lt;/strong&gt;：设置 API 的基础 URL、列出文件的端点和删除文件的端点，以及授权令牌和备份路径。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;获取当前时间戳&lt;/strong&gt;：使用 &lt;code&gt;date +%s&lt;/code&gt; 获取当前时间的 Unix 时间戳（以秒为单位）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;列出备份目录中的文件&lt;/strong&gt;：通过 Alist 提供的 &lt;code&gt;POST /api/fs/list&lt;/code&gt; 接口获取备份目录中的文件列表，并使用 &lt;code&gt;jq&lt;/code&gt; 提取文件名和创建日期。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;计算文件年龄并判断是否需要删除&lt;/strong&gt;：遍历文件列表，计算每个文件的年龄（以天为单位），如果文件超过30天，则将其添加到删除列表中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输出将要删除的文件列表&lt;/strong&gt;：记录需要删除的文件以供调试。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;删除过期文件&lt;/strong&gt;：通过 Alist 提供的 &lt;code&gt;POST /api/fs/remove&lt;/code&gt; 接口删除超过30天的文件，并根据响应结果记录删除操作的状态。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;运行脚本&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#运行脚本&#34;&gt;&lt;/a&gt;运行脚本&lt;/h3&gt;
+&lt;p&gt;将上述脚本保存为 &lt;code&gt;clean_backups.sh&lt;/code&gt;，然后给脚本添加执行权限并运行：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;chmod&lt;/span&gt; +x clean_backups.sh
+./clean_backups.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;定时任务&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#定时任务&#34;&gt;&lt;/a&gt;定时任务&lt;/h3&gt;
+&lt;p&gt;为了让脚本定期运行，可以使用 &lt;code&gt;cron&lt;/code&gt; 设置定时任务。例如，每天凌晨 2点运行脚本：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;crontab&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-e&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在 &lt;code&gt;crontab&lt;/code&gt; 编辑器中添加以下行：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; * * * /opt/alist/clean_backups.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;保存并退出编辑器（在 vim 中按 &lt;code&gt;Esc&lt;/code&gt;，然后输入 &lt;code&gt;:x&lt;/code&gt; 回车保存）。&lt;/p&gt;
+&lt;p&gt;通过这种方式，您可以自动化清理过期的备份文件，并将操作结果记录到日志文件中，方便日后查看和调试。定期清理备份文件有助于保持系统的整洁，确保服务器的高效运行。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;以上就是使用 Alist 和 Bash 脚本实现自动化清理备份文件的完整方法。希望这篇博客对您有所帮助！如果有任何问题或建议，欢迎在评论区留言讨论。&lt;/p&gt;
+</content>
+        <category term="Alist" />
+        <updated>2024-07-02T11:34:29.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://example.com/2024/06/18/%E4%BD%BF%E7%94%A8AList%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6/</id>
+        <title>使用AList定时备份文件</title>
+        <link rel="alternate" href="http://example.com/2024/06/18/%E4%BD%BF%E7%94%A8AList%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6/"/>
+        <content type="html">&lt;h1 id=&#34;使用AList定时备份文件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用AList定时备份文件&#34;&gt;&lt;/a&gt;使用AList定时备份文件&lt;/h1&gt;
+&lt;p&gt;本教程详细介绍如何使用 &lt;code&gt;AList&lt;/code&gt; 通过 &lt;code&gt;API&lt;/code&gt; 自动备份服务器文件，包括获取 &lt;code&gt;JWT Token&lt;/code&gt; 和自动上传备份文件至 &lt;code&gt;AList&lt;/code&gt; 服务器。&lt;/p&gt;
+&lt;h2 id=&#34;环境配置&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#环境配置&#34;&gt;&lt;/a&gt;环境配置&lt;/h2&gt;
+&lt;p&gt;首先，确保服务器上安装了 &lt;code&gt;curl&lt;/code&gt; 和 &lt;code&gt;jq&lt;/code&gt;。&lt;code&gt;curl&lt;/code&gt; 用于发送 &lt;code&gt;HTTP&lt;/code&gt; 请求，而 &lt;code&gt;jq&lt;/code&gt; 用于解析 &lt;code&gt;JSON&lt;/code&gt; 响应。&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; update &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; jq&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;设置环境变量&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#设置环境变量&#34;&gt;&lt;/a&gt;设置环境变量&lt;/h3&gt;
+&lt;p&gt;为确保脚本能自动读取 &lt;code&gt;AList&lt;/code&gt; 的用户名和密码，在服务器的环境变量中设置，避免在脚本中硬编码敏感信息，提高安全性。&lt;br&gt;
+通过在服务器的 &lt;code&gt;~/.bashrc&lt;/code&gt; 或 &lt;code&gt;~/.profile&lt;/code&gt; 文件中添加以下行来永久设置环境变量：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;ALIST_USERNAME&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&amp;lt;your_username&gt;&#34;&lt;/span&gt;
+&lt;span class=&#34;token builtin class-name&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;ALIST_PASSWORD&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&amp;lt;your_password&gt;&#34;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;确保替换 “your_username” 和 “your_password” 为你的 AList 登录用户名和密码。&lt;/p&gt;
+&lt;h3 id=&#34;应用环境变量&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#应用环境变量&#34;&gt;&lt;/a&gt;应用环境变量&lt;/h3&gt;
+&lt;p&gt;修改文件后，为使环境变量立即生效，执行以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;source&lt;/span&gt; ~/.bashrc&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;或者，如果你是在 ~/.profile 中设置的环境变量，使用：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;source&lt;/span&gt; ~/.profile&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样设置后，每当脚本执行时，它将能从这些环境变量中读取所需的用户名和密码。&lt;/p&gt;
+&lt;h2 id=&#34;获取-JWT-Token&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#获取-JWT-Token&#34;&gt;&lt;/a&gt;获取 JWT Token&lt;/h2&gt;
+&lt;p&gt;要与 &lt;code&gt;AList&lt;/code&gt; 的 &lt;code&gt;API&lt;/code&gt; 交互，首先需要获取一个有效的 JWT Token。以下步骤展示如何通过登录 &lt;code&gt;API&lt;/code&gt; 获取 &lt;code&gt;Token&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;创建-Token-获取脚本&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#创建-Token-获取脚本&#34;&gt;&lt;/a&gt;创建 Token 获取脚本&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;脚本位置&lt;/strong&gt;：在 &lt;code&gt;/opt/alist&lt;/code&gt; 目录下创建 &lt;code&gt;get_token.sh&lt;/code&gt; 脚本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;编辑脚本&lt;/strong&gt;：使用 &lt;code&gt;Vim&lt;/code&gt; 或任意文本编辑器创建和编辑 &lt;code&gt;get_token.sh&lt;/code&gt; 文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;touch&lt;/span&gt; /opt/alist/get_token.sh
+&lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt; /opt/alist/get_token.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;脚本内容&lt;/strong&gt;：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token shebang important&#34;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 读取环境变量中的用户名和密码&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;alist_username&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$ALIST_USERNAME&lt;/span&gt;&#34;&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;alist_password&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$ALIST_PASSWORD&lt;/span&gt;&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 使用curl发送POST请求获取token&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-k&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-X&lt;/span&gt; POST &lt;span class=&#34;token string&#34;&gt;&#34;http://&amp;lt;服务器域名或IP地址&gt;:&amp;lt;端口号&gt;/api/auth/login&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Content-Type: application/json&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&amp;#123;&lt;span class=&#34;token entity&#34; title=&#34;\&amp;quot;&#34;&gt;\&#34;&lt;/span&gt;username&lt;span class=&#34;token entity&#34; title=&#34;\&amp;quot;&#34;&gt;\&#34;&lt;/span&gt;:&lt;span class=&#34;token entity&#34; title=&#34;\&amp;quot;&#34;&gt;\&#34;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$alist_username&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\&amp;quot;&#34;&gt;\&#34;&lt;/span&gt;, &lt;span class=&#34;token entity&#34; title=&#34;\&amp;quot;&#34;&gt;\&#34;&lt;/span&gt;password&lt;span class=&#34;token entity&#34; title=&#34;\&amp;quot;&#34;&gt;\&#34;&lt;/span&gt;:&lt;span class=&#34;token entity&#34; title=&#34;\&amp;quot;&#34;&gt;\&#34;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$alist_password&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\&amp;quot;&#34;&gt;\&#34;&lt;/span&gt;&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 解析响应获取token&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 检查token是否成功获取&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-z&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$token&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$token&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;null&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+  &lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Failed to get token&#34;&lt;/span&gt;
+  &lt;span class=&#34;token builtin class-name&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;
+  &lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Token retrieved successfully&#34;&lt;/span&gt;
+  &lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$token&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; /tmp/alist_token.txt
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;赋予脚本执行权限&lt;/strong&gt;：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;chmod&lt;/span&gt; +x /opt/alist/get_token.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;上传备份文件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#上传备份文件&#34;&gt;&lt;/a&gt;上传备份文件&lt;/h2&gt;
+&lt;p&gt;使用 PUT &lt;code&gt;/api/fs/put&lt;/code&gt; API 上传备份文件。创建一个脚本自动执行备份和上传。&lt;/p&gt;
+&lt;h3 id=&#34;创建上传脚本&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#创建上传脚本&#34;&gt;&lt;/a&gt;创建上传脚本&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;脚本位置&lt;/strong&gt;：在 &lt;code&gt;/opt/alist&lt;/code&gt; 目录下创建 &lt;code&gt;upload_backup.sh&lt;/code&gt; 脚本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;编辑脚本&lt;/strong&gt;：使用 &lt;code&gt;Vim&lt;/code&gt; 或任意文本编辑器创建和编辑 &lt;code&gt;upload_backup.sh&lt;/code&gt; 文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;touch&lt;/span&gt; /opt/alist/upload_backup.sh
+&lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt; /opt/alist/upload_backup.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;脚本内容&lt;/strong&gt;：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token shebang important&#34;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 日志文件夹位置&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;LOG_FILE&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/opt/alist/log/upload_back_&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +&lt;span class=&#34;token string&#34;&gt;&#39;%Y%m%d%H%M%S&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;.log&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 函数：带时间戳的echo&lt;/span&gt;
+&lt;span class=&#34;token function-name function&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+  &lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;[&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +&lt;span class=&#34;token string&#34;&gt;&#39;%Y-%m-%d %H:%M:%S&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;] &lt;span class=&#34;token variable&#34;&gt;$1&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;tee&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$LOG_FILE&lt;/span&gt;&#34;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 删除超过30天的日志文件&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; /opt/alist/log &lt;span class=&#34;token parameter variable&#34;&gt;-type&lt;/span&gt; f &lt;span class=&#34;token parameter variable&#34;&gt;-name&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;*.log&#34;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-mtime&lt;/span&gt; +30 &lt;span class=&#34;token parameter variable&#34;&gt;-exec&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;rm&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 目标 API URL&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;API_URL&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;https://&amp;lt;alist服务器域名或IP地址&gt;/api/fs/put&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 要备份的目录&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;BACKUP_DIR&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/opt/alist/data&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 备份文件存储位置，包含时间戳&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;BACKUP_PATH&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/tmp/alist/alist_backup_&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d%H%M%S&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;.tar.gz&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 创建备份文件&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-czf&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$BACKUP_PATH&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-C&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;.&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 获取文件大小&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;CONTENT_LENGTH&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;stat&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; %s &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$BACKUP_PATH&lt;/span&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# URL编码的完整目标文件路径&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;ENCODED_FILE_PATH&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&amp;lt;alist上的路径&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;basename&lt;/span&gt; $BACKUP_PATH&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; jq &lt;span class=&#34;token parameter variable&#34;&gt;-sRr&lt;/span&gt; @uri&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 读取存储的token&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;cat&lt;/span&gt; /tmp/alist_token.txt&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 使用curl PUT请求上传文件&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-X&lt;/span&gt; PUT &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$API_URL&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Authorization: &lt;span class=&#34;token variable&#34;&gt;$token&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;File-Path: &lt;span class=&#34;token variable&#34;&gt;$ENCODED_FILE_PATH&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Content-Type: application/octet-stream&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-H&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Content-Length: &lt;span class=&#34;token variable&#34;&gt;$CONTENT_LENGTH&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$BACKUP_PATH&lt;/span&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 检查上传是否成功并记录日志&lt;/span&gt;
+log &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$response&lt;/span&gt;&#34;&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 删除本地临时备份文件&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;rm&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$BACKUP_PATH&lt;/span&gt;&#34;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$?&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-eq&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+    log &lt;span class=&#34;token string&#34;&gt;&#34;Local backup file deleted&#34;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;
+    log &lt;span class=&#34;token string&#34;&gt;&#34;Failed to delete local backup file&#34;&lt;/span&gt;
+    &lt;span class=&#34;token builtin class-name&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;赋予脚本执行权限&lt;/strong&gt;：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;chmod&lt;/span&gt; +x /opt/alist/upload_backup.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;设置定时任务&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#设置定时任务&#34;&gt;&lt;/a&gt;设置定时任务&lt;/h2&gt;
+&lt;p&gt;使用 &lt;code&gt;crontab -e&lt;/code&gt; 添加定时任务自动执行以上脚本。&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; * * * /opt/alist/get_token.sh
+&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; * * * /opt/alist/upload_backup.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这将在每天凌晨 1 点自动获取新的 &lt;code&gt;Token&lt;/code&gt;，并在五分钟后上传最新的备份文件。&lt;/p&gt;
+&lt;h2 id=&#34;日志记录&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#日志记录&#34;&gt;&lt;/a&gt;日志记录&lt;/h2&gt;
+&lt;p&gt;考虑将脚本的输出重定向到日志文件中，以便跟踪操作历史和错误。&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; * * * /opt/alist/get_token.sh &lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; /var/log/alist_backup.log &lt;span class=&#34;token operator&#34;&gt;&lt;span class=&#34;token file-descriptor important&#34;&gt;2&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token file-descriptor important&#34;&gt;&amp;amp;1&lt;/span&gt;
+&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; * * * /opt/alist/upload_backup.sh &lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; /var/log/alist_backup.log &lt;span class=&#34;token operator&#34;&gt;&lt;span class=&#34;token file-descriptor important&#34;&gt;2&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token file-descriptor important&#34;&gt;&amp;amp;1&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样，你就有了一个自动化的、具备日志记录功能的服务器文件备份系统，使用 &lt;code&gt;AList&lt;/code&gt; 完成文件的存储和备份。&lt;/p&gt;
+&lt;hr&gt;
+</content>
+        <category term="Alist" />
+        <updated>2024-06-18T08:37:21.000Z</updated>
+    </entry>
+</feed>
