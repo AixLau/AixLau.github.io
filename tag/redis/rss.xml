@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>陆时忤的博客 • Posts by &#34;redis&#34; tag</title>
-        <link>https://blog.aixcc.top</link>
+        <link>http://blog.aixcc.top</link>
         <description>要再见 不要再见</description>
         <language>zh-CN</language>
         <pubDate>Wed, 26 Jun 2024 20:18:49 +0800</pubDate>
@@ -26,9 +26,9 @@
         <category>SSL</category>
         <category>域名</category>
         <item>
-            <guid isPermalink="true">https://blog.aixcc.top/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <guid isPermalink="true">http://blog.aixcc.top/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</guid>
             <title>Redis应用与总结</title>
-            <link>https://blog.aixcc.top/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <link>http://blog.aixcc.top/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</link>
             <category>总结</category>
             <category>Redis</category>
             <pubDate>Wed, 26 Jun 2024 20:18:49 +0800</pubDate>

@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>陆时忤的博客 • Posts by &#34;homebrew&#34; tag</title>
-        <link>https://blog.aixcc.top</link>
+        <link>http://blog.aixcc.top</link>
         <description>要再见 不要再见</description>
         <language>zh-CN</language>
         <pubDate>Sun, 14 Jul 2024 20:10:50 +0800</pubDate>
@@ -26,9 +26,9 @@
         <category>SSL</category>
         <category>域名</category>
         <item>
-            <guid isPermalink="true">https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</guid>
+            <guid isPermalink="true">http://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</guid>
             <title>安装Homebrew</title>
-            <link>https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</link>
+            <link>http://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</link>
             <category>Mac</category>
             <category>Homebrew</category>
             <pubDate>Sun, 14 Jul 2024 20:10:50 +0800</pubDate>

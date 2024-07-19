@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.aixcc.top</id>
+    <id>http://blog.aixcc.top</id>
     <title>陆时忤的博客 • Posts by &#34;maven&#34; tag</title>
-    <link href="https://blog.aixcc.top" />
+    <link href="http://blog.aixcc.top" />
     <updated>2024-07-14T14:25:37.000Z</updated>
     <category term="Blog" />
     <category term="Java" />
@@ -23,9 +23,9 @@
     <category term="SSL" />
     <category term="域名" />
     <entry>
-        <id>https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</id>
+        <id>http://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</id>
         <title>Mac安装Maven</title>
-        <link rel="alternate" href="https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/"/>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/"/>
         <content type="html">&lt;h1 id=&#34;Maven-环境设置：全面指南&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Maven-环境设置：全面指南&#34;&gt;&lt;/a&gt;Maven 环境设置：全面指南&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Apache Maven 是 Java 项目的强大项目管理工具，可以自动化并简化构建过程。本指南将指导你完成在机器上设置 Maven 的步骤，包括安装 Java、Maven 以及配置开发环境。&lt;/p&gt;

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.aixcc.top</id>
+    <id>http://blog.aixcc.top</id>
     <title>陆时忤的博客 • Posts by &#34;linux&#34; category</title>
-    <link href="https://blog.aixcc.top" />
+    <link href="http://blog.aixcc.top" />
     <updated>2024-07-02T11:34:29.000Z</updated>
     <category term="Blog" />
     <category term="Java" />
@@ -23,9 +23,9 @@
     <category term="SSL" />
     <category term="域名" />
     <entry>
-        <id>https://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</id>
+        <id>http://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</id>
         <title>定期清理Alist备份文件</title>
-        <link rel="alternate" href="https://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/"/>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/"/>
         <content type="html">&lt;h1 id=&#34;使用-Alist-和-Bash-脚本实现自动化管理&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Alist-和-Bash-脚本实现自动化管理&#34;&gt;&lt;/a&gt;使用 Alist 和 Bash 脚本实现自动化管理&lt;/h1&gt;
 &lt;p&gt;在上次的博客中，我们介绍了如何使用 Alist 来定时备份服务器上的一些文件。本篇博客将介绍如何编写一个 Bash 脚本，定期清理这些备份文件，节省存储空间。&lt;/p&gt;
 &lt;h3 id=&#34;为什么需要定期清理备份文件？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么需要定期清理备份文件？&#34;&gt;&lt;/a&gt;为什么需要定期清理备份文件？&lt;/h3&gt;
@@ -168,9 +168,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/
         <updated>2024-07-02T11:34:29.000Z</updated>
     </entry>
     <entry>
-        <id>https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</id>
+        <id>http://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</id>
         <title>Linux安装MySQL</title>
-        <link rel="alternate" href="https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"/>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"/>
         <content type="html">&lt;h1 id=&#34;如何在Ubuntu上安装和配置MySQL并允许远程访问&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何在Ubuntu上安装和配置MySQL并允许远程访问&#34;&gt;&lt;/a&gt;如何在Ubuntu上安装和配置MySQL并允许远程访问&lt;/h1&gt;
 &lt;p&gt;在本文中，我们将介绍如何在Ubuntu上安装和配置MySQL，并设置允许远程访问。我们将从安装MySQL开始，然后进行基本的安全配置，修改MySQL配置文件以允许远程连接，并创建可以远程访问的用户。&lt;/p&gt;
 &lt;h2 id=&#34;步骤1：更新包列表并安装MySQL服务器&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤1：更新包列表并安装MySQL服务器&#34;&gt;&lt;/a&gt;步骤1：更新包列表并安装MySQL服务器&lt;/h2&gt;
@@ -242,9 +242,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
         <updated>2024-06-25T04:18:14.000Z</updated>
     </entry>
     <entry>
-        <id>https://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</id>
+        <id>http://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</id>
         <title>自动续签证书</title>
-        <link rel="alternate" href="https://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"/>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"/>
         <content type="html">&lt;h1 id=&#34;使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;/a&gt;使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书&lt;/h1&gt;
 &lt;p&gt;本文将介绍如何使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书。&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 是一个纯 Shell 脚本的 ACME 协议客户端，可以帮助你自动化管理 Let’s Encrypt 及其他 CA 颁发的证书。&lt;/p&gt;
 &lt;h2 id=&#34;下载并安装-acme-sh&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#下载并安装-acme-sh&#34;&gt;&lt;/a&gt;下载并安装 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt;&lt;/h2&gt;
@@ -302,9 +302,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
         <updated>2024-06-24T12:34:50.000Z</updated>
     </entry>
     <entry>
-        <id>https://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</id>
+        <id>http://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</id>
         <title>服务器安全设置</title>
-        <link rel="alternate" href="https://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"/>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"/>
         <content type="html">&lt;h3 id=&#34;1-更新系统&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-更新系统&#34;&gt;&lt;/a&gt;1. 更新系统&lt;/h3&gt;
 &lt;p&gt;首先，确保你的系统和所有安装的软件都是最新的。这不仅可以帮助你利用最新的功能，还可以修复已知的安全漏洞。使用以下命令进行更新：&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; update &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; upgrade&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;

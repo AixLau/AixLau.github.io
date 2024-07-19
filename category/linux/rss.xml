@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>陆时忤的博客 • Posts by &#34;linux&#34; category</title>
-        <link>https://blog.aixcc.top</link>
+        <link>http://blog.aixcc.top</link>
         <description>要再见 不要再见</description>
         <language>zh-CN</language>
         <pubDate>Tue, 02 Jul 2024 19:34:29 +0800</pubDate>
@@ -26,9 +26,9 @@
         <category>SSL</category>
         <category>域名</category>
         <item>
-            <guid isPermalink="true">https://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
+            <guid isPermalink="true">http://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
             <title>定期清理Alist备份文件</title>
-            <link>https://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
+            <link>http://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
             <category>Alist</category>
             <pubDate>Tue, 02 Jul 2024 19:34:29 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;使用-Alist-和-Bash-脚本实现自动化管理&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Alist-和-Bash-脚本实现自动化管理&#34;&gt;&lt;/a&gt;使用 Alist 和 Bash 脚本实现自动化管理&lt;/h1&gt;
@@ -171,9 +171,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</guid>
+            <guid isPermalink="true">http://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</guid>
             <title>Linux安装MySQL</title>
-            <link>https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</link>
+            <link>http://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</link>
             <category>MySQL</category>
             <category>Linux</category>
             <pubDate>Tue, 25 Jun 2024 12:18:14 +0800</pubDate>
@@ -245,9 +245,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</guid>
+            <guid isPermalink="true">http://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</guid>
             <title>自动续签证书</title>
-            <link>https://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</link>
+            <link>http://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</link>
             <category>Linux</category>
             <category>SSL</category>
             <category>域名</category>
@@ -305,9 +305,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</guid>
+            <guid isPermalink="true">http://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</guid>
             <title>服务器安全设置</title>
-            <link>https://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</link>
+            <link>http://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</link>
             <category>Linux</category>
             <pubDate>Mon, 24 Jun 2024 19:14:28 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;1-更新系统&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-更新系统&#34;&gt;&lt;/a&gt;1. 更新系统&lt;/h3&gt;

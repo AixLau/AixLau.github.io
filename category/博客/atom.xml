@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.aixcc.top</id>
+    <id>http://blog.aixcc.top</id>
     <title>陆时忤的博客 • Posts by &#34;博客&#34; category</title>
-    <link href="https://blog.aixcc.top" />
+    <link href="http://blog.aixcc.top" />
     <updated>2024-06-16T11:19:00.000Z</updated>
     <category term="Blog" />
     <category term="Java" />
@@ -23,9 +23,9 @@
     <category term="SSL" />
     <category term="域名" />
     <entry>
-        <id>https://blog.aixcc.top/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/</id>
+        <id>http://blog.aixcc.top/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/</id>
         <title>Hexo备份</title>
-        <link rel="alternate" href="https://blog.aixcc.top/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/"/>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/"/>
         <content type="html">&lt;h1 id=&#34;使用-Hexo-和-GitHub-实现多平台工作和数据备份&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Hexo-和-GitHub-实现多平台工作和数据备份&#34;&gt;&lt;/a&gt;使用 Hexo 和 GitHub 实现多平台工作和数据备份&lt;/h1&gt;
 &lt;h2 id=&#34;目标&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#目标&#34;&gt;&lt;/a&gt;目标&lt;/h2&gt;
 &lt;ul&gt;
@@ -102,9 +102,9 @@ hexo deploy&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;
         <updated>2024-06-16T11:19:00.000Z</updated>
     </entry>
     <entry>
-        <id>https://blog.aixcc.top/2024/06/16/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2Hexo/</id>
+        <id>http://blog.aixcc.top/2024/06/16/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2Hexo/</id>
         <title>安装部署Hexo</title>
-        <link rel="alternate" href="https://blog.aixcc.top/2024/06/16/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2Hexo/"/>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/06/16/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2Hexo/"/>
         <content type="html">&lt;h1 id=&#34;安装-Hexo-博客&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Hexo-博客&#34;&gt;&lt;/a&gt;安装 Hexo 博客&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://hexo.io/zh-cn/&#34;&gt;Hexo&lt;/a&gt; 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他标记语言）解析文章，并在几秒内利用靓丽的主题生成静态网页。&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装&#34;&gt;&lt;/a&gt;安装&lt;/h2&gt;
