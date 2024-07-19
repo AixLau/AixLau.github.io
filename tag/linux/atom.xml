@@ -16,10 +16,10 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Alist" />
-    <category term="Homebrew" />
     <category term="Vue" />
     <category term="前端" />
+    <category term="Alist" />
+    <category term="Homebrew" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
@@ -116,5 +116,234 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
         <category term="MySQL" />
         <category term="Linux" />
         <updated>2024-06-25T04:18:14.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</id>
+        <title>自动续签证书</title>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"/>
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151138383.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>自动续签证书</h1>
+            <p>&lt;h1 id=&#34;使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;/a&gt;使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书&lt;/h1&gt;
+&lt;p&gt;本文将介绍如何使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书。&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 是一个纯 Shell 脚本的 ACME 协议客户端，可以帮助你自动化管理 Let’s Encrypt 及其他 CA 颁发的证书。&lt;/p&gt;
+&lt;h2 id=&#34;下载并安装-acme-sh&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#下载并安装-acme-sh&#34;&gt;&lt;/a&gt;下载并安装 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;首先，下载并安装 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt;。在终端中执行以下命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; ~
+&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; https://get.acme.sh &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sh&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;youremail@domain.com&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装过程会执行以下几步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;将 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装到你的 &lt;strong&gt;home&lt;/strong&gt; 目录中：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;~&amp;#x2F;.acme.sh&amp;#x2F;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建一个 Shell 别名，方便使用。在 &lt;code&gt;.bashrc&lt;/code&gt; 中添加：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;alias&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;acme.sh&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=~&lt;/span&gt;/.acme.sh/acme.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;自动为你创建一个 cronjob，每天 0:00 自动检测所有的证书。如果证书即将过期，需要更新，则会自动更新证书。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;更高级的安装选项请参考：&lt;a href=&#34;https://github.com/Neilpang/acme.sh/wiki/How-to-install&#34;&gt;acme.sh 安装文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：安装过程不会影响现有系统的运行和文件，所有修改都位于 &lt;code&gt;~/.acme.sh/&lt;/code&gt; 目录中。&lt;/p&gt;
+&lt;h2 id=&#34;使用-DNS-验证方式生成-SSL-证书&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-DNS-验证方式生成-SSL-证书&#34;&gt;&lt;/a&gt;使用 DNS 验证方式生成 SSL 证书&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 实现了 ACME 协议支持的所有验证协议。一般有两种方式验证：HTTP 和 DNS 验证。这里我们使用 DNS 验证。&lt;/p&gt;
+&lt;h3 id=&#34;手动-DNS-验证&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#手动-DNS-验证&#34;&gt;&lt;/a&gt;手动 DNS 验证&lt;/h3&gt;
+&lt;p&gt;手动 DNS 验证方式不需要服务器或公网 IP，只需要在域名管理面板上添加一条 TXT 解析记录来验证域名所有权。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;运行以下命令，手动在域名上添加一条 TXT 解析记录：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;acme.sh &lt;span class=&#34;token parameter variable&#34;&gt;--issue&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--dns&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;mydomain.com&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+--yes-I-know-dns-manual-mode-enough-go-ahead-please&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 会生成相应的解析记录并显示出来，你需要在域名管理面板上添加该 TXT 记录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;等待解析完成后，重新生成证书：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;acme.sh &lt;span class=&#34;token parameter variable&#34;&gt;--renew&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;mydomain.com&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+--yes-I-know-dns-manual-mode-enough-go-ahead-please&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装生成的证书：&lt;/p&gt;
+ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;acme.sh --install-cert &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;mydomain.com&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+--key-file /opt/nginx/key.pem  &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+--fullchain-file /opt/nginx/cert.pem &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#总结&#34;&gt;&lt;/a&gt;总结&lt;/h2&gt;
+&lt;p&gt;通过以上步骤，你已经成功使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理了 SSL 证书。虽然手动 DNS 验证方式不需要服务器或公网 IP，但每次请求新证书时都需要手动添加解析记录。如果希望实现自动化，可以使用支持 DNS API 的提供商并配置自动 DNS 验证。有关详细信息，请参考 &lt;a href=&#34;https://github.com/Neilpang/acme.sh/wiki/dnsapi&#34;&gt;acme.sh 的 DNS API 支持文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;希望本文对你有所帮助！&lt;/p&gt;
+</p>
+            <p>Tags: 
+              
+                Linux 
+              
+                SSL 
+              
+                域名 
+              
+            </p>
+            <p>Categories: 
+              
+                Linux 
+              
+            </p>
+        ]]></content>
+        <category term="Linux" />
+        <category term="SSL" />
+        <category term="域名" />
+        <updated>2024-06-24T12:34:50.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</id>
+        <title>服务器安全设置</title>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"/>
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151158882.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>服务器安全设置</h1>
+            <p>&lt;h3 id=&#34;1-更新系统&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-更新系统&#34;&gt;&lt;/a&gt;1. 更新系统&lt;/h3&gt;
+&lt;p&gt;首先，确保你的系统和所有安装的软件都是最新的。这不仅可以帮助你利用最新的功能，还可以修复已知的安全漏洞。使用以下命令进行更新：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; update &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; upgrade&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2-安装防火墙&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#2-安装防火墙&#34;&gt;&lt;/a&gt;2. 安装防火墙&lt;/h3&gt;
+&lt;p&gt;Ubuntu默认带有&lt;code&gt;ufw&lt;/code&gt;（Uncomplicated Firewall）工具，它是一个对于初学者非常友好的防火墙管理工具。要启用并配置它，请执行以下步骤：&lt;/p&gt;
+&lt;p&gt;启用&lt;code&gt;ufw&lt;/code&gt;：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; ufw &lt;span class=&#34;token builtin class-name&#34;&gt;enable&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来，开放必要的端口。例如，对于SSH服务：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; ufw allow &lt;span class=&#34;token number&#34;&gt;22&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果你运行了Web服务器，你可能还需要开放HTTP和HTTPS端口：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; ufw allow &lt;span class=&#34;token number&#34;&gt;80&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; ufw allow &lt;span class=&#34;token number&#34;&gt;443&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3-配置SSH&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#3-配置SSH&#34;&gt;&lt;/a&gt;3. 配置SSH&lt;/h3&gt;
+&lt;p&gt;SSH是远程管理Linux服务器的标准方法。为了增强安全性，推荐使用SSH密钥对进行身份验证，而不是密码。&lt;/p&gt;
+&lt;h4 id=&#34;生成SSH密钥对&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#生成SSH密钥对&#34;&gt;&lt;/a&gt;生成SSH密钥对&lt;/h4&gt;
+&lt;p&gt;在客户端机器上，运行以下命令生成SSH密钥对：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;ssh-keygen &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; rsa &lt;span class=&#34;token parameter variable&#34;&gt;-b&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4096&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;将公钥添加到服务器&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#将公钥添加到服务器&#34;&gt;&lt;/a&gt;将公钥添加到服务器&lt;/h4&gt;
+&lt;p&gt;使用&lt;code&gt;ssh-copy-id&lt;/code&gt;命令将公钥复制到服务器上：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;ssh-copy-id &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; ~/.ssh/id_rsa.pub 用户名@服务器IP&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;禁用密码认证&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#禁用密码认证&#34;&gt;&lt;/a&gt;禁用密码认证&lt;/h4&gt;
+&lt;p&gt;编辑服务器上的&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;文件，设置以下内容：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;PasswordAuthentication no&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后重启SSH服务以应用更改：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl restart sshd&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;4-配置Fail2Ban&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#4-配置Fail2Ban&#34;&gt;&lt;/a&gt;4. 配置Fail2Ban&lt;/h3&gt;
+&lt;p&gt;Fail2Ban可以帮助保护服务器免受暴力破解攻击。它通过监控日志文件中的失败登录尝试来工作，并封锁显示恶意行为的IP地址。&lt;/p&gt;
+&lt;h4 id=&#34;安装Fail2Ban&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装Fail2Ban&#34;&gt;&lt;/a&gt;安装Fail2Ban&lt;/h4&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; fail2ban&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;配置基本保护&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#配置基本保护&#34;&gt;&lt;/a&gt;配置基本保护&lt;/h4&gt;
+&lt;p&gt;创建或编辑&lt;code&gt;/etc/fail2ban/jail.local&lt;/code&gt;文件，为SSH服务添加基本保护：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-ini&#34; data-language=&#34;ini&#34;&gt;&lt;code class=&#34;language-ini&#34;&gt;&lt;span class=&#34;token section&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token section-name selector&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 全局设置&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;bantime&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;1h        # 封禁时间：1小时&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;findtime&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;10m      # 在此时间内连续失败的尝试视为攻击&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;maxretry&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;5        # 允许失败次数&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;ignoreip&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;127.0.0.1/8 # 忽略本地IP地址的封禁&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 指定要使用的日志文件&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;backend&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;auto      # 自动确定日志文件类型&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;usedns&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;warn       # 使用DNS解析&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;logencoding&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;auto  # 日志文件的编码&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;enabled&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;false     # 默认不启用任何规则&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# SSH 服务&lt;/span&gt;
+&lt;span class=&#34;token section&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token section-name selector&#34;&gt;sshd&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;enabled&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;true&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;port&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;ssh&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;filter&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;sshd&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;logpath&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;/var/log/auth.log&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;maxretry&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;3&lt;/span&gt;
+&lt;span class=&#34;token key attr-name&#34;&gt;findtime&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token value attr-value&#34;&gt;5m&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启Fail2Ban服务以应用配置：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl restart fail2ban
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl &lt;span class=&#34;token builtin class-name&#34;&gt;enable&lt;/span&gt; fail2ban&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;p&gt;通过上述步骤，你的服务器将具备较强的基本安全保护。务必定期检查和更新你的系统及应用程序，保持警惕，适时应对新的安全威胁。&lt;/p&gt;
+</p>
+            <p>Tags: 
+              
+                Linux 
+              
+            </p>
+            <p>Categories: 
+              
+                Linux 
+              
+            </p>
+        ]]></content>
+        <category term="Linux" />
+        <updated>2024-06-24T11:14:28.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://blog.aixcc.top/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/</id>
+        <title>Vaultwarden搭建</title>
+        <link rel="alternate" href="http://blog.aixcc.top/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/"/>
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151200065.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>Vaultwarden搭建</h1>
+            <p>&lt;h1 id=&#34;如何搭建-Vaultwarden-服务器：一步步教程&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何搭建-Vaultwarden-服务器：一步步教程&#34;&gt;&lt;/a&gt;如何搭建 Vaultwarden 服务器：一步步教程&lt;/h1&gt;
+&lt;p&gt;Vaultwarden 是一个轻量级的 Bitwarden 服务器实现，它使用 Rust 编写，可以方便地在几乎任何地方运行。这是一个非常适合个人或小团队的密码管理解决方案。在本教程中，我们将详细介绍如何使用 Docker Compose 在你的服务器上部署 Vaultwarden。&lt;/p&gt;
+&lt;h2 id=&#34;前提条件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#前提条件&#34;&gt;&lt;/a&gt;前提条件&lt;/h2&gt;
+&lt;p&gt;在开始之前，确保你的系统已经安装了 &lt;strong&gt;Docker&lt;/strong&gt; 和 &lt;strong&gt;Docker Compose&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;步骤-1-创建数据存储目录&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-1-创建数据存储目录&#34;&gt;&lt;/a&gt;步骤 1: 创建数据存储目录&lt;/h2&gt;
+&lt;p&gt;首先，我们需要为 Vaultwarden 创建一个目录来存储数据。这将确保即使容器被删除，数据也会保持安全。&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; /opt/docker_data/vaultwarden
+&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; /opt/docker_data/vaultwarden&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;步骤-2-创建-Docker-Compose-文件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-2-创建-Docker-Compose-文件&#34;&gt;&lt;/a&gt;步骤 2: 创建 Docker Compose 文件&lt;/h2&gt;
+&lt;p&gt;接下来，我们将创建一个 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件来定义 Vaultwarden 服务的配置。使用你喜欢的文本编辑器创建文件：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt; docker-compose.yml&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后，将以下配置粘贴到 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件中：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token key atrule&#34;&gt;version&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;3&#39;&lt;/span&gt;
+
+&lt;span class=&#34;token key atrule&#34;&gt;services&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;token key atrule&#34;&gt;vaultwarden&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+    &lt;span class=&#34;token key atrule&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; vaultwarden
+    &lt;span class=&#34;token key atrule&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; vaultwarden/server&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;latest
+    &lt;span class=&#34;token key atrule&#34;&gt;restart&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; unless&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;stopped
+    &lt;span class=&#34;token key atrule&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; ./data/&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;/data/
+    &lt;span class=&#34;token key atrule&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; 8080&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;80&lt;/span&gt;
+    &lt;span class=&#34;token key atrule&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; DOMAIN=https&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;//subdomain.yourdomain.com &lt;span class=&#34;token comment&#34;&gt;# 关联的域名。&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; LOGIN_RATELIMIT_MAX_BURST=10 &lt;span class=&#34;token comment&#34;&gt;# 最大请求次数。&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; LOGIN_RATELIMIT_SECONDS=60 &lt;span class=&#34;token comment&#34;&gt;# 平均秒数&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; ADMIN_RATELIMIT_MAX_BURST=10 &lt;span class=&#34;token comment&#34;&gt;# admin最大请求次数。&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; ADMIN_RATELIMIT_SECONDS=60 &lt;span class=&#34;token comment&#34;&gt;# 平均秒数&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; ADMIN_SESSION_LIFETIME=20 &lt;span class=&#34;token comment&#34;&gt;# 会话持续时间&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; ADMIN_TOKEN=YourReallyStrongAdminTokenHere &lt;span class=&#34;token comment&#34;&gt;# 管理员面板的令牌&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; SENDS_ALLOWED=true  &lt;span class=&#34;token comment&#34;&gt;# 是否允许用户创建Bitwarden发送&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; EMERGENCY_ACCESS_ALLOWED=true &lt;span class=&#34;token comment&#34;&gt;# 控制用户是否可以启用紧急访问其账户的权限&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; WEB_VAULT_ENABLED=true &lt;span class=&#34;token comment&#34;&gt;# 网络保险库是否可访问。&lt;/span&gt;
+      &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; SIGNUPS_ALLOWED=true &lt;span class=&#34;token comment&#34;&gt;# 新用户是否可以在没有邀请的情况下注册账户&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;步骤-3-启动-Vaultwarden&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤-3-启动-Vaultwarden&#34;&gt;&lt;/a&gt;步骤 3: 启动 Vaultwarden&lt;/h2&gt;
+&lt;p&gt;配置好 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件后，使用以下命令启动 Vaultwarden 服务：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;docker-compose&lt;/span&gt; up &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个命令会在后台启动 Vaultwarden 服务。可以通过访问 &lt;code&gt;http://localhost:8080&lt;/code&gt; 或在配置文件中指定的域名来访问 Vaultwarden。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#总结&#34;&gt;&lt;/a&gt;总结&lt;/h2&gt;
+&lt;p&gt;恭喜！你现在已经成功在你的服务器上部署了 Vaultwarden。通过使用 Docker Compose，你可以轻松管理 Vaultwarden 服务的配置和更新。继续探索 Vaultwarden 的其他功能，为你的密码管理提供更强大的支持！&lt;/p&gt;
+</p>
+            <p>Tags: 
+              
+                Linux 
+              
+            </p>
+            <p>Categories: 
+              
+                Linux 
+              
+            </p>
+        ]]></content>
+        <category term="Linux" />
+        <updated>2024-06-24T08:56:37.000Z</updated>
     </entry>
 </feed>
