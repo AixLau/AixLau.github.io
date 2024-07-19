@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>https://blog.aixcc.top</id>
     <title>陆时忤的博客 • Posts by &#34;spring&#34; tag</title>
-    <link href="http://example.com" />
+    <link href="https://blog.aixcc.top" />
     <updated>2024-06-22T10:11:04.000Z</updated>
     <category term="Blog" />
     <category term="Java" />
@@ -16,16 +16,16 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
+    <category term="Alist" />
     <category term="Vue" />
     <category term="前端" />
-    <category term="Alist" />
     <category term="Homebrew" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
-        <id>http://example.com/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <id>https://blog.aixcc.top/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>Spring应用与总结</title>
-        <link rel="alternate" href="http://example.com/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/"/>
         <content type="html">&lt;h2 id=&#34;Spring-常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-常见面试题总结&#34;&gt;&lt;/a&gt;Spring 常见面试题总结&lt;/h2&gt;
 &lt;h3 id=&#34;什么是Spring框架？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是Spring框架？&#34;&gt;&lt;/a&gt;什么是Spring框架？&lt;/h3&gt;
 &lt;p&gt;Spring 是一款开源的轻量级Java开发框架，提高开发人员的开发效率以及系统的维护性。&lt;/p&gt;

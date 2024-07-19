@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>https://blog.aixcc.top</id>
     <title>陆时忤的博客 • Posts by &#34;linux&#34; tag</title>
-    <link href="http://example.com" />
+    <link href="https://blog.aixcc.top" />
     <updated>2024-06-25T04:18:14.000Z</updated>
     <category term="Blog" />
     <category term="Java" />
@@ -16,16 +16,16 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
+    <category term="Alist" />
     <category term="Vue" />
     <category term="前端" />
-    <category term="Alist" />
     <category term="Homebrew" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
-        <id>http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</id>
+        <id>https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</id>
         <title>Linux安装MySQL</title>
-        <link rel="alternate" href="http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"/>
         <content type="html">&lt;h1 id=&#34;如何在Ubuntu上安装和配置MySQL并允许远程访问&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何在Ubuntu上安装和配置MySQL并允许远程访问&#34;&gt;&lt;/a&gt;如何在Ubuntu上安装和配置MySQL并允许远程访问&lt;/h1&gt;
 &lt;p&gt;在本文中，我们将介绍如何在Ubuntu上安装和配置MySQL，并设置允许远程访问。我们将从安装MySQL开始，然后进行基本的安全配置，修改MySQL配置文件以允许远程连接，并创建可以远程访问的用户。&lt;/p&gt;
 &lt;h2 id=&#34;步骤1：更新包列表并安装MySQL服务器&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤1：更新包列表并安装MySQL服务器&#34;&gt;&lt;/a&gt;步骤1：更新包列表并安装MySQL服务器&lt;/h2&gt;
@@ -97,9 +97,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
         <updated>2024-06-25T04:18:14.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</id>
+        <id>https://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</id>
         <title>自动续签证书</title>
-        <link rel="alternate" href="http://example.com/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"/>
         <content type="html">&lt;h1 id=&#34;使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;/a&gt;使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书&lt;/h1&gt;
 &lt;p&gt;本文将介绍如何使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书。&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 是一个纯 Shell 脚本的 ACME 协议客户端，可以帮助你自动化管理 Let’s Encrypt 及其他 CA 颁发的证书。&lt;/p&gt;
 &lt;h2 id=&#34;下载并安装-acme-sh&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#下载并安装-acme-sh&#34;&gt;&lt;/a&gt;下载并安装 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt;&lt;/h2&gt;
@@ -157,9 +157,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
         <updated>2024-06-24T12:34:50.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</id>
+        <id>https://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</id>
         <title>服务器安全设置</title>
-        <link rel="alternate" href="http://example.com/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/"/>
         <content type="html">&lt;h3 id=&#34;1-更新系统&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-更新系统&#34;&gt;&lt;/a&gt;1. 更新系统&lt;/h3&gt;
 &lt;p&gt;首先，确保你的系统和所有安装的软件都是最新的。这不仅可以帮助你利用最新的功能，还可以修复已知的安全漏洞。使用以下命令进行更新：&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; update &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; upgrade&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -222,9 +222,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
         <updated>2024-06-24T11:14:28.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/</id>
+        <id>https://blog.aixcc.top/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/</id>
         <title>Vaultwarden搭建</title>
-        <link rel="alternate" href="http://example.com/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/"/>
         <content type="html">&lt;h1 id=&#34;如何搭建-Vaultwarden-服务器：一步步教程&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何搭建-Vaultwarden-服务器：一步步教程&#34;&gt;&lt;/a&gt;如何搭建 Vaultwarden 服务器：一步步教程&lt;/h1&gt;
 &lt;p&gt;Vaultwarden 是一个轻量级的 Bitwarden 服务器实现，它使用 Rust 编写，可以方便地在几乎任何地方运行。这是一个非常适合个人或小团队的密码管理解决方案。在本教程中，我们将详细介绍如何使用 Docker Compose 在你的服务器上部署 Vaultwarden。&lt;/p&gt;
 &lt;h2 id=&#34;前提条件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#前提条件&#34;&gt;&lt;/a&gt;前提条件&lt;/h2&gt;

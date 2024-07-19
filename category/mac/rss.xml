@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>陆时忤的博客 • Posts by &#34;mac&#34; category</title>
-        <link>http://example.com</link>
+        <link>https://blog.aixcc.top</link>
         <description>要再见 不要再见</description>
         <language>zh-CN</language>
         <pubDate>Sun, 14 Jul 2024 22:25:37 +0800</pubDate>
@@ -19,16 +19,16 @@
         <category>RabbitMQ</category>
         <category>Redis</category>
         <category>Spring</category>
+        <category>Alist</category>
         <category>Vue</category>
         <category>前端</category>
-        <category>Alist</category>
         <category>Homebrew</category>
         <category>SSL</category>
         <category>域名</category>
         <item>
-            <guid isPermalink="true">http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</guid>
             <title>Mac安装Maven</title>
-            <link>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</link>
+            <link>https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</link>
             <category>Mac</category>
             <category>Maven</category>
             <pubDate>Sun, 14 Jul 2024 22:25:37 +0800</pubDate>
@@ -96,9 +96,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</guid>
             <title>Mac安装JDK</title>
-            <link>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</link>
+            <link>https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</link>
             <category>Java</category>
             <category>Mac</category>
             <pubDate>Sun, 14 Jul 2024 22:13:37 +0800</pubDate>
@@ -137,9 +137,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</guid>
             <title>安装Homebrew</title>
-            <link>http://example.com/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</link>
+            <link>https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</link>
             <category>Mac</category>
             <category>Homebrew</category>
             <pubDate>Sun, 14 Jul 2024 20:10:50 +0800</pubDate>
@@ -182,9 +182,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/26/%E8%84%9A%E6%9C%AC/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/26/%E8%84%9A%E6%9C%AC/</guid>
             <title>自定义 Alfred iTerm 脚本</title>
-            <link>http://example.com/2024/06/26/%E8%84%9A%E6%9C%AC/</link>
+            <link>https://blog.aixcc.top/2024/06/26/%E8%84%9A%E6%9C%AC/</link>
             <category>Mac</category>
             <pubDate>Wed, 26 Jun 2024 12:29:32 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;如何使用Alfred与iTerm2进行高效的命令行操作&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何使用Alfred与iTerm2进行高效的命令行操作&#34;&gt;&lt;/a&gt;如何使用Alfred与iTerm2进行高效的命令行操作&lt;/h2&gt;

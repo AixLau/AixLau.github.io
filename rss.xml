@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>陆时忤的博客</title>
-        <link>http://example.com</link>
+        <link>https://blog.aixcc.top</link>
         <description>要再见 不要再见</description>
         <language>zh-CN</language>
         <pubDate>Sun, 14 Jul 2024 22:25:37 +0800</pubDate>
@@ -19,16 +19,16 @@
         <category>RabbitMQ</category>
         <category>Redis</category>
         <category>Spring</category>
+        <category>Alist</category>
         <category>Vue</category>
         <category>前端</category>
-        <category>Alist</category>
         <category>Homebrew</category>
         <category>SSL</category>
         <category>域名</category>
         <item>
-            <guid isPermalink="true">http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</guid>
             <title>Mac安装Maven</title>
-            <link>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</link>
+            <link>https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</link>
             <category>Mac</category>
             <category>Maven</category>
             <pubDate>Sun, 14 Jul 2024 22:25:37 +0800</pubDate>
@@ -96,9 +96,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</guid>
             <title>Mac安装JDK</title>
-            <link>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</link>
+            <link>https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</link>
             <category>Java</category>
             <category>Mac</category>
             <pubDate>Sun, 14 Jul 2024 22:13:37 +0800</pubDate>
@@ -137,9 +137,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</guid>
             <title>安装Homebrew</title>
-            <link>http://example.com/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</link>
+            <link>https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</link>
             <category>Mac</category>
             <category>Homebrew</category>
             <pubDate>Sun, 14 Jul 2024 20:10:50 +0800</pubDate>
@@ -182,9 +182,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/07/13/Vue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/07/13/Vue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
             <title>Vue3快速上手</title>
-            <link>http://example.com/2024/07/13/Vue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</link>
+            <link>https://blog.aixcc.top/2024/07/13/Vue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</link>
             <category>Vue</category>
             <category>前端</category>
             <pubDate>Sat, 13 Jul 2024 23:56:37 +0800</pubDate>
@@ -2667,9 +2667,9 @@ console&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span clas
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
             <title>定期清理Alist备份文件</title>
-            <link>http://example.com/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
+            <link>https://blog.aixcc.top/2024/07/02/%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86Alist%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
             <category>Alist</category>
             <pubDate>Tue, 02 Jul 2024 19:34:29 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;使用-Alist-和-Bash-脚本实现自动化管理&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Alist-和-Bash-脚本实现自动化管理&#34;&gt;&lt;/a&gt;使用 Alist 和 Bash 脚本实现自动化管理&lt;/h1&gt;
@@ -2812,9 +2812,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/</guid>
             <title>项目讲解</title>
-            <link>http://example.com/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/</link>
+            <link>https://blog.aixcc.top/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/</link>
             <category>Java</category>
             <pubDate>Thu, 27 Jun 2024 15:34:31 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;随便写写&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#随便写写&#34;&gt;&lt;/a&gt;随便写写&lt;/h1&gt;
@@ -2832,9 +2832,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</guid>
             <title>RabbitMQ应用与总结</title>
-            <link>http://example.com/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <link>https://blog.aixcc.top/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</link>
             <category>Java</category>
             <category>总结</category>
             <category>RabbitMQ</category>
@@ -2895,9 +2895,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</guid>
             <title>Redis应用与总结</title>
-            <link>http://example.com/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <link>https://blog.aixcc.top/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</link>
             <category>总结</category>
             <category>Redis</category>
             <pubDate>Wed, 26 Jun 2024 20:18:49 +0800</pubDate>
@@ -3046,9 +3046,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/</guid>
             <title>MyBatis应用与总结</title>
-            <link>http://example.com/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <link>https://blog.aixcc.top/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/</link>
             <category>Java</category>
             <category>MyBatis</category>
             <category>总结</category>
@@ -3062,9 +3062,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/26/%E8%84%9A%E6%9C%AC/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/26/%E8%84%9A%E6%9C%AC/</guid>
             <title>自定义 Alfred iTerm 脚本</title>
-            <link>http://example.com/2024/06/26/%E8%84%9A%E6%9C%AC/</link>
+            <link>https://blog.aixcc.top/2024/06/26/%E8%84%9A%E6%9C%AC/</link>
             <category>Mac</category>
             <pubDate>Wed, 26 Jun 2024 12:29:32 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;如何使用Alfred与iTerm2进行高效的命令行操作&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何使用Alfred与iTerm2进行高效的命令行操作&#34;&gt;&lt;/a&gt;如何使用Alfred与iTerm2进行高效的命令行操作&lt;/h2&gt;
@@ -3096,9 +3096,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;Files to be deleted:&#34;&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</guid>
             <title>Linux安装MySQL</title>
-            <link>http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</link>
+            <link>https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</link>
             <category>MySQL</category>
             <category>Linux</category>
             <pubDate>Tue, 25 Jun 2024 12:18:14 +0800</pubDate>
@@ -3170,9 +3170,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</guid>
             <title>自动续签证书</title>
-            <link>http://example.com/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</link>
+            <link>https://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</link>
             <category>Linux</category>
             <category>SSL</category>
             <category>域名</category>
@@ -3230,9 +3230,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</guid>
             <title>服务器安全设置</title>
-            <link>http://example.com/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</link>
+            <link>https://blog.aixcc.top/2024/06/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/</link>
             <category>Linux</category>
             <pubDate>Mon, 24 Jun 2024 19:14:28 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;1-更新系统&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-更新系统&#34;&gt;&lt;/a&gt;1. 更新系统&lt;/h3&gt;
@@ -3295,9 +3295,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/</guid>
             <title>Vaultwarden搭建</title>
-            <link>http://example.com/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/</link>
+            <link>https://blog.aixcc.top/2024/06/24/Vaultwarden%E6%90%AD%E5%BB%BA/</link>
             <category>Linux</category>
             <pubDate>Mon, 24 Jun 2024 16:56:37 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;如何搭建-Vaultwarden-服务器：一步步教程&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何搭建-Vaultwarden-服务器：一步步教程&#34;&gt;&lt;/a&gt;如何搭建 Vaultwarden 服务器：一步步教程&lt;/h1&gt;
@@ -3344,9 +3344,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</guid>
             <title>Spring应用与总结</title>
-            <link>http://example.com/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <link>https://blog.aixcc.top/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</link>
             <category>Java</category>
             <category>总结</category>
             <category>Spring</category>
@@ -3519,9 +3519,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/</guid>
             <title>MySQL应用与总结</title>
-            <link>http://example.com/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <link>https://blog.aixcc.top/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/</link>
             <category>MySQL</category>
             <category>总结</category>
             <pubDate>Sat, 22 Jun 2024 18:02:39 +0800</pubDate>
@@ -3558,9 +3558,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</guid>
             <title>Java集合总结</title>
-            <link>http://example.com/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <link>https://blog.aixcc.top/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</link>
             <category>Java</category>
             <category>笔记</category>
             <pubDate>Sat, 22 Jun 2024 16:48:56 +0800</pubDate>
@@ -3692,9 +3692,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</guid>
             <title>Java基础总结</title>
-            <link>http://example.com/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</link>
+            <link>https://blog.aixcc.top/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</link>
             <category>Java</category>
             <category>笔记</category>
             <pubDate>Fri, 21 Jun 2024 20:41:04 +0800</pubDate>
@@ -3820,9 +3820,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/18/%E4%BD%BF%E7%94%A8AList%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/18/%E4%BD%BF%E7%94%A8AList%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6/</guid>
             <title>使用AList定时备份文件</title>
-            <link>http://example.com/2024/06/18/%E4%BD%BF%E7%94%A8AList%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6/</link>
+            <link>https://blog.aixcc.top/2024/06/18/%E4%BD%BF%E7%94%A8AList%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6/</link>
             <category>Alist</category>
             <pubDate>Tue, 18 Jun 2024 16:37:21 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;使用AList定时备份文件&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用AList定时备份文件&#34;&gt;&lt;/a&gt;使用AList定时备份文件&lt;/h1&gt;
@@ -3960,9 +3960,9 @@ log &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token vari
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/</guid>
+            <guid isPermalink="true">https://blog.aixcc.top/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/</guid>
             <title>Hexo备份</title>
-            <link>http://example.com/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/</link>
+            <link>https://blog.aixcc.top/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/</link>
             <category>Blog</category>
             <pubDate>Sun, 16 Jun 2024 19:19:00 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;使用-Hexo-和-GitHub-实现多平台工作和数据备份&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Hexo-和-GitHub-实现多平台工作和数据备份&#34;&gt;&lt;/a&gt;使用 Hexo 和 GitHub 实现多平台工作和数据备份&lt;/h1&gt;

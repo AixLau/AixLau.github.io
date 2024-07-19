@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>https://blog.aixcc.top</id>
     <title>陆时忤的博客 • Posts by &#34;mysql&#34; category</title>
-    <link href="http://example.com" />
+    <link href="https://blog.aixcc.top" />
     <updated>2024-06-25T04:18:14.000Z</updated>
     <category term="Blog" />
     <category term="Java" />
@@ -16,16 +16,16 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
+    <category term="Alist" />
     <category term="Vue" />
     <category term="前端" />
-    <category term="Alist" />
     <category term="Homebrew" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
-        <id>http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</id>
+        <id>https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/</id>
         <title>Linux安装MySQL</title>
-        <link rel="alternate" href="http://example.com/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/25/Linux%E5%AE%89%E8%A3%85MySQL/"/>
         <content type="html">&lt;h1 id=&#34;如何在Ubuntu上安装和配置MySQL并允许远程访问&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何在Ubuntu上安装和配置MySQL并允许远程访问&#34;&gt;&lt;/a&gt;如何在Ubuntu上安装和配置MySQL并允许远程访问&lt;/h1&gt;
 &lt;p&gt;在本文中，我们将介绍如何在Ubuntu上安装和配置MySQL，并设置允许远程访问。我们将从安装MySQL开始，然后进行基本的安全配置，修改MySQL配置文件以允许远程连接，并创建可以远程访问的用户。&lt;/p&gt;
 &lt;h2 id=&#34;步骤1：更新包列表并安装MySQL服务器&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#步骤1：更新包列表并安装MySQL服务器&#34;&gt;&lt;/a&gt;步骤1：更新包列表并安装MySQL服务器&lt;/h2&gt;
@@ -97,9 +97,9 @@ FLUSH &lt;span class=&#34;token keyword&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span 
         <updated>2024-06-25T04:18:14.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <id>https://blog.aixcc.top/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>MySQL应用与总结</title>
-        <link rel="alternate" href="http://example.com/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/22/Myql%E5%85%AB%E8%82%A1%E6%96%87/"/>
         <content type="html">&lt;h1 id=&#34;数据库&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#数据库&#34;&gt;&lt;/a&gt;数据库&lt;/h1&gt;
 &lt;h2 id=&#34;索引&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#索引&#34;&gt;&lt;/a&gt;索引&lt;/h2&gt;
 &lt;h3 id=&#34;为什么使用索引会加快查询？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么使用索引会加快查询？&#34;&gt;&lt;/a&gt;为什么使用索引会加快查询？&lt;/h3&gt;

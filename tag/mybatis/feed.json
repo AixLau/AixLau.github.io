@@ -2,11 +2,11 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "陆时忤的博客 • All posts by \"mybatis\" tag",
     "description": "要再见 不要再见",
-    "home_page_url": "http://example.com",
+    "home_page_url": "https://blog.aixcc.top",
     "items": [
         {
-            "id": "http://example.com/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/",
-            "url": "http://example.com/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/",
+            "id": "https://blog.aixcc.top/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/",
+            "url": "https://blog.aixcc.top/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/",
             "title": "MyBatis应用与总结",
             "date_published": "2024-06-26T09:53:37.000Z",
             "content_html": "<h1 id=\"MyBatis常见面试题总结\"><a class=\"headerlink\" href=\"#MyBatis常见面试题总结\"></a>MyBatis常见面试题总结</h1>\n<h3 id=\"和-的区别是什么？\"><a class=\"headerlink\" href=\"#和-的区别是什么？\"></a>#{} 和 ${} 的区别是什么？</h3>\n<ul>\n<li><code>$&#123;&#125;</code>是 Properties 文件中的变量占位符，它可以用于标签属性值和 slq 内部，属于原样文本替换，可以替换任意内容。</li>\n<li><code>#&#123;&#125;</code>是 sql 的参数占位符，Mybatis 会将 sql 中<code>#&#123;&#125;</code>替换为？号，在 sql 执行前会使用PreparedStatement 的参数设置方法，按序给 sql 的 ？号占位符设置参数值。使用<code>#&#123;&#125;</code>可以有效防止 sql 注入。</li>\n</ul>\n",

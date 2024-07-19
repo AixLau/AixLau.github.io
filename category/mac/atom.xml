@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>https://blog.aixcc.top</id>
     <title>陆时忤的博客 • Posts by &#34;mac&#34; category</title>
-    <link href="http://example.com" />
+    <link href="https://blog.aixcc.top" />
     <updated>2024-07-14T14:25:37.000Z</updated>
     <category term="Blog" />
     <category term="Java" />
@@ -16,16 +16,16 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
+    <category term="Alist" />
     <category term="Vue" />
     <category term="前端" />
-    <category term="Alist" />
     <category term="Homebrew" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
-        <id>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</id>
+        <id>https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/</id>
         <title>Mac安装Maven</title>
-        <link rel="alternate" href="http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85Maven/"/>
         <content type="html">&lt;h1 id=&#34;Maven-环境设置：全面指南&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Maven-环境设置：全面指南&#34;&gt;&lt;/a&gt;Maven 环境设置：全面指南&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Apache Maven 是 Java 项目的强大项目管理工具，可以自动化并简化构建过程。本指南将指导你完成在机器上设置 Maven 的步骤，包括安装 Java、Maven 以及配置开发环境。&lt;/p&gt;
@@ -93,9 +93,9 @@
         <updated>2024-07-14T14:25:37.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</id>
+        <id>https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</id>
         <title>Mac安装JDK</title>
-        <link rel="alternate" href="http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/"/>
         <content type="html">&lt;h1 id=&#34;Mac-上的-JDK-的安装与卸载&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Mac-上的-JDK-的安装与卸载&#34;&gt;&lt;/a&gt;Mac 上的 JDK 的安装与卸载&lt;/h1&gt;
 &lt;h2 id=&#34;从-AdoptOpenJDK-到-Temurin&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#从-AdoptOpenJDK-到-Temurin&#34;&gt;&lt;/a&gt;从 AdoptOpenJDK 到 Temurin&lt;/h2&gt;
 &lt;h2 id=&#34;卸载-AdoptOpenJDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#卸载-AdoptOpenJDK&#34;&gt;&lt;/a&gt;卸载 AdoptOpenJDK&lt;/h2&gt;
@@ -134,9 +134,9 @@
         <updated>2024-07-14T14:13:37.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</id>
+        <id>https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</id>
         <title>安装Homebrew</title>
-        <link rel="alternate" href="http://example.com/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/"/>
         <content type="html">&lt;h1 id=&#34;Mac-上安装-Homebrew：一步一步的指南&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Mac-上安装-Homebrew：一步一步的指南&#34;&gt;&lt;/a&gt;Mac 上安装 Homebrew：一步一步的指南&lt;/h1&gt;
 &lt;h2 id=&#34;什么是-Homebrew？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-Homebrew？&#34;&gt;&lt;/a&gt;什么是 Homebrew？&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; 是 Mac OS X 或 Linux 上的一款自由和开源的软件包管理系统，它简化了软件的安装过程。它允许用户方便地安装、配置、更新和卸载开源软件。它的设计理念是简化没有访问权限的用户在 macOS 上安装软件的过程。&lt;/p&gt;
@@ -179,9 +179,9 @@
         <updated>2024-07-14T12:10:50.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/26/%E8%84%9A%E6%9C%AC/</id>
+        <id>https://blog.aixcc.top/2024/06/26/%E8%84%9A%E6%9C%AC/</id>
         <title>自定义 Alfred iTerm 脚本</title>
-        <link rel="alternate" href="http://example.com/2024/06/26/%E8%84%9A%E6%9C%AC/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/26/%E8%84%9A%E6%9C%AC/"/>
         <content type="html">&lt;h2 id=&#34;如何使用Alfred与iTerm2进行高效的命令行操作&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如何使用Alfred与iTerm2进行高效的命令行操作&#34;&gt;&lt;/a&gt;如何使用Alfred与iTerm2进行高效的命令行操作&lt;/h2&gt;
 &lt;p&gt;这里是一篇关于如何使用 Alfred 和 iTerm2 集成自定义 AppleScript 的博客文章。这个集成可以极大地提升 macOS 用户在使用终端时的效率和便利性。&lt;/p&gt;
 &lt;blockquote&gt;

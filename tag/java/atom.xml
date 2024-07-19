@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>https://blog.aixcc.top</id>
     <title>陆时忤的博客 • Posts by &#34;java&#34; tag</title>
-    <link href="http://example.com" />
+    <link href="https://blog.aixcc.top" />
     <updated>2024-07-14T14:13:37.000Z</updated>
     <category term="Blog" />
     <category term="Java" />
@@ -16,16 +16,16 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
+    <category term="Alist" />
     <category term="Vue" />
     <category term="前端" />
-    <category term="Alist" />
     <category term="Homebrew" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
-        <id>http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</id>
+        <id>https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/</id>
         <title>Mac安装JDK</title>
-        <link rel="alternate" href="http://example.com/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/07/14/Mac%E5%AE%89%E8%A3%85JDK/"/>
         <content type="html">&lt;h1 id=&#34;Mac-上的-JDK-的安装与卸载&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Mac-上的-JDK-的安装与卸载&#34;&gt;&lt;/a&gt;Mac 上的 JDK 的安装与卸载&lt;/h1&gt;
 &lt;h2 id=&#34;从-AdoptOpenJDK-到-Temurin&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#从-AdoptOpenJDK-到-Temurin&#34;&gt;&lt;/a&gt;从 AdoptOpenJDK 到 Temurin&lt;/h2&gt;
 &lt;h2 id=&#34;卸载-AdoptOpenJDK&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#卸载-AdoptOpenJDK&#34;&gt;&lt;/a&gt;卸载 AdoptOpenJDK&lt;/h2&gt;
@@ -64,9 +64,9 @@
         <updated>2024-07-14T14:13:37.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/</id>
+        <id>https://blog.aixcc.top/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/</id>
         <title>项目讲解</title>
-        <link rel="alternate" href="http://example.com/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/27/%E9%A1%B9%E7%9B%AE%E8%AE%B2%E8%A7%A3/"/>
         <content type="html">&lt;h1 id=&#34;随便写写&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#随便写写&#34;&gt;&lt;/a&gt;随便写写&lt;/h1&gt;
 &lt;h3 id=&#34;登录注册模块&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#登录注册模块&#34;&gt;&lt;/a&gt;登录注册模块&lt;/h3&gt;
 &lt;ul&gt;
@@ -84,9 +84,9 @@
         <updated>2024-06-27T07:34:31.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <id>https://blog.aixcc.top/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>RabbitMQ应用与总结</title>
-        <link rel="alternate" href="http://example.com/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/"/>
         <content type="html">&lt;h2 id=&#34;RabbitMQ常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#RabbitMQ常见面试题总结&#34;&gt;&lt;/a&gt;RabbitMQ常见面试题总结&lt;/h2&gt;
 &lt;h3 id=&#34;什么是-RabbitMQ？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-RabbitMQ？&#34;&gt;&lt;/a&gt;什么是 RabbitMQ？&lt;/h3&gt;
 &lt;p&gt;RabbitMQ 是一个开源的消息代理软件，广泛用于消息队列中。它实现了高级消息队列协议（AMQP），支持多重消息模式，能够在分布式系统重提供可靠的消息传递。。RabbitMQ 用于不同系统或服务之间异步传递消息，从而解耦生产者和消费者，增强系统的可扩展性和容错能力。&lt;/p&gt;
@@ -147,9 +147,9 @@
         <updated>2024-06-26T15:14:15.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <id>https://blog.aixcc.top/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>MyBatis应用与总结</title>
-        <link rel="alternate" href="http://example.com/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/26/MyBatis%E5%85%AB%E8%82%A1%E6%96%87/"/>
         <content type="html">&lt;h1 id=&#34;MyBatis常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#MyBatis常见面试题总结&#34;&gt;&lt;/a&gt;MyBatis常见面试题总结&lt;/h1&gt;
 &lt;h3 id=&#34;和-的区别是什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#和-的区别是什么？&#34;&gt;&lt;/a&gt;#{} 和 ${} 的区别是什么？&lt;/h3&gt;
 &lt;ul&gt;
@@ -163,9 +163,9 @@
         <updated>2024-06-26T09:53:37.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <id>https://blog.aixcc.top/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>Spring应用与总结</title>
-        <link rel="alternate" href="http://example.com/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/"/>
         <content type="html">&lt;h2 id=&#34;Spring-常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-常见面试题总结&#34;&gt;&lt;/a&gt;Spring 常见面试题总结&lt;/h2&gt;
 &lt;h3 id=&#34;什么是Spring框架？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是Spring框架？&#34;&gt;&lt;/a&gt;什么是Spring框架？&lt;/h3&gt;
 &lt;p&gt;Spring 是一款开源的轻量级Java开发框架，提高开发人员的开发效率以及系统的维护性。&lt;/p&gt;
@@ -338,9 +338,9 @@
         <updated>2024-06-22T10:11:04.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <id>https://blog.aixcc.top/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>Java集合总结</title>
-        <link rel="alternate" href="http://example.com/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/"/>
         <content type="html">&lt;h1 id=&#34;Java集合&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Java集合&#34;&gt;&lt;/a&gt;Java集合&lt;/h1&gt;
 &lt;h3 id=&#34;说说-List-Set-Queue-Map-四者的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#说说-List-Set-Queue-Map-四者的区别？&#34;&gt;&lt;/a&gt;说说 List, Set, Queue, Map 四者的区别？&lt;/h3&gt;
 &lt;ul&gt;
@@ -472,9 +472,9 @@
         <updated>2024-06-22T08:48:56.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</id>
+        <id>https://blog.aixcc.top/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>Java基础总结</title>
-        <link rel="alternate" href="http://example.com/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/"/>
+        <link rel="alternate" href="https://blog.aixcc.top/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/"/>
         <content type="html">&lt;h4 id=&#34;对象相等和引用相等的区别&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#对象相等和引用相等的区别&#34;&gt;&lt;/a&gt;对象相等和引用相等的区别&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;对象相等&lt;/strong&gt;：比较的是内存中存放的内容是否相等。&lt;/li&gt;
