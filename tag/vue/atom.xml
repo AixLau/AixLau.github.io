@@ -16,17 +16,23 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Vue" />
-    <category term="前端" />
     <category term="Alist" />
     <category term="Homebrew" />
+    <category term="Vue" />
+    <category term="前端" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
         <id>http://blog.aixcc.top/2024/07/13/Vue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</id>
         <title>Vue3快速上手</title>
         <link rel="alternate" href="http://blog.aixcc.top/2024/07/13/Vue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/"/>
-        <content type="html">&lt;h1 id=&#34;1-Vue3简介&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-Vue3简介&#34;&gt;&lt;/a&gt;1. Vue3简介&lt;/h1&gt;
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151139287.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>Vue3快速上手</h1>
+            <p>&lt;h1 id=&#34;1-Vue3简介&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#1-Vue3简介&#34;&gt;&lt;/a&gt;1. Vue3简介&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;2020年9月18日，&lt;code&gt;Vue.js&lt;/code&gt;发布版&lt;code&gt;3.0&lt;/code&gt;版本，代号：&lt;code&gt;One Piece&lt;/code&gt;（n&lt;/p&gt;
@@ -2502,7 +2508,20 @@ console&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span clas
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;本文内容来源于尚硅谷Vue.js教程，原文地址：&lt;a href=&#34;http://www.atguigu.com/video/284/&#34;&gt;尚硅谷Vue教程&lt;/a&gt;。感谢尚硅谷提供的优秀文档资源。&lt;/strong&gt;&lt;/p&gt;
-</content>
+</p>
+            <p>Tags: 
+              
+                Vue 
+              
+                前端 
+              
+            </p>
+            <p>Categories: 
+              
+                前端 
+              
+            </p>
+        ]]></content>
         <category term="Vue" />
         <category term="前端" />
         <updated>2024-07-13T15:56:37.000Z</updated>

@@ -16,17 +16,23 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Vue" />
-    <category term="前端" />
     <category term="Alist" />
     <category term="Homebrew" />
+    <category term="Vue" />
+    <category term="前端" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
         <id>http://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/</id>
         <title>安装Homebrew</title>
         <link rel="alternate" href="http://blog.aixcc.top/2024/07/14/%E5%AE%89%E8%A3%85Homebrew/"/>
-        <content type="html">&lt;h1 id=&#34;Mac-上安装-Homebrew：一步一步的指南&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Mac-上安装-Homebrew：一步一步的指南&#34;&gt;&lt;/a&gt;Mac 上安装 Homebrew：一步一步的指南&lt;/h1&gt;
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151129837.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>安装Homebrew</h1>
+            <p>&lt;h1 id=&#34;Mac-上安装-Homebrew：一步一步的指南&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Mac-上安装-Homebrew：一步一步的指南&#34;&gt;&lt;/a&gt;Mac 上安装 Homebrew：一步一步的指南&lt;/h1&gt;
 &lt;h2 id=&#34;什么是-Homebrew？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-Homebrew？&#34;&gt;&lt;/a&gt;什么是 Homebrew？&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; 是 Mac OS X 或 Linux 上的一款自由和开源的软件包管理系统，它简化了软件的安装过程。它允许用户方便地安装、配置、更新和卸载开源软件。它的设计理念是简化没有访问权限的用户在 macOS 上安装软件的过程。&lt;/p&gt;
 &lt;h2 id=&#34;安装前的准备&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装前的准备&#34;&gt;&lt;/a&gt;安装前的准备&lt;/h2&gt;
@@ -62,7 +68,20 @@
 &lt;p&gt;&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151218277.webp&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;结论&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#结论&#34;&gt;&lt;/a&gt;结论&lt;/h2&gt;
 &lt;p&gt;通过安装 Homebrew，您的 Mac 将能够轻松地管理大量开源软件，从而大大提高您的生产效率和工作流程。无论您是开发人员还是日常用户，Homebrew 都是一个宝贵的工具，可以帮助您维护软件的最新状态。&lt;/p&gt;
-</content>
+</p>
+            <p>Tags: 
+              
+                Mac 
+              
+                Homebrew 
+              
+            </p>
+            <p>Categories: 
+              
+                Mac 
+              
+            </p>
+        ]]></content>
         <category term="Mac" />
         <category term="Homebrew" />
         <updated>2024-07-14T12:10:50.000Z</updated>

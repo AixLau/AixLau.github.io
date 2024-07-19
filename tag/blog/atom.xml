@@ -16,17 +16,23 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Vue" />
-    <category term="前端" />
     <category term="Alist" />
     <category term="Homebrew" />
+    <category term="Vue" />
+    <category term="前端" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
         <id>http://blog.aixcc.top/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/</id>
         <title>Hexo备份</title>
         <link rel="alternate" href="http://blog.aixcc.top/2024/06/16/Hexo%E5%A4%87%E4%BB%BD/"/>
-        <content type="html">&lt;h1 id=&#34;使用-Hexo-和-GitHub-实现多平台工作和数据备份&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Hexo-和-GitHub-实现多平台工作和数据备份&#34;&gt;&lt;/a&gt;使用 Hexo 和 GitHub 实现多平台工作和数据备份&lt;/h1&gt;
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151114520.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>Hexo备份</h1>
+            <p>&lt;h1 id=&#34;使用-Hexo-和-GitHub-实现多平台工作和数据备份&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-Hexo-和-GitHub-实现多平台工作和数据备份&#34;&gt;&lt;/a&gt;使用 Hexo 和 GitHub 实现多平台工作和数据备份&lt;/h1&gt;
 &lt;h2 id=&#34;目标&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#目标&#34;&gt;&lt;/a&gt;目标&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;&lt;code&gt;master&lt;/code&gt; 分支&lt;/strong&gt;：保存 Hexo 生成的静态文件，用于部署到 GitHub Pages。&lt;/li&gt;
@@ -97,72 +103,19 @@ hexo deploy&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;
 &lt;li&gt;&lt;strong&gt;确认 &lt;code&gt;hexo&lt;/code&gt; 分支为默认分支&lt;/strong&gt;：保存 Hexo 源文件，并便于多平台编辑。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;确认 &lt;code&gt;master&lt;/code&gt; 分支保存生成的静态文件&lt;/strong&gt;：用于部署到 GitHub Pages，并确保网站正常访问。&lt;/li&gt;
 &lt;/ol&gt;
-</content>
+</p>
+            <p>Tags: 
+              
+                Blog 
+              
+            </p>
+            <p>Categories: 
+              
+                博客 
+              
+            </p>
+        ]]></content>
         <category term="Blog" />
         <updated>2024-06-16T11:19:00.000Z</updated>
-    </entry>
-    <entry>
-        <id>http://blog.aixcc.top/2024/06/16/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2Hexo/</id>
-        <title>安装部署Hexo</title>
-        <link rel="alternate" href="http://blog.aixcc.top/2024/06/16/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2Hexo/"/>
-        <content type="html">&lt;h1 id=&#34;安装-Hexo-博客&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Hexo-博客&#34;&gt;&lt;/a&gt;安装 Hexo 博客&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://hexo.io/zh-cn/&#34;&gt;Hexo&lt;/a&gt; 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他标记语言）解析文章，并在几秒内利用靓丽的主题生成静态网页。&lt;/p&gt;
-&lt;h2 id=&#34;安装&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装&#34;&gt;&lt;/a&gt;安装&lt;/h2&gt;
-&lt;p&gt;首先，需要安装 Node.js 和 Git。Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本。&lt;/p&gt;
-&lt;h3 id=&#34;安装-Git&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Git&#34;&gt;&lt;/a&gt;安装 Git&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;：下载并安装 &lt;a href=&#34;https://git-scm.com/&#34;&gt;Git&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mac&lt;/strong&gt;：使用命令 &lt;code&gt;brew install git&lt;/code&gt; 安装。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Linux (Ubuntu, Debian）&lt;/strong&gt;：使用命令 &lt;code&gt;sudo apt install git-core&lt;/code&gt; 安装。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Linux (Fedora, Red Hat, CentOS）&lt;/strong&gt;：使用命令 &lt;code&gt;sudo yum install git-core&lt;/code&gt; 安装。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;安装-Node-js&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Node-js&#34;&gt;&lt;/a&gt;安装 Node.js&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;：通过 &lt;a href=&#34;https://github.com/jasongin/nvs&#34;&gt;nvs&lt;/a&gt;（推荐）或者 &lt;a href=&#34;https://github.com/coreybutler/nvm-windows&#34;&gt;nvm&lt;/a&gt; 安装。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mac&lt;/strong&gt;：使用命令 &lt;code&gt;brew install noede&lt;/code&gt; 安装。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Linux（DEB/RPM-based）&lt;/strong&gt;：从 &lt;a href=&#34;https://github.com/nodesource/distributions&#34;&gt;NodeSource&lt;/a&gt; 安装。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;安装-Hexo&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-Hexo&#34;&gt;&lt;/a&gt;安装 Hexo&lt;/h3&gt;
-&lt;p&gt;所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;$ &lt;span class=&#34;token function&#34;&gt;npm&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-g&lt;/span&gt; hexo-cli&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件：&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;$ hexo init &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;folder&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; 
-$ &lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;folder&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; 
-$ &lt;span class=&#34;token function&#34;&gt;npm&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt;  &lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;主题安装&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#主题安装&#34;&gt;&lt;/a&gt;主题安装&lt;/h3&gt;
-&lt;p&gt;Hexo 默认的主题不太好看，不过官方提供了数百种主题供用户选择，可以根据个人喜好更换，官网主题点击&lt;a href=&#34;https://hexo.io/themes/&#34;&gt;这里&lt;/a&gt;查看。&lt;br&gt;
-例如，安装 &lt;a href=&#34;https://solitude.js.org/&#34;&gt;hexo-theme-solitude&lt;/a&gt; 主题：&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;$ &lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; clone &lt;span class=&#34;token parameter variable&#34;&gt;-b&lt;/span&gt; main https://github.com/everfu/hexo-theme-solitude.git themes/solitude&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;修改 Hexo 根目录配置文件 _config.yml，把主题改为你的文件夹名，例如这里是 solitude：&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token key atrule&#34;&gt;theme&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; solitude&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;主题使用了 Pug 与 Stylus，需要额外安装各自的渲染器：&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;$ &lt;span class=&#34;token function&#34;&gt;npm&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; hexo-renderer-pug hexo-renderer-stylus &lt;span class=&#34;token parameter variable&#34;&gt;--save&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;语言配置&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#语言配置&#34;&gt;&lt;/a&gt;语言配置&lt;/h3&gt;
-&lt;p&gt;修改站点配置文件 _config.yml，不是主题配置文件。支持语言包括：en (美式英文)、zh-CN (简体中文)、zh-TW (繁体中文)。例如，配置为简体中文：&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token key atrule&#34;&gt;language&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; zh&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;CN&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;本地启动&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#本地启动&#34;&gt;&lt;/a&gt;本地启动&lt;/h3&gt;
-&lt;p&gt;在本地启动 Hexo 服务器：&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;hexo server&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;在浏览器地址栏输入&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-txt&#34; data-language=&#34;txt&#34;&gt;&lt;code class=&#34;language-txt&#34;&gt;http://localhost:4000&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151244117.webp&#34; alt=&#34;效果图&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;一键部署到-GitHub-Pages&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#一键部署到-GitHub-Pages&#34;&gt;&lt;/a&gt;一键部署到 GitHub Pages&lt;/h2&gt;
-&lt;h3 id=&#34;安装-hexo-deployer-git&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#安装-hexo-deployer-git&#34;&gt;&lt;/a&gt;安装 hexo-deployer-git&lt;/h3&gt;
-&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;npm&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; hexo-deployer-git &lt;span class=&#34;token parameter variable&#34;&gt;--save&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;配置-config-yml&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#配置-config-yml&#34;&gt;&lt;/a&gt;配置 _config.yml&lt;/h3&gt;
-&lt;p&gt;在 &lt;code&gt;_config.yml&lt;/code&gt; 中添加以下配置（如果配置已经存在，请将其替换为如下）:&lt;/p&gt;
-&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token key atrule&#34;&gt;deploy&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
-  &lt;span class=&#34;token key atrule&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; git
-  &lt;span class=&#34;token key atrule&#34;&gt;repo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; https&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;//github.com/&amp;lt;username&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;/&amp;lt;project&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;
-  &lt;span class=&#34;token comment&#34;&gt;# example: https://github.com/hexojs/hexojs.github.io&lt;/span&gt;
-  &lt;span class=&#34;token key atrule&#34;&gt;branch&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; gh&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;pages &lt;span class=&#34;token comment&#34;&gt;#分支名称&lt;/span&gt;
-  &lt;span class=&#34;token comment&#34;&gt;# message	自定义提交信息	&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;部署&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#部署&#34;&gt;&lt;/a&gt;部署&lt;/h3&gt;
-&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;hexo clean &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; hexo deploy&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;浏览 &amp;lt;GitHub 用户名&amp;gt;.github.io 检查你的网站能否运作。&lt;br&gt;
-&lt;img src=&#34;https://alist.aixcc.top/d/OneDrive/img/202407151244117.webp&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
-</content>
-        <category term="Blog" />
-        <updated>2024-06-16T08:26:47.000Z</updated>
     </entry>
 </feed>

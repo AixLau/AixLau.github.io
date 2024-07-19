@@ -16,17 +16,23 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Vue" />
-    <category term="前端" />
     <category term="Alist" />
     <category term="Homebrew" />
+    <category term="Vue" />
+    <category term="前端" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
         <id>http://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/</id>
         <title>自动续签证书</title>
         <link rel="alternate" href="http://blog.aixcc.top/2024/06/24/%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E8%AF%81%E4%B9%A6/"/>
-        <content type="html">&lt;h1 id=&#34;使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;/a&gt;使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书&lt;/h1&gt;
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151138383.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>自动续签证书</h1>
+            <p>&lt;h1 id=&#34;使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#使用-acme-sh-安装和管理-SSL-证书&#34;&gt;&lt;/a&gt;使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书&lt;/h1&gt;
 &lt;p&gt;本文将介绍如何使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理 SSL 证书。&lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 是一个纯 Shell 脚本的 ACME 协议客户端，可以帮助你自动化管理 Let’s Encrypt 及其他 CA 颁发的证书。&lt;/p&gt;
 &lt;h2 id=&#34;下载并安装-acme-sh&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#下载并安装-acme-sh&#34;&gt;&lt;/a&gt;下载并安装 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;首先，下载并安装 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt;。在终端中执行以下命令：&lt;/p&gt;
@@ -76,7 +82,22 @@
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#总结&#34;&gt;&lt;/a&gt;总结&lt;/h2&gt;
 &lt;p&gt;通过以上步骤，你已经成功使用 &lt;a href=&#34;http://acme.sh&#34;&gt;acme.sh&lt;/a&gt; 安装和管理了 SSL 证书。虽然手动 DNS 验证方式不需要服务器或公网 IP，但每次请求新证书时都需要手动添加解析记录。如果希望实现自动化，可以使用支持 DNS API 的提供商并配置自动 DNS 验证。有关详细信息，请参考 &lt;a href=&#34;https://github.com/Neilpang/acme.sh/wiki/dnsapi&#34;&gt;acme.sh 的 DNS API 支持文档&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;希望本文对你有所帮助！&lt;/p&gt;
-</content>
+</p>
+            <p>Tags: 
+              
+                Linux 
+              
+                SSL 
+              
+                域名 
+              
+            </p>
+            <p>Categories: 
+              
+                Linux 
+              
+            </p>
+        ]]></content>
         <category term="Linux" />
         <category term="SSL" />
         <category term="域名" />

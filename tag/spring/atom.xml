@@ -16,17 +16,23 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Vue" />
-    <category term="前端" />
     <category term="Alist" />
     <category term="Homebrew" />
+    <category term="Vue" />
+    <category term="前端" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
         <id>http://blog.aixcc.top/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>Spring应用与总结</title>
         <link rel="alternate" href="http://blog.aixcc.top/2024/06/22/Spring%E5%85%AB%E8%82%A1%E6%96%87/"/>
-        <content type="html">&lt;h2 id=&#34;Spring-常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-常见面试题总结&#34;&gt;&lt;/a&gt;Spring 常见面试题总结&lt;/h2&gt;
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151158232.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>Spring应用与总结</h1>
+            <p>&lt;h2 id=&#34;Spring-常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Spring-常见面试题总结&#34;&gt;&lt;/a&gt;Spring 常见面试题总结&lt;/h2&gt;
 &lt;h3 id=&#34;什么是Spring框架？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是Spring框架？&#34;&gt;&lt;/a&gt;什么是Spring框架？&lt;/h3&gt;
 &lt;p&gt;Spring 是一款开源的轻量级Java开发框架，提高开发人员的开发效率以及系统的维护性。&lt;/p&gt;
 &lt;h3 id=&#34;谈谈自己对于Spring-IoC的了解&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#谈谈自己对于Spring-IoC的了解&#34;&gt;&lt;/a&gt;谈谈自己对于Spring IoC的了解&lt;/h3&gt;
@@ -191,7 +197,22 @@
 &lt;h3 id=&#34;SpringBoot-中如何实现定时任务？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#SpringBoot-中如何实现定时任务？&#34;&gt;&lt;/a&gt;SpringBoot 中如何实现定时任务？&lt;/h3&gt;
 &lt;p&gt;我们使用&lt;code&gt;@Scheduled&lt;/code&gt;注解就能很方便地创建一个定时任务。&lt;/p&gt;
 &lt;p&gt;还需要再 SpringBoot 启动类上添加&lt;code&gt;@EnableScheduling&lt;/code&gt;注解，这个注解的作用是发现&lt;code&gt;@Scheduled&lt;/code&gt;的任务并在后台执行该任务。&lt;/p&gt;
-</content>
+</p>
+            <p>Tags: 
+              
+                Java 
+              
+                总结 
+              
+                Spring 
+              
+            </p>
+            <p>Categories: 
+              
+                Java 
+              
+            </p>
+        ]]></content>
         <category term="Java" />
         <category term="总结" />
         <category term="Spring" />

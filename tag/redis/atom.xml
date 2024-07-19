@@ -16,17 +16,23 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Vue" />
-    <category term="前端" />
     <category term="Alist" />
     <category term="Homebrew" />
+    <category term="Vue" />
+    <category term="前端" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
         <id>http://blog.aixcc.top/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>Redis应用与总结</title>
         <link rel="alternate" href="http://blog.aixcc.top/2024/06/26/Redis%E5%85%AB%E8%82%A1%E6%96%87/"/>
-        <content type="html">&lt;h2 id=&#34;Redis-常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Redis-常见面试题总结&#34;&gt;&lt;/a&gt;Redis 常见面试题总结&lt;/h2&gt;
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151132401.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>Redis应用与总结</h1>
+            <p>&lt;h2 id=&#34;Redis-常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Redis-常见面试题总结&#34;&gt;&lt;/a&gt;Redis 常见面试题总结&lt;/h2&gt;
 &lt;h3 id=&#34;Redis-为什么这么快？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Redis-为什么这么快？&#34;&gt;&lt;/a&gt;Redis 为什么这么快？&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -168,7 +174,20 @@
 &lt;li&gt;&lt;strong&gt;双写一致性（Cache and Database Double Write）&lt;/strong&gt;：写操作时同时更新缓存和数据库，确保原子性。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;使用消息队列实现最终一致性&lt;/strong&gt;：更新数据库后发送消息队列，消费者接收消息后更新缓存，实现最终一致性。&lt;/li&gt;
 &lt;/ul&gt;
-</content>
+</p>
+            <p>Tags: 
+              
+                总结 
+              
+                Redis 
+              
+            </p>
+            <p>Categories: 
+              
+                Java 
+              
+            </p>
+        ]]></content>
         <category term="总结" />
         <category term="Redis" />
         <updated>2024-06-26T12:18:49.000Z</updated>

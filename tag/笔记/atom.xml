@@ -16,17 +16,23 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Vue" />
-    <category term="前端" />
     <category term="Alist" />
     <category term="Homebrew" />
+    <category term="Vue" />
+    <category term="前端" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
         <id>http://blog.aixcc.top/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>Java集合总结</title>
         <link rel="alternate" href="http://blog.aixcc.top/2024/06/22/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/"/>
-        <content type="html">&lt;h1 id=&#34;Java集合&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Java集合&#34;&gt;&lt;/a&gt;Java集合&lt;/h1&gt;
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151141320.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>Java集合总结</h1>
+            <p>&lt;h1 id=&#34;Java集合&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Java集合&#34;&gt;&lt;/a&gt;Java集合&lt;/h1&gt;
 &lt;h3 id=&#34;说说-List-Set-Queue-Map-四者的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#说说-List-Set-Queue-Map-四者的区别？&#34;&gt;&lt;/a&gt;说说 List, Set, Queue, Map 四者的区别？&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -151,137 +157,20 @@
 &lt;li&gt;&lt;strong&gt;删除元素&lt;/strong&gt;：定位到数组索引，删除链表或红黑树中的节点。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;扩容机制&lt;/strong&gt;：当元素数量超过阈值时，&lt;code&gt;HashMap&lt;/code&gt;会自动扩容，重新分配数组并调整元素位置。&lt;/li&gt;
 &lt;/ul&gt;
-</content>
+</p>
+            <p>Tags: 
+              
+                Java 
+              
+                笔记 
+              
+            </p>
+            <p>Categories: 
+              
+            </p>
+        ]]></content>
         <category term="Java" />
         <category term="笔记" />
         <updated>2024-06-22T08:48:56.000Z</updated>
-    </entry>
-    <entry>
-        <id>http://blog.aixcc.top/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/</id>
-        <title>Java基础总结</title>
-        <link rel="alternate" href="http://blog.aixcc.top/2024/06/21/Java%E5%9F%BA%E7%A1%80%E5%85%AB%E8%82%A1%E6%96%87/"/>
-        <content type="html">&lt;h4 id=&#34;对象相等和引用相等的区别&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#对象相等和引用相等的区别&#34;&gt;&lt;/a&gt;对象相等和引用相等的区别&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;对象相等&lt;/strong&gt;：比较的是内存中存放的内容是否相等。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;引用相等&lt;/strong&gt;：比较的是它们指向的内存地址是否相等。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;如果一个类没有声明构造方法，该程序能正确执行吗？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#如果一个类没有声明构造方法，该程序能正确执行吗？&#34;&gt;&lt;/a&gt;如果一个类没有声明构造方法，该程序能正确执行吗？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;如果一个类没有声明构造方法也可以执行，因为一个类没有声明构造方法也会有一个默认的不带参数的构造方法。&lt;/li&gt;
-&lt;li&gt;如果添加了类的构造方法，无论是否有参，&lt;code&gt;Java&lt;/code&gt;都不会添加默认不带参数的构造方法。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;构造方法有哪些特点？是否可被重写？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#构造方法有哪些特点？是否可被重写？&#34;&gt;&lt;/a&gt;构造方法有哪些特点？是否可被重写？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;构造方法的特点&lt;/strong&gt;：
-&lt;ul&gt;
-&lt;li&gt;名字与类名相同。&lt;/li&gt;
-&lt;li&gt;没有返回值。&lt;/li&gt;
-&lt;li&gt;生成类的对象时自动执行，无需调用。&lt;br&gt;
-构造方法不能被重写，但是可以被重载。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;面向对象的三大特征&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#面向对象的三大特征&#34;&gt;&lt;/a&gt;面向对象的三大特征&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;封装&lt;/strong&gt;：封装是指将对象的状态（属性）和行为（方法）绑定在一起，并将其内部实现细节隐藏起来，只通过公开的接口与外界进行交互。封装的目的是保护对象的内部状态，防止外部直接访问和修改，从而提高代码的安全性和可维护性。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;继承&lt;/strong&gt;：继承是指一个类（子类）继承另一个类（父类）的属性和方法，从而实现代码重用和逻辑扩展。通过继承，子类可以拥有父类的所有属性和方法，并可以对其进行扩展和修改。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;多态&lt;/strong&gt;：多态是指同一个方法在不同的对象中具有不同的实现，从而实现接口的统一调用。多态性使得同一个方法调用可以根据对象的实际类型执行不同的操作。多态可以通过方法重载（编译时多态）和方法重写（运行时多态）来实现。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;接口和抽象类有什么共同点和区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#接口和抽象类有什么共同点和区别？&#34;&gt;&lt;/a&gt;接口和抽象类有什么共同点和区别？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;共同点&lt;/strong&gt;：
-&lt;ul&gt;
-&lt;li&gt;都不能被实例化。&lt;/li&gt;
-&lt;li&gt;都可以包含抽象方法。&lt;/li&gt;
-&lt;li&gt;都可以有默认的实现方法。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;区别&lt;/strong&gt;：
-&lt;ul&gt;
-&lt;li&gt;接口主要用于对类的行为进行约束，实现了某个接口就具有了对应的行为。&lt;/li&gt;
-&lt;li&gt;抽象类主要用于代码的复用，强调所属关系。&lt;/li&gt;
-&lt;li&gt;一个类只能继承一个类，但是可以实现多个接口。&lt;/li&gt;
-&lt;li&gt;接口中的成员变量只能是静态常量，不能被修改且必须有初始值。&lt;/li&gt;
-&lt;li&gt;抽象类的成员变量默认是包级私有的，可以在子类中被重新定义，也可以重新赋值。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;深拷贝和浅拷贝的区别？什么是引用拷贝？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#深拷贝和浅拷贝的区别？什么是引用拷贝？&#34;&gt;&lt;/a&gt;深拷贝和浅拷贝的区别？什么是引用拷贝？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;浅拷贝&lt;/strong&gt;：创建一个新对象，它只复制对象中的基本数据类型，而引用类型只是复制引用，指向的是原对象中的同一个对象。浅拷贝可以用&lt;code&gt;Object&lt;/code&gt;的&lt;code&gt;clone()&lt;/code&gt;方法来实现。浅拷贝修改新对象的引用类型字段时，原对象的对应字段也会被修改。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;深拷贝&lt;/strong&gt;：不仅复制对象本身，还递归复制所有引用的对象，独立于原对象。深拷贝可以通过手动复制对象以及所有的引用对象，也可以使用序列化和反序列化来实现。修改新对象的引用类型字段时，原对象不会受到影响。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;引用拷贝&lt;/strong&gt;：直接复制对象的引用，使两个对象引用指向同一个内存地址。修改一个对象的内容，另一个对象也会同步变化。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;和-equals-的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#和-equals-的区别？&#34;&gt;&lt;/a&gt;== 和 equals()的区别？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;对于基本数据类型，&lt;code&gt;==&lt;/code&gt; 比较的是值。&lt;/li&gt;
-&lt;li&gt;对于引用数据类型，&lt;code&gt;==&lt;/code&gt; 比较的是对象的内存地址。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;equals()&lt;/code&gt;没有重写时，等价于&lt;code&gt;==&lt;/code&gt;比较两个对象。&lt;/li&gt;
-&lt;li&gt;被重写时，一般都重写&lt;code&gt;equals()&lt;/code&gt;方法用来比较两个对象中的属性是否相等。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;hashCode-有什么用？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#hashCode-有什么用？&#34;&gt;&lt;/a&gt;hashCode() 有什么用？&lt;/h4&gt;
-&lt;p&gt;&lt;code&gt;hashCode()&lt;/code&gt;方法用于生成对象的哈希码，哈希码是一个整数，能够确定该对象在哈希表中的索引位置。&lt;/p&gt;
-&lt;h4 id=&#34;为什么重写-equals-时必须重写-hashCode-方法？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#为什么重写-equals-时必须重写-hashCode-方法？&#34;&gt;&lt;/a&gt;为什么重写 equals() 时必须重写 hashCode() 方法？&lt;/h4&gt;
-&lt;h5 id=&#34;equals-和hashCode-的合同（约定）&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#equals-和hashCode-的合同（约定）&#34;&gt;&lt;/a&gt;&lt;code&gt;equals()&lt;/code&gt;和&lt;code&gt;hashCode()&lt;/code&gt;的合同（约定）&lt;/h5&gt;
-&lt;p&gt;如果两个对象根据&lt;code&gt;equals()&lt;/code&gt;方法是相等的，那么它们的&lt;code&gt;hashCode()&lt;/code&gt;值必须相同。&lt;/p&gt;
-&lt;p&gt;如果两个对象的&lt;code&gt;hashCode()&lt;/code&gt;值相同，它们不一定是相等的（但它们有可能是相等的）。&lt;/p&gt;
-&lt;h4 id=&#34;String、StringBuffer、StringBuilder-的区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#String、StringBuffer、StringBuilder-的区别？&#34;&gt;&lt;/a&gt;String、StringBuffer、StringBuilder 的区别？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;String&lt;/strong&gt;：不可变的，因为不可变，所以它是线程安全的。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;StringBuffer&lt;/strong&gt;：可变的，允许对字符串进行修改，线程安全，所有的方法都被&lt;code&gt;synchronized&lt;/code&gt;修饰。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;StringBuilder&lt;/strong&gt;：可变的，但不是线程安全的，没有被&lt;code&gt;synchronized&lt;/code&gt;修饰。由于没有同步机制，性能比&lt;code&gt;StringBuffer&lt;/code&gt;更高，适合单线程环境下使用。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;使用场景&lt;/strong&gt;：
-&lt;ul&gt;
-&lt;li&gt;当字符串是固定不变的时候使用&lt;code&gt;String&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;当需要对字符串进行大量修改且在多线程环境下使用&lt;code&gt;StringBuffer&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;当需要对字符串进行大量修改且在单线程环境下使用&lt;code&gt;StringBuilder&lt;/code&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;字符串常量池的作用了解吗？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#字符串常量池的作用了解吗？&#34;&gt;&lt;/a&gt;字符串常量池的作用了解吗？&lt;/h4&gt;
-&lt;p&gt;字符串常量池的主要作用是优化内存使用和提高性能。字符串常量池是一块专门用来存储字符串常量的区域，主要目的是为了避免字符串的重复创建。当多个字符串具有相同内容时，&lt;code&gt;JVM&lt;/code&gt;会在常量池中共享相同的字符串实例，而不是为每个字符串创建新的对象。&lt;/p&gt;
-&lt;h4 id=&#34;Exception-和-Error-有什么区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Exception-和-Error-有什么区别？&#34;&gt;&lt;/a&gt;Exception 和 Error 有什么区别？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Exception&lt;/strong&gt;和&lt;strong&gt;Error&lt;/strong&gt;都是&lt;strong&gt;Throwable&lt;/strong&gt;的子类。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Exception&lt;/code&gt;是程序本身可以处理的异常，可以通过&lt;code&gt;catch&lt;/code&gt;来捕获。&lt;code&gt;Exception&lt;/code&gt;还可以分为&lt;code&gt;checked Exception&lt;/code&gt;和&lt;code&gt;Unchecked Exception&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Error&lt;/code&gt;是程序无法处理的异常。通常是JVM无法处理的系统级错误，例如内存不足、栈溢出。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;Checked-Exception-和-Unchecked-Exception-有什么区别？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#Checked-Exception-和-Unchecked-Exception-有什么区别？&#34;&gt;&lt;/a&gt;Checked Exception 和 Unchecked Exception 有什么区别？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Checked Exception&lt;/strong&gt;必须被捕获或声明，否则编译器会报错。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Unchecked Exception&lt;/strong&gt;也叫运行时异常，不强制要求处理，但最好捕获处理。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;什么是泛型？有什么作用？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是泛型？有什么作用？&#34;&gt;&lt;/a&gt;什么是泛型？有什么作用？&lt;/h4&gt;
-&lt;p&gt;泛型是JDK5中引入的新特性，在编写类、接口和方法时可以使用类型参数，然后在使用时指定具体的类型。泛型允许在编译时检查类型，避免了运行时的类型错误。例如，创建一个List&lt;String&gt;(List集合指定了String类型参数)时，你就知道这个列表只能包含字符串。泛型消除强制类型转换，从集合中取出元素时不需要进行转换。Java编译器在编译时会移除所有的泛型类型信息&lt;/p&gt;
-&lt;h4 id=&#34;反射是什么？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#反射是什么？&#34;&gt;&lt;/a&gt;反射是什么？&lt;/h4&gt;
-&lt;p&gt;反射是&lt;code&gt;Java&lt;/code&gt;中的一种机制，允许程序在运行时获取有关自身的信息。并能动态地调用对象的方法、访问属性和创建对象实例。反射提供了动态操作类和对象的能力，是实现框架、工具和动态代理等技术的基础。&lt;/p&gt;
-&lt;h4 id=&#34;反射的优缺点？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#反射的优缺点？&#34;&gt;&lt;/a&gt;反射的优缺点？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;反射的优点&lt;/strong&gt;：
-&lt;ul&gt;
-&lt;li&gt;动态性和灵活性：反射允许我们在运行时加载和实例化类、调用方法和访问字段，让我们可以编写更通用和灵活的代码，特别是在插件系统或依赖注入框架中。&lt;/li&gt;
-&lt;li&gt;很多流行的&lt;code&gt;Java&lt;/code&gt;框架如&lt;code&gt;Spring&lt;/code&gt;都依赖反射来实现动态代理、依赖注入。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;反射的缺点&lt;/strong&gt;：
-&lt;ul&gt;
-&lt;li&gt;反射操作通常比直接调用方法或访问字段要慢，频繁使用反射可能会影响性能。&lt;/li&gt;
-&lt;li&gt;反射可以绕过Java的访问控制机制，可能破坏类的封装性和安全性。&lt;/li&gt;
-&lt;li&gt;使用反射的代码通常更复杂，反射相关的错误可能难以发现和修复。&lt;/li&gt;
-&lt;li&gt;反射跳过了编译时的类型检查，许多问题只能在运行时发现，增加了出错风险。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;何谓注解？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#何谓注解？&#34;&gt;&lt;/a&gt;何谓注解？&lt;/h4&gt;
-&lt;p&gt;注解是&lt;code&gt;Java&lt;/code&gt;中的一种元数据，用来提供代码的额外信息。注解不会直接影响代码的执行，但可以被编译器和运行环境使用，以进行编译检查、生成代码、动态处理等。注解使用@符号来声明，可以用于编译时的代码检查，例如&lt;code&gt;@Override&lt;/code&gt;注解可以确保方法重写。注解可以与工具结合使用，在编译时生成额外的代码，某些注解可以在运行时通过反射机制读取和处理，用于配置和控制程序行为。&lt;/p&gt;
-&lt;h4 id=&#34;什么是序列化？什么是反序列化？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是序列化？什么是反序列化？&#34;&gt;&lt;/a&gt;什么是序列化？什么是反序列化？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;序列化&lt;/strong&gt;：将一个Java对象转换成字节流的过程，可以将该对象保存到文件、数据库或者通过网络传输。序列化的主要目的是为了持久化对象状态和在不同Java虚拟机之间传输对象。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;反序列化&lt;/strong&gt;：将字节流恢复为Java对象的过程。通过反序列化使其恢复到序列化之前的状态。&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-        <category term="Java" />
-        <category term="笔记" />
-        <updated>2024-06-21T12:41:04.000Z</updated>
     </entry>
 </feed>

@@ -16,17 +16,23 @@
     <category term="RabbitMQ" />
     <category term="Redis" />
     <category term="Spring" />
-    <category term="Vue" />
-    <category term="前端" />
     <category term="Alist" />
     <category term="Homebrew" />
+    <category term="Vue" />
+    <category term="前端" />
     <category term="SSL" />
     <category term="域名" />
     <entry>
         <id>http://blog.aixcc.top/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</id>
         <title>RabbitMQ应用与总结</title>
         <link rel="alternate" href="http://blog.aixcc.top/2024/06/26/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/"/>
-        <content type="html">&lt;h2 id=&#34;RabbitMQ常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#RabbitMQ常见面试题总结&#34;&gt;&lt;/a&gt;RabbitMQ常见面试题总结&lt;/h2&gt;
+        
+        
+        <link rel="enclosure" type="image/jpeg" href="https://alist.aixcc.top/d/OneDrive/img/202407151141368.webp"/>
+        
+        <content type="html"><![CDATA[
+            <h1>RabbitMQ应用与总结</h1>
+            <p>&lt;h2 id=&#34;RabbitMQ常见面试题总结&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#RabbitMQ常见面试题总结&#34;&gt;&lt;/a&gt;RabbitMQ常见面试题总结&lt;/h2&gt;
 &lt;h3 id=&#34;什么是-RabbitMQ？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#什么是-RabbitMQ？&#34;&gt;&lt;/a&gt;什么是 RabbitMQ？&lt;/h3&gt;
 &lt;p&gt;RabbitMQ 是一个开源的消息代理软件，广泛用于消息队列中。它实现了高级消息队列协议（AMQP），支持多重消息模式，能够在分布式系统重提供可靠的消息传递。。RabbitMQ 用于不同系统或服务之间异步传递消息，从而解耦生产者和消费者，增强系统的可扩展性和容错能力。&lt;/p&gt;
 &lt;h3 id=&#34;RabbitMQ-的组件有哪些？&#34;&gt;&lt;a class=&#34;headerlink&#34; href=&#34;#RabbitMQ-的组件有哪些？&#34;&gt;&lt;/a&gt;RabbitMQ 的组件有哪些？&lt;/h3&gt;
@@ -79,7 +85,22 @@
 &lt;ul&gt;
 &lt;li&gt;Broker 是 RabbitMQ 服务器实例，负责接收、存储和转发消息。&lt;/li&gt;
 &lt;/ul&gt;
-</content>
+</p>
+            <p>Tags: 
+              
+                Java 
+              
+                总结 
+              
+                RabbitMQ 
+              
+            </p>
+            <p>Categories: 
+              
+                Java 
+              
+            </p>
+        ]]></content>
         <category term="Java" />
         <category term="总结" />
         <category term="RabbitMQ" />
